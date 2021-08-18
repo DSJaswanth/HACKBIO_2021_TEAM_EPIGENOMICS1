@@ -42,7 +42,7 @@ BEFORE LETS KNOW WHAT IS MY TEAM BIOSTACK IS ABOUT
 
 <img src="https://www.whatisepigenetics.com/wp-content/uploads/2013/07/dna-chromatin-histone.jpg" width ="500px">
 
-### :point_right: HEADING OVER TO TASK :point_left:
+### :point_down::point_down::point_down: HEADING OVER TO TASK :point_down::point_down::point_down:
 
 
 <img src="https://c.tenor.com/hmoSrzzvK7UAAAAC/thanos-snap.gif" width="500px">
