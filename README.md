@@ -25,5 +25,33 @@
 👉 CREATE A COMPREHENSIVE MARKDOWN.<br>
 👉 ADD STEP BY STEP OF ANALYSIS TO GITHUB LINK.<br>
 
+#Dont be so crazy to look up our workflow 
+BEFORE LETS KNOW WHAT IS MY TEAM BIOSTACK IS ABOUT
+
+## :woman_scientist:**EPIGENOMICS** :man_scientist:
+
+<img src="https://thumbs.gfycat.com/CelebratedHelpfulHoneyeater-size_restricted.gif" width="500px">
+
+## "The branch of biology which studies the casual relationship between genes and their products which bring the phenotype into being”.
+> - Conrad Waddington, father of epigenetics
+
+***EPIGENOMICS:***
+- Epigenomics is the study of the complete set of epigenetic modifications on the genetic material of a cell, known as the epigenome.<br>
+- Epigenomic maintenance is a continuous process and plays an important role in stability of eukaryotic genomes by taking part in crucial biological mechanisms like DNA repair.<br>
+- Epigenetic modifications play an important role in gene expression and regulation, and are involved in numerous cellular processes such as in differentiation/development and tumorigenesis.<br>
+
+<img src="https://www.whatisepigenetics.com/wp-content/uploads/2013/07/dna-chromatin-histone.jpg" width ="500px">
+
+### :point_right: HEADING OVER TO TASK :point_left:
+
+
+<img src="https://c.tenor.com/hmoSrzzvK7UAAAAC/thanos-snap.gif" width="500px">
+
+
+## ATAC SEQUENCING  ANALYSIS
+
+
+         
+ 
 
 
