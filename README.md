@@ -36,11 +36,19 @@ BEFORE LETS KNOW WHAT IS MY TEAM BIOSTACK IS ABOUT
 > - Conrad Waddington, father of epigenetics
 
 ***EPIGENOMICS:***
-- Epigenomics is the study of the complete set of epigenetic modifications on the genetic material of a cell, known as the epigenome.<br>
-- Epigenomic maintenance is a continuous process and plays an important role in stability of eukaryotic genomes by taking part in crucial biological mechanisms like DNA repair.<br>
-- Epigenetic modifications play an important role in gene expression and regulation, and are involved in numerous cellular processes such as in differentiation/development and tumorigenesis.<br>
+- Epigenetics is the study of the epigenetic modifications on the genetic material of the cell. This modifications play an important role in gene expression and regulation. They are involved in numerous cellular processes and have been implicated in several diseases such as cancer and viral infections.
 
 <img src="https://www.whatisepigenetics.com/wp-content/uploads/2013/07/dna-chromatin-histone.jpg" width ="500px">
+
+#### ATAC-SEQ analysis:
+- ATAC-Seq stands for Assay for Transposase-Accessible Chromatin with high-throughput sequencing.
+- The ATAC-Seq method relies on next-generation sequencing (NGS) library construction using the hyperactive transposase Tn5.
+
+<img src="https://www.activemotif.com/uploads/images/web_site/services-hp-dec2015/open-chromatin.png" width="500px">
+
+***Our Aim over ATAC-SEQ analysis is :-***
+- Is to investigate the chromatin accessibility and the genome is treated with a transposase (enzyme) called Tn5. It marks open chromatin regions by cutting and inserting adapters for sequencing.
+
 
 ### :point_down::point_down::point_down: HEADING OVER TO TASK :point_down::point_down::point_down:
 
@@ -48,7 +56,9 @@ BEFORE LETS KNOW WHAT IS MY TEAM BIOSTACK IS ABOUT
 <img src="https://c.tenor.com/hmoSrzzvK7UAAAAC/thanos-snap.gif" width="500px">
 
 
-## ATAC SEQUENCING  ANALYSIS
+## ATAC SEQUENCING ANALYSIS BASED ON GALAXY 
+- WORKFLOW BASED ON GALAXY
+
 
 
          
