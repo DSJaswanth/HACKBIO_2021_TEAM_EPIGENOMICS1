@@ -47,7 +47,8 @@ BEFORE LETS KNOW WHAT IS MY TEAM BIOSTACK IS ABOUT
 <img src="https://www.activemotif.com/uploads/images/web_site/services-hp-dec2015/open-chromatin.png" width="500px">
 
 ***Our Aim over ATAC-SEQ analysis is :-***
-- Is to investigate the chromatin accessibility and the genome is treated with a transposase (enzyme) called Tn5. It marks open chromatin regions by cutting and inserting adapters for sequencing.
+- Is to investigate the chromatin accessibility and the genome is treated with a transposase (enzyme) called Tn5. 
+- It marks open chromatin regions by cutting and inserting adapters for sequencing.
 
 
 ### :point_down::point_down::point_down: HEADING OVER TO TASK :point_down::point_down::point_down:
