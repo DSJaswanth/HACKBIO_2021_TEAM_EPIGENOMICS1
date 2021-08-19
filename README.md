@@ -57,12 +57,6 @@ BEFORE LETS KNOW WHAT IS MY TEAM BIOSTACK IS ABOUT
 <img src="https://c.tenor.com/hmoSrzzvK7UAAAAC/thanos-snap.gif" width="500px">
 
 
-## ATAC SEQUENCING ANALYSIS BASED ON GALAXY 
-- WORKFLOW BASED ON GALAXY
-<img src="https://training.galaxyproject.org/training-material/topics/epigenetics/images/atac-seq/ATACWF.svg" height="500px">
-
-
-
 
 
          
