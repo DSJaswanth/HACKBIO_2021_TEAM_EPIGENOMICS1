@@ -18,7 +18,7 @@
 <br>  
 
 ##  :scroll: HEADING OVER TO THE TASK :scroll:
-## STAGE 2
+## STAGE-2-PROBE
 
 👉 SEARCH FOR DESIRED TUTORIALS OF BIOSTACK (EPIGENOMICS) ANALYSIS.<br>
 👉 REPRODUCE THE ANALYSIS.<br>
@@ -59,7 +59,9 @@ BEFORE LETS KNOW WHAT IS MY TEAM BIOSTACK IS ABOUT
 
 ## ATAC SEQUENCING ANALYSIS BASED ON GALAXY 
 - WORKFLOW BASED ON GALAXY
-<img src="https://www.online-convert.com/downloadfile/229baf9a-f623-40df-8d31-7eb95462d1be/2504180a-a12f-4f3f-b054-213e97668ab3" width="500px">
+<img src="https://training.galaxyproject.org/training-material/topics/epigenetics/tutorials/atac-seq/workflows/main_workflow.ga" width="500px">
+
+
 
 
 
