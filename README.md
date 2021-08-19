@@ -32,8 +32,8 @@ BEFORE LETS KNOW WHAT IS MY TEAM BIOSTACK IS ABOUT
 
  <p align="center"> <img src="https://thumbs.gfycat.com/CelebratedHelpfulHoneyeater-size_restricted.gif" width="500px">
 
-## "The branch of biology which studies the casual relationship between genes and their products which bring the phenotype into being”.
-> - Conrad Waddington, father of epigenetics
+## <p align="center"> "The branch of biology which studies the casual relationship between genes and their products which bring the phenotype into being”.
+<p align="center"> - Conrad Waddington, father of epigenetics
 
 ***EPIGENOMICS:***
 - Epigenetics is the study of the epigenetic modifications on the genetic material of the cell. This modifications play an important role in gene expression and regulation. They are involved in numerous cellular processes and have been implicated in several diseases such as cancer and viral infections.
@@ -56,7 +56,7 @@ BEFORE LETS KNOW WHAT IS MY TEAM BIOSTACK IS ABOUT
 
 <p align="center"> <img src="https://c.tenor.com/hmoSrzzvK7UAAAAC/thanos-snap.gif" width="500px">
  
-#### ARE YOU CURIOUS TO SEE OUR TUTORIAL WORK THEN CHECK OUT THIS LINK BELOW
+#### ARE YOU CURIOUS TO SEE OUR TUTORIAL WORKFLOW THEN CHECK OUT THIS LINK BELOW
  
 [:point_right:CLick the link:point_left:](https://github.com/DSJaswanth/HACKBIO_2021_TEAM_EPIGENOMICS1/blob/main/HACKBIO%20TEAM%20EPIGENOMICS1%20(ATAC-SEQ%20ANALYSIS%20BASED%20ON%20GALAXY%20AND%20LINUX)%20.md)
 
