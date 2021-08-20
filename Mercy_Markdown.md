@@ -112,8 +112,12 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial
 <details >
 <summary>Fig of Results</summary>
 <br>
+<img src="https://user-images.githubusercontent.com/81503326/130266472-ff9b7010-5b74-4c4b-9a7d-c5038594bba1.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the FastQC report</p>
+<img src="https://user-images.githubusercontent.com/81503326/130266652-3617379d-4f3c-4735-b94e-dd187e70ed08.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the FastQC report after cutadapt</p>
 </details> 
-  
+
 **Mapping**
   
 <details >
@@ -165,6 +169,10 @@ Select the **Bowtie2**   **tool** with the following parameters:
   
 <details >
 <summary>Fig of Results</summary>
+<img src="https://user-images.githubusercontent.com/81503326/130267285-bc54dc25-2f14-4293-b87e-6ab168ebfcbb.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the cutadapt adaptor trimming </p>
+<img src="https://user-images.githubusercontent.com/81503326/130267494-96bee292-bd74-412b-82a7-ec530e417cac.PNG;"/>
+<p align = left >Output of the FastQC after adaptor trimming </p>                                                                                                                                                    
 <br>
 </details>    
 
