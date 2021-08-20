@@ -641,8 +641,7 @@ The same is repeated for the intergenic CTCF peaks.
                                                      
    <p align="center"> <img src="images/plotHeatmap%20output.PNG">
      <p align="center"> Figure: plotHeatmap output on CTCF
-                                                           
-                      </details>   
+ </details>   
                       
 <details>
 <summary>LINUX Implementation</summary>
@@ -683,7 +682,7 @@ This heatmap is showing a much more symmetric pattern.
  
   - In order to visualise a specific region (e.g. the gene _RAC2_), we will use pyGenomeTracks 
  
- <details>
+<details>
 <summary>Galaxy Implementation</summary>
 <br>       
  
@@ -722,8 +721,10 @@ This heatmap is showing a much more symmetric pattern.
         4. display to use: box: Draw a box
         5. Plot labels (name, p-val, q-val): No
     - param-repeat Insert Include tracks in your plot
-      - Choose style of the track: X-axis. 
-<details>
+      - Choose style of the track: X-axis
+ </details>
+  
+ <details>
 <summary>linux implementation</summary>
 <br>                                     
  - **Set up the config.ini file with the following contents-**
@@ -806,8 +807,7 @@ _**[x-axis]**_
 <img src="images/pyGenome%20output.PNG">
  
 - From the figure, we can see 3 accessible TSS for 6 transcripts for 2 genes. The TSS of RAC2 corresponds to an ATAC-Seq peak whereas there is no significant coverage on both TSS of SSTR3. Again, it can be said that only the first peak on the left overlaps with a CTCF binding site represents accessible loci. Amongst the 4 peaks in this plotted region, the 2 peaks in the middle do not correspond to CTCF peaks or TSS. As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes. More analyses are needed to assess if it is a real enhancer, for example, histone ChIP-seq, 3D structure, transgenic assay, etc. 
-                                                                                                                                                     </details>                                                                                                                                                       
-                                                                                                                                                      
+</details>                                                                                  
 As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes.
 
 ## Conclusion
