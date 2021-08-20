@@ -33,10 +33,10 @@ The report for each file is generated as an html file and a zip file containing 
 
 **Trimming Reads**
   
-<details >
+<details>
 <summary>Galaxy Implementation</summary>
-<br>
-</details>   
+<br>  
+
 -Select the **Cutadapt tool** with the following parameters
 
 1. &quot;Single-end or Paired-end reads?&quot;: Paired-end
@@ -106,6 +106,7 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial
  ```python 
 -$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed_1.fastq -p trimmed_2.fastq SRR891268_chr22_enriched_R1.fastq SRR891268_chr22_enriched_R2.fastq
  ```
+</details> 
 <details >
 <summary>Fig of Results</summary>
 <br>
@@ -116,7 +117,7 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial
 <details >
 <summary>Galaxy Implementation</summary>
 <br>
-</details >
+
 -### **Mapping reads to reference genome**
 
 Select the **Bowtie2**   **tool** with the following parameters:
