@@ -36,7 +36,7 @@ The report for each file is generated as an html file and a zip file containing 
 <details >
 <summary>Galaxy Implementation</summary>
 <br>
-  
+</details>   
 -Select the **Cutadapt tool** with the following parameters
 
 1. &quot;Single-end or Paired-end reads?&quot;: Paired-end
