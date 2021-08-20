@@ -187,11 +187,13 @@ Make the “fastqc” an executable file<bR>
 ```python  $ fastqc SRR891268_chr22_enriched_R1.fastq```<bR> 
 ```SRR891268_chr22_enriched_R2.fastq ```<bR> 
 The report for each file is generated as an html file and a zip file containing more files that can be customised for reports. Look into the html files.
-</details>
-
-#### image 
- 
-#### TRIMMING READ
+  
+<img src="https://user-images.githubusercontent.com/81503326/130265525-1612f50e-4f16-49ef-91cd-75f6ca537464.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the LINUX chr22 bed file</p>
+  
+  </details>
+  
+ #### TRIMMING READ
 <details>
 <summary>Galaxy Implementation</summary>
 <br>
@@ -274,7 +276,13 @@ Install cutadapt running-
 For paired end trimming-
  
  ```$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed\_1.fastq -p trimmed\_2.fastq SRR891268\_chr22\_enriched\_R1.fastq SRR891268\_chr22\_enriched\_R2.fastq```
-</details>
+
+  <img src="https://user-images.githubusercontent.com/81503326/130266472-ff9b7010-5b74-4c4b-9a7d-c5038594bba1.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the FastQC report</p>
+<img src="https://user-images.githubusercontent.com/81503326/130266652-3617379d-4f3c-4735-b94e-dd187e70ed08.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the FastQC report after cutadapt</p>
+ 
+  </details>
 
 ### STEP2 :- MAPPING 
   
@@ -323,6 +331,11 @@ For paired end trimming-
 
 Output should be as follows-
  
+ <img src="https://user-images.githubusercontent.com/81503326/130267285-bc54dc25-2f14-4293-b87e-6ab168ebfcbb.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the LINUX cutadapt adaptor trimming </p>
+<img src="https://user-images.githubusercontent.com/81503326/130267862-141591ac-0e64-4aa6-8003-eb4ac96e5910.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the FastQC after adaptor trimming </p>                                                                                                                                                    
+<br>
  
  </details>
   
