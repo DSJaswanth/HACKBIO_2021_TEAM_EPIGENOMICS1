@@ -7,7 +7,7 @@
 1. &quot;Short read data from your current history&quot;: Choose here either only the SRR891268\_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268\_R1 and SRR891268\_R2.
 2. Inspect the web page output of FastQC tool for the SRR891268\_R1 sample. Check what adapters are found at the end of the reads.
 </details>  
-<details open>
+<details >
 <summary>Linux Implementation</summary>
 <br>
   
@@ -26,13 +26,13 @@ $ fastqc SRR891268_chr22_enriched_R1.fastq SRR891268_chr22_enriched_R2.fastq
 The report for each file is generated as an html file and a zip file containing more files that can be customised for reports. Look into the html files
 </details>
 
-<details open>
+<details >
 <summary>Fig of Results</summary>
 <br>
 </details>   
 **Trimming Reads**
   
-<details open>
+<details >
 <summary>Galaxy Implementation</summary>
 <br>
   
@@ -87,7 +87,7 @@ Select the **Fast QC tool** with the following parameters
 1. &quot;Short read data from your current history&quot;: select the output of Cutadapt param files; use; Multiple datasets to choose both Read 1 Output and Read 2 Output.
 2. Click on the galaxy-eye (eye) icon of the report and read the first lines.
 </details>  
-<details open>
+<details >
 <summary>Linux Implementation</summary>
 <br>
 -The fastqc report  indicates the presence of an overrepresented sequence and fastqc identifies it as “Nextera Transposase Sequence ''. This sequence is similar to but longer than the one given in the tutorial.
@@ -105,13 +105,13 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial
  ```python 
 -$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed_1.fastq -p trimmed_2.fastq SRR891268_chr22_enriched_R1.fastq SRR891268_chr22_enriched_R2.fastq
  ```
-<details open>
+<details >
 <summary>Fig of Results</summary>
 <br>
 </details>    
 ###**Mapping**###
   
-<details open>
+<details >
 <summary>Galaxy Implementation</summary>
 <br>
 -### **Mapping reads to reference genome**
@@ -141,7 +141,7 @@ Select the **Bowtie2**   **tool** with the following parameters:
 
 1. Click on the galaxy-eye (eye) icon of the mapping stats.
 </details>  
-<details open>
+<details >
 <summary>Linux Implementation</summary>
 <br>
   
