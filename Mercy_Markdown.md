@@ -110,7 +110,7 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial
 <summary>Fig of Results</summary>
 <br>
 </details>    
-###**Mapping**###
+**Mapping**
   
 <details >
 <summary>Galaxy Implementation</summary>
