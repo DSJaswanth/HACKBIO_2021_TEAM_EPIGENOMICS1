@@ -29,8 +29,8 @@ The report for each file is generated as an html file and a zip file containing 
 <details open>
 <summary>Fig of Results</summary>
 <br>
-  
-###**Trimming Reads**###
+</details>   
+**Trimming Reads**
   
 <details open>
 <summary>Galaxy Implementation</summary>
@@ -155,6 +155,12 @@ Select the **Bowtie2**   **tool** with the following parameters:
 -Create index for Chromosome 22: bowtie2-build chr22.fa.gz indexed_chr22
 -Start mapping for the parameters specified by Galaxy: bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed_chr22 -1 trimmed_1.fastq -2 trimmed_2.fastq -S Aligned_output.sam 
 </details>  
+<details open>
+<summary>Fig of Results</summary>
+<br>
+</details>  
+
+  
 
   
   
