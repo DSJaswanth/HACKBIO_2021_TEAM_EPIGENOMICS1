@@ -517,52 +517,294 @@ Then run the command for peak calling: ````macs2 callpeak -t marked\_dup.bed -n 
    
 ### STEP 5 :-Visualisation of Coverage 
 
+#### A) Prepare the Datasets
+                                                                                                                                                      
+  1. **Extract CTCF peaks on chr22 in intergenic regions**
+ - As our training dataset is focused on chromosome 22 we will only use the CTCF peaks from chr22. We expect to have ATAC-seq coverage at TSS but only good ATAC-seq have coverage on intergenic CTCF. Indeed, the CTCF protein is able to position nucleosomes and creates a region depleted of nucleosome of around 120bp. This is smaller than the 200bp nucleosome-free region around TSS and also probably not present in all cells. Thus it is more difficult to get enrichment.                                                                                                                                                    
+<details>
+<summary>Galaxy Implementation</summary>
+<br>     
+                                                                                                                                                      
+In order to get the list of intergenic CTCF peaks of chr22, select the peaks on chr22 and then exclude the one which overlap with genes.
+
+- **Filter data on any column using simple expressions**   with the following parameters:
+  - Filter : Select the first dataset: ENCFF933NTR.bed.gz
+  - With following condition: c1==&#39;chr22&#39;
+- **bedtools Intersect intervals find overlapping intervals in various ways** with the following parameters:
+  - File A to intersect with B: Select the output of  **Filter**  data on any column using simple expressions tool
+  - Combined or separate output files: One output file per &#39;input B&#39; file
+    - File B to intersect with A: Select the dataset chr22 genes
+  - What should be written to the output file?: Write the original entry in A for each overlap (-wa)
+  - Required overlap: Default: 1bp
+  - Report only those alignments that  **do not**  overlap with file(s) B: Yes
+- Rename the datasets intergenic CTCF peaks chr22.
+                                                                                                                                                     
+</details> 
+                                                                                                                                                      
+<details>
+<summary>LINUX Implementation</summary>
+<br>                                                                                                                                                                 
+ - **Select CTCF peaks from chr22 in intergenic regions (@kehinde16)**
+
+1. Filter only data for chr22 from file using ````grep -w &quot;chr22&quot; ENCFF933NTR.bed \&gt;\&gt; file\_A.bed````
+2. ````Extract filtered chrr22 (as c1) into a new file- $ grep c1 ENCFF933NTR\_filt.bed \&gt; ENCFF933NTR\_chr22.bed````
+3. ````Replace c1 with chr22- $ sed &#39;s/c1/chr22/&#39; ENCFF933NTR\_chr22.bed \&gt; ENCFF933NTR\_CHR22genes.bed````
+4. bedtools Intersect intervals find overlapping intervals : ````$ bedtools intersect -v -a ENCFF933NTR\_CHR22genes.bed -b chr22\_genes.bed \&gt; intergenic\_CTCF\_peaks\_chr22````
+                                                                                                                                                     
+ </details> 
+                                                                                                                                                      
+#### B)Convert bedgraph from MACS2 to bigwig
+- To visualise any region of the genome very quickly, we need to change the bedgraph format from MACS2 output to binary bigwig format.
                                                                                                                                                       
 <details>
 <summary>Galaxy Implementation</summary>
-<br>                                                                                                                                                   
-</details>                                                                                                                                                      
-                                                                                                                                                      
-                                                                                                                                                      
-                                                                                                                                                      
-                                                                                                                                                      
-                                                                                                                                                      
- <details>
-<summary>Galaxy Implementation</summary>
-<br>                                                                                                                                                                 
-                                                                                                                                                      
- </details>                                                                                                                                                     
-                                                                                                                                                      
-                                                                                                                                                      
-                                                                                                                                                      
-                                                                                                                                                      
-                                                                                                                                                      
-  ### STEP 5 :- PEAK CALLING                                                                                                                                                      
- 
- #### A)
-  
-  <details>
-<summary>Galaxy Implementation</summary>
 <br>                                     
+ **Wig/BedGraph-to-bigWig** with the following parameters:
+
+  - Convert: Select the output of  **MACS2**  tool (Bedgraph Treatment).
+  - Converter settings to use: Default
+- Rename the datasets MACS2 bigwig.
+
+ </details>
+                                                                                                                                                      
+<details>
+<summary>LINUX Implementation</summary>
+<br>        
+ Install bedGraphtoBigWig and go through the following commands for converting the output bedGraph file from macs2 to bigwig (refer to this link if you want to understand the commands [https://www.biostars.org/p/176875/](https://www.biostars.org/p/176875/) )
+
+- ````awk &#39;NR!=1&#39; macs\_output\_treat\_pileup.bdg \&gt; macs.deheader.bedGraph```` <br>
+- ````sort -k1,1 -k2,2n macs.deheader.bedGraph \&gt; macs.sorted.bedGraph````<br>
+- ````touch chrom22.sizes````<br>
+- ````nano hg19.chrom.sizes```` → write only one line (tab delimited) in this file chr22 51304566 <br>
+- ````awk &#39;{print $1,$2,$3,$4}&#39; macs.sorted.bedGraph \&gt; macs.sorted.4.bedGraph````<br>
+-```` bedGraphToBigWig macs.sorted.4.bedGraph hg19.chrom.sizes macs.bw````
+                                                                                                                                                      
+ </details>                                                                                                                                                    
+
+ #### C) Create heatmap of coverage at TSS with deepTool
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- #### A) Filter Uninformative Reads
-  
-  <details>
+- For checking the coverage on specific regions, we can compute heatmap. ComputeMatrix &amp; plotHeatmap from deepTools are useful for this purpose. We will here make a heatmap centered on the transcription start sites (TSS) and another one centered on intergenic CTCF peaks.
+
+<details>
 <summary>Galaxy Implementation</summary>
+<br>                                                                                                                                                               
+
+- **computeMatrix**   with the following parameters:
+  - In  Select regions:
+    - Insert Select regions
+      - Regions to plot: Select the dataset chr22 genes
+  - Sample order matters: No
+    - Score file: Select the output of  **Wig/BedGraph-to-bigWig**  tool that should be named MACS2 bigwig.
+  - computeMatrix has two main output options: reference-point
+  - The reference point for the plotting: beginning of region (e.g. TSS)
+  - Show advanced output settings: no
+  - Show advanced options: yes
+  - Convert missing values to 0?: Yes
+  1. **Plot with plotHeatmap**
+
+- **plotHeatmap**   with the following parameters:
+  - Matrix file from the computeMatrix tool: Select the output of  **computeMatrix**  tool.
+  - Show advanced output settings: no
+  - Show advanced options: no
+
+The same is repeated for the intergenic CTCF peaks.
+
+**Generate the matrix**
+
+- **computeMatrix** with the following parameters:
+  - In Select regions:
+    - Insert Select regions
+      - Regions to plot: Select the dataset intergenic CTCF peaks chr22
+  - Sample order matters: No
+    - Score file: Select the output of  **Wig/BedGraph-to-bigWig**  tool that should be named MACS2 bigwig.
+  - Would you like custom sample labels?: No, use sample names in the history
+  - computeMatrix has two main output options: reference-point
+    - The reference point for the plotting: center of region
+  - Show advanced output settings: no
+  - Show advanced options: yes
+    - Convert missing values to 0?: Yes
+
+ - **plotHeatmap**   with the following parameters:
+  - Matrix file from the computeMatrix tool: Select the output of  **computeMatrix**  tool.
+  - Show advanced output settings: no
+  - Show advanced options: yes
+    - In Colormap to use for each sample:
+      - Insert Colormap to use for each sample
+        1. Color map to use for the heatmap: your choice
+    - The x-axis label: distance from peak center (bp)
+    - The y-axis label for the top panel: CTCF peaks
+    - Reference point label: peak center
+    - Labels for the regions plotted in the heatmap: CTCF\_peaks
+    - Did you compute the matrix with more than one groups of regions?: Yes, I used multiple groups of regions
+
+      </details>                                                                                                                                                
+<details>
+<summary>LINUX Implementation</summary>
+<br>  
+                                                                                                                                                      
+  -using computeMatrix generate the matrix
+
+1. Remove the first header line from chr22.bed file
+2. Then run ```` computeMatrix reference-point --referencePoint TSS -R chr22.bed -S macs.bw --missingDataAsZero -o output\_from\_computeMatrix.gz````
+
+- plotHeatmap will generate the plot using the output of computeMatrix
+
+````plotHeatmap -m output\_from\_computeMatrix.gz -out plotHeatMap.png````
+
+- Repeating the previous two steps for plotting **CTCF peaks of chr22 in intergenic regions** with slight moderation:
+
+````computeMatrix reference-point --referencePoint center -R intergenic\_ctcf\_peaks\_chr22 -S macs.bw --missingDataAsZero -o peak\_output\_from\_computeMatrix.gz````
+
+````- plotHeatmap -m peak\_output\_from\_computeMatrix.gz -out intragenic\_plotHeatMap.png````
+
+In the generated heatmaps, each line will be a transcript. The coverage will be summarized with a color code from red (no coverage) to blue (maximum coverage). All TSS will be aligned in the middle of the figure and only the 2 kb around the TSS will be displayed. Another plot, on top of the heatmap, will show the mean signal at the TSS. There will be one heatmap per bigwig.
+
+For TSS, our data gives the following heatmap-
+
+Here will be a figure………
+
+The plot on top shows a non-symmetric pattern that is higher on the left, which is expected as usually the promoter of active genes is accessible.
+
+For CTCF peaks of chr22 in intergenic regions, the following heatmap is generated from our data-
+
+Here will be a figure………
+
+This heatmap is showing a much more symmetric pattern.
+
+</details>  
+ 
+#### D)Visualise Regions with pyGenomeTracks
+ 
+  - In order to visualise a specific region (e.g. the gene _RAC2_), we will use pyGenomeTracks 
+ 
+<details>
+<summary>Galaxy Implementation</summary>
+<br>       
+ 
+  - **pyGenomeTracks**  Tool with the following parameters:
+  - Region of the genome to limit the operation: chr22:37,193,000-37,252,000
+  - In Include tracks in your plot:
+    - Insert Include tracks in your plot
+      - Choose style of the track: Bigwig track
+        1. Plot title: Coverage from MACS2 (extended +/-100bp)
+        2. Track file(s) bigwig format: Select the output of Wig/BedGraph-to-bigWig tool called MACS2 bigwig.
+        3. Color of track: Select the color of your choice
+        4. Minimum value: 0
+        5. height: 5
+        6. Show visualization of data range: Yes
+    - Insert Include tracks in your plot
+      - Choose style of the track: NarrowPeak track
+        1. Plot title: Peaks from MACS2 (extended +/-100bp)
+        2. Track file(s) encodepeak or bed format: Select the output of MACS2 tool (narrow Peaks).
+        3. Color of track: Select the color of your choice
+        4. display to use: box: Draw a box
+        5. Plot labels (name, p-val, q-val): No
+    - Insert Include tracks in your plot
+      - Choose style of the track: Gene track / Bed track
+        1. Plot title: Genes
+        2. Track file(s) bed or gtf format: chr22 genes
+        3. Color of track: Select the color of your choice
+        4. height: 5
+        5. Plot labels: yes
+          1. Put all labels inside the plotted region: Yes
+          2. Allow to put labels in the right margin: Yes
+    - Insert Include tracks in your plot
+      - Choose style of the track: NarrowPeak track
+        1. Plot title: CTCF peaks
+        2. Track file(s) encodepeak or bed format: Select the first dataset: ENCFF933NTR.bed.gz
+        3. Color of track: Select the color of your choice
+        4. display to use: box: Draw a box
+        5. Plot labels (name, p-val, q-val): No
+    - param-repeat Insert Include tracks in your plot
+      - Choose style of the track: X-axis
+                                                                                                                                                    
+</details>                                                                                                                                                       
+                                                                                                                                                      
+<details>
+<summary>linux implementation</summary>
 <br>                                     
+ - **Set up the config.ini file with the following contents-**
+
+_**[test bedgraph]**_
+
+_ **file = macs.bw** _
+
+_ **color = blue** _
+
+_ **height = 5** _
+
+_**title = Coverage from MACS2 (extended +/-100bp)**_
+
+_ **min\_value = 0** _
+
+_**[spacer]**_
+
+_ **height = 0.5** _
+
+_**[narrow]**_
+
+_ **file = intergenic\_ctcf\_peaks\_chr22.encodepeak** _
+
+_ **line\_width = 2** _
+
+_**title = Peaks from MACS2 (extended +/-100bp)**_
+
+_ **type = box** _
+
+_ **color = red** _
+
+_ **show\_labels = false** _
+
+_ **file\_type = narrow\_peak** _
+
+_**[spacer]**_
+
+_ **height = 0.5** _
+
+_**[genes 0]**_
+
+_ **file = chr22.bed** _
+
+_ **height = 7** _
+
+_ **title = genes** _
+
+_ **height = 5** _
+
+_ **color = #ffbbff** _
+
+_**[spacer]**_
+
+_ **height = 0.5** _
+
+_**[narrow 1]**_
+
+_ **file = ENCFF933NTR\_sorted.bed** _
+
+_ **color = #A020F0** _
+
+_ **line\_width = 2** _
+
+_ **title = CTCF peaks** _
+
+_ **type = box** _
+
+_ **show\_labels = false** _
+
+_**[x-axis]**_
+
+- Sort ENCFF933NTR.bed file-
+
+````sort -k 1,1 -k2,2n ENCFF933NTR.bed \&gt; ENCFF933NTR\_sorted.bed````
+
+- Install pyGenomeTracks using ````conda -install -c bioconda pyGenomeTracks````
+- Visualize regions by running- ````pyGenomeTracks --tracks config.ini --region chr22:37,193,000-37,252,000 -o Genome\_track\_plot.png````
+
+ - From the figure, we can see 3 accessible TSS for 6 transcripts for 2 genes. The TSS of RAC2 corresponds to an ATAC-Seq peak whereas there is no significant coverage on both TSS of SSTR3. Again, it can be said that only the first peak on the left overlaps with a CTCF binding site represents accessible loci. Amongst the 4 peaks in this plotted region, the 2 peaks in the middle do not correspond to CTCF peaks or TSS. As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes. More analyses are needed to assess if it is a real enhancer, for example, histone ChIP-seq, 3D structure, transgenic assay, etc. 
+                                                                                                                                                      
+</details>                                                                                                                                                       
+                                                                                                                                                      
+                                                                                                                                                      
  
  
  
@@ -571,27 +813,8 @@ Then run the command for peak calling: ````macs2 callpeak -t marked\_dup.bed -n 
  
  
  
- 
-#### A) Filter Uninformative Reads
+
   
-  <details>
-<summary>Galaxy Implementation</summary>
-<br>                                      
- 
- 
- 
- 
- 
- 
- 
- 
- 
- #### A) Filter Uninformative Reads
-  
-  <details>
-<summary>Galaxy Implementation</summary>
-<br>                                     
- 
  
  
  
