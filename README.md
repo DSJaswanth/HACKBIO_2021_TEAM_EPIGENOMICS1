@@ -29,6 +29,110 @@
 BEFORE LETS KNOW WHAT IS MY TEAM BIOSTACK IS ABOUT
 
 ##  <p align="center"> **ATAC-Seq Analysis**
+ 
+ ### **INTRODUCTION**
+
+ATAC-Seq, short for Assay for Transposase-Accessible Chromatin using Sequencing, is a technique for assessing chromatin accessibility and how it affects gene expression. The chromatin consists of several nucleosome units. A nucleosome is a complex of DNA and histone proteins that keeps DNA compact through packaging. For transcription to occur, DNA must be loosened from the nucleosomes to make it accessible to transcription factors. This accessibility of DNA mediated by chromatin is a key component of epigenetics.
+
+The ATAC-Seq analysis described below is based on a [tutorial](https://training.galaxyproject.org/training-material/topics/epigenetics/tutorials/atac-seq/tutorial.html#trimming-reads) on the Galaxy Project and uses purified CD4+ T cells (GM12878).
+
+#### Aim:
+ - To compare the predicted open chromatin regions to the known binding sites of CTCF, a DNA-binding protein implicated in 3D structure: CTCF. CTCF is known to bind to thousands of sites in the genome and thus it can be used as a positive control for assessing if the ATAC-Seq experiment is good quality. Good ATAC-Seq data would have accessible regions both within and outside of TSS, for example, at some CTCF binding sites. For that reason, we will download
+
+#### Datasets
+ - Data is gotten from the study of Buenrostro et al. 2013. The data from the original dataset is downsized to 200,000 randomly selected reads and about 200,000 reads pairs that will map to chromosome 22. Binding sites of CTCF identified by ChIP in the same cell line from ENCODE (ENCSR000AKB, dataset ENCFF933NTR are also used.
+
+ **Downloading Dataset: **
+
+ ***Download files from the [here](https://zenodo.org/record/3862793#.YRze2XUvNH4) directly for galaxy  or use the wget command along with link in the linux***
+ 
+ 1. [https://zenodo.org/record/3862793/files/ENCFF933NTR.bed.gz] <br>
+ 2. [https://zenodo.org/record/3862793/files/SRR891268\_chr22\_enriched\_R1.fastq.gz]<br>
+ 3. [https://zenodo.org/record/3862793/files/SRR891268\_chr22\_enriched\_R2.fastq.gz] <br>
+ 
+ ## **WORKFLOW/METHODOLOGY**
+ 
+### Step 1 :- Preprocessing
+<details>
+<summary> <h3>-Data Upload for galaxy </h3> </summary>
+<br>
+ ***_Create a new history_***
+
+1. Add or import DATASETS (2 fastq.gz files and 1 bed.gz file) for analysis (via link or from a data library)
+2. Add tags to R1 and R2 files. To add tags:
+    - Click on the dataset
+    - Click on the tag icon
+    - Add a tag starting with **#: FOR  #SRR891268\_R1** FILE to the R1 file and  FOR **#SRR891268\_R2** FILE to the R2 file.
+    - Check that tag appears below the dataset name
+
+***_Check datatype of files and edit if necessary_***
+
+1. Click on the pencil icon for the dataset to edit its attributes
+2. In the central panel, click on the Datatypes tab on the top
+3. Select correct datatype (fastqsanger.gz for the FASTQ files, and encodepeak for the bed.gz file)
+4. Click the Change datatype button
+ </details>
+
+ ### -**Obtain Annotation for hg38 genes**
+ <details>
+ <summary> <h3 style="display:inline-block">-FOR GALAXY IMPLEMEMTATION : </h3> </summary>
+ 
+1. Select the **USCS Main table browser tool** with the following parameters
+
+1. &quot;clade&quot;: Mammal
+2. &quot;genome&quot;: Human
+3. &quot;assembly&quot;: Dec. 2013 (GRCh38/hg38)
+4. &quot;group&quot;: Genes and Gene Prediction
+5. &quot;track&quot;: All GENCODE V37
+6. &quot;table&quot;: Basic
+7. &quot;region&quot;: position chr22
+8. &quot;output format&quot;: all fields from selected table
+9. &quot;Send output to&quot;: Galaxy
+
+2. Click get output
+
+3. Click Send Query to Galaxy
+
+4. Select the **Cut columns from a table tool** with the following parameters
+
+1. &quot;Cut columns&quot;: c3,c5,c6,c13,c12,c4
+2. &quot;Delimited by&quot;: Tab
+3. param-file &quot;From&quot;: UCSC Main on Human: wgEncodeGencodeBasicV37 (chr22:1-50,818,468)
+
+_Rename the dataset as chr22 genes_
+
+1. Click on the pencil icon for the dataset to edit its attributes
+2. In the central panel, change the name field
+3. Click the Save button
+
+_Change the datatype to a BED format_
+
+1. Click on the pencil icon for the dataset to edit its attributes
+2. In the central panel, click on the Datatypes tab on the top
+3. Select  **bed**
+4. Click the Change datatype button
+
+Click on the eye icon to check changes effected. There should be matching column names in each column of the dataset.
+  </details>
+ 
+ <details open>
+<summary>Want to ruin the surprise?</summary>
+<br>
+Well, you asked for it!
+</details>
+  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 
