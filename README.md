@@ -7,17 +7,16 @@
   
  This is ***Team EPIGENOMICS1 *** for Hackbio 2021 virtual internship.
  
-- 🌱 About: Hackbio Internship is a 5-weeks virtual research internship that is practice oriented and focused on equipping scientists globally with advanced bioinformatics and      computational biology skills.
-- 🔭 We are currently working on <a href="https://github.com/DSJaswanth/HACKBIO_2021_TEAM_EPIGENOMICS1">**Team-EPIGENOMICS1**</a>
+- 🌱 About: Hackbio Internship is a 5-weeks virtual research internship that is practice oriented and focused on equipping scientists globally with advanced bioinformatics and      computational biology skills. 
 - :desktop_computer: Hackbio official website: https://thehackbio.com/
 - 📫 Contact: contact@hackbio.com
 - :man_technologist: We are a diverse team of awesome 17 members 👩‍💻.
-
+<!---
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=DSJawanth&layout=compact)
 --->
 
 <br>  
-
+   
 ##  :scroll: HEADING OVER TO THE TASK :scroll:
 ## <p align="center"> STAGE-2-PROBE
 
