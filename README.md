@@ -722,11 +722,7 @@ This heatmap is showing a much more symmetric pattern.
         4. display to use: box: Draw a box
         5. Plot labels (name, p-val, q-val): No
     - param-repeat Insert Include tracks in your plot
-      - Choose style of the track: X-axis.
-                                                             </details>
-                                                             
-                                                             
-                                                             
+      - Choose style of the track: X-axis. 
 <details>
 <summary>linux implementation</summary>
 <br>                                     
@@ -810,8 +806,7 @@ _**[x-axis]**_
 <img src="images/pyGenome%20output.PNG">
  
 - From the figure, we can see 3 accessible TSS for 6 transcripts for 2 genes. The TSS of RAC2 corresponds to an ATAC-Seq peak whereas there is no significant coverage on both TSS of SSTR3. Again, it can be said that only the first peak on the left overlaps with a CTCF binding site represents accessible loci. Amongst the 4 peaks in this plotted region, the 2 peaks in the middle do not correspond to CTCF peaks or TSS. As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes. More analyses are needed to assess if it is a real enhancer, for example, histone ChIP-seq, 3D structure, transgenic assay, etc. 
-                                                                                                                                                      
-</details>                                                                                                                                                       
+                                                                                                                                                     </details>                                                                                                                                                       
                                                                                                                                                       
 As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes.
 
@@ -829,7 +824,8 @@ ATAC-Seq is a method to investigate the chromatin accessibility and the genome i
 6. Litzenburger, U. M., J. D. Buenrostro, B. Wu, Y. Shen, N. C. Sheffield _et al._, 2017  **Single-cell epigenomic variability reveals functional cancer heterogeneity**. Genome Biology 18: [10.1186/s13059-016-1133-7](https://doi.org/10.1186/s13059-016-1133-7)
 7. Kia, A., C. Gloeckner, T. Osothprarop, N. Gormley, E. Bomati _et al._, 2017  **Improved genome sequencing using an engineered transposase**. BMC Biotechnology 17: [10.1186/s12896-016-0326-1](https://doi.org/10.1186/s12896-016-0326-1)
 8. Corces, M. R., A. E. Trevino, E. G. Hamilton, P. G. Greenside, N. A. Sinnott-Armstrong _et al._, 2017  **An improved ATAC-seq protocol reduces background and enables interrogation of frozen tissues**. Nature Methods 14: 959–962. [10.1038/nmeth.4396](https://doi.org/10.1038/nmeth.4396)
-</details>
+
+
                                                                                                                                                       
  
  
