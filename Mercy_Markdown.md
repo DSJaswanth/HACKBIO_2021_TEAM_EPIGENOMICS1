@@ -13,8 +13,12 @@
   
 -Download the FastQC module
 Note: FASTQC requires java and javac installed for implementation and you need to run the fastqc file from the folder (using the relative/absolute links to the sequence reads)
+```python
 $ sudo apt install default-jre
+```
+```python
 $ sudo apt install default-jdk
+```
 -Make the “fastqc” an executable file
 ```python
 $ chmod 755 fastqc
