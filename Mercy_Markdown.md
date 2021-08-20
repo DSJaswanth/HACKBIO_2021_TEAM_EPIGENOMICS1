@@ -1,6 +1,6 @@
 **Quality Control**
 
-<details open>
+<details >
 <summary>Galaxy Implementation</summary>
 <br>
 -Select the **FastQC tool** with the following parameters
@@ -146,16 +146,18 @@ Select the **Bowtie2**   **tool** with the following parameters:
 <br>
   
 **Pulling the sequence for chromosome 22 for indexing and mapping**
-  
+ ```python   
 -$ wget --timestamping 'ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz' -O chr22.fa.gz
    For mapping to chr22-
-
+```
 **install bowtie2**
   
--Create index for Chromosome 22: bowtie2-build chr22.fa.gz indexed_chr22
--Start mapping for the parameters specified by Galaxy: bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed_chr22 -1 trimmed_1.fastq -2 trimmed_2.fastq -S Aligned_output.sam 
+-Create index for Chromosome 22:  
+```python  bowtie2-build chr22.fa.gz indexed_chr22 ```
+-Start mapping for the parameters specified by Galaxy: 
+```pythonbowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed_chr22 -1 trimmed_1.fastq -2 trimmed_2.fastq -S Aligned_output.sam ```
 </details>  
-<details open>
+<details>
 <summary>Fig of Results</summary>
 <br>
 </details>  
