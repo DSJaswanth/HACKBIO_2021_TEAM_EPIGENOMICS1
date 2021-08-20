@@ -29,14 +29,15 @@ The report for each file is generated as an html file and a zip file containing 
 <details >
 <summary>Fig of Results</summary>
 <br>
+<img src=“https://github.com/KrisKasprzak/ILI9341_t3_controls 520”>
 </details>   
 
 **Trimming Reads**
   
-<details>
+<details >
 <summary>Galaxy Implementation</summary>
-<br>  
-
+<br>
+  
 -Select the **Cutadapt tool** with the following parameters
 
 1. &quot;Single-end or Paired-end reads?&quot;: Paired-end
@@ -117,7 +118,6 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial
 <details >
 <summary>Galaxy Implementation</summary>
 <br>
-
 -### **Mapping reads to reference genome**
 
 Select the **Bowtie2**   **tool** with the following parameters:
@@ -150,7 +150,7 @@ Select the **Bowtie2**   **tool** with the following parameters:
 <br>
   
 **Pulling the sequence for chromosome 22 for indexing and mapping**
- ```python   
+```python   
 -$ wget --timestamping 'ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz' -O chr22.fa.gz
    For mapping to chr22-
 ```
@@ -160,12 +160,12 @@ Select the **Bowtie2**   **tool** with the following parameters:
 ```python  bowtie2-build chr22.fa.gz indexed_chr22 ```
 -Start mapping for the parameters specified by Galaxy: 
 ```pythonbowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed_chr22 -1 trimmed_1.fastq -2 trimmed_2.fastq -S Aligned_output.sam ```
-</details>  
-
-<details>
+</details>
+  
+<details >
 <summary>Fig of Results</summary>
 <br>
-</details>  
+</details>    
 
   
 
