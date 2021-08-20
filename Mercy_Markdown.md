@@ -30,6 +30,7 @@ The report for each file is generated as an html file and a zip file containing 
 <summary>Fig of Results</summary>
 <br>
 </details>   
+
 **Trimming Reads**
   
 <details >
