@@ -323,29 +323,132 @@ For paired end trimming-
 
 Output should be as follows-
  
+ 
+ </details>
+  
 ### STEP 3 :- Filtering Mapped Reads 
- 
+  
+#### A) Filter Uninformative Reads
+  
+  <details>
+<summary>Galaxy Implementation</summary>
+<br>
+   
+ ****_Filtering of uninformative mapped reads_****
 
+Select the **Filter BAM datasets on a variety of attributes**   **tool** with the following parameters
 
+param-file &quot;BAM dataset(s) to filter&quot;: Select the output of Bowtie2 tool &quot;alignments&quot;
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+In &quot;Condition&quot;:
 
+1. param-repeat &quot;Insert Condition&quot;
+2. In &quot;Filter&quot;:
+3. param-repeat &quot;Insert Filter&quot;
 
+&quot;Select BAM property to filter on&quot;: mapQuality
 
-         
+&quot;Filter on read mapping quality (phred scale)&quot;: \&gt;=30
+
+1. param-repeat &quot;Insert Filter&quot;
+
+&quot;Select BAM property to filter on&quot;: isProperPair
+
+&quot;Select properly paired reads&quot;: Yes
+
+1. param-repeat &quot;Insert Filter&quot;
+
+&quot;Select BAM property to filter on&quot;: reference
+
+&quot;Filter on the reference name for the read&quot;: !chrM
+
+&quot;Would you like to set rules?&quot;: No
+
+Click on the input and the output BAM files of the filtering step. Check the size of the files.
+
+   
+ </details >
+  
+<details >
+<summary>Linux Implementation</summary>
+<br>
  
+****_Filtering of uninformative mapped reads_****
 
+1. Install samtools
+2. ```samtools view -q 30 -f 0x2 -b -h Aligned\_output.sam \&gt; Filtered\_output.bam```
 
+This will filter out uninformative reads (Mapping quality \&gt;= 30 &amp; Properly Paired)
+
+ </details> 
+  
+#### B) Filter duplicate reads
+  
+  <details>
+<summary>Galaxy Implementation</summary>
+<br>
+   
+***_Remove duplicates_***
+
+Select the **MarkDuplicates**   **tool** with the following parameters
+
+1. param-file &quot;Select SAM/BAM dataset or dataset collection&quot;: Select the output of Filter tool &quot;BAM&quot;
+2. &quot;If true do not write duplicates to the output file instead of writing them with appropriate flags set&quot;: Yes
+
+Click on the eye icon of the MarkDuplicate metrics.
+  
+  </details>
+  
+ <details >
+<summary>Linux Implementation</summary>
+<br>
+  
+ **_Mark Duplicate Reads_**
+
+- Download picard.jar in your working folder from [here](https://github.com/broadinstitute/picard/releases/download/2.26.0/picard.jar)
+- From that directory, run ````java -jar picard.jar -h```` to check whether it works (you can skip this step)
+- For sorting the output file from last step use-```` samtools sort -T temp -O bam -o filtered\_output\_sorted.bam Filtered\_output.bam````
+- Finally, run ````java -jar picard.jar MarkDuplicates I=filtered\_output\_sorted.bam O=marked\_dup.bam M=marked\_dup.metrics.txt```` for marking duplicates
+- If you can have a look into the metrics in the metrics.txt file
+  
+    </details>
+  
+  
+  #### C) Check Insert Sizes 
+  
+  <details>
+<summary>Galaxy Implementation</summary>
+<br>
+   
+****_Plot the distribution of fragment sizes_****
+
+Select **Paired-end histogram tool** with the following parameters
+
+1. param-file &quot;BAM file&quot;: Select the output of MarkDuplicates tool &quot;BAM output&quot;
+2. &quot;Lower bp limit (optional)&quot;: 0
+3. &quot;Upper bp limit (optional)&quot;: 1000
+
+Click on the galaxy-eye (eye) icon of the lower one of the 2 outputs (the png file).
+
+</details>
+ 
+  <details >
+<summary>Linux Implementation</summary>
+<br>
+
+***_Check Insert Sizes_***
+   
+Check Insert Size tells us the size of the DNA fragment the read pairs came from. For this step we have to make a plot of the frequencies of the reads in the bam file to observe the peaks around where there are likely Tn5 transposase activities into nucleosome-free regions.
+
+````$ sudo apt install r-base````<br>
+
+````$ java -jar picard.jar CollectInsertSizeMetrics I=marked\_dup.bam O=chart.txt H=insertSizePlot.pdf M=0.5````
+
+![](RackMultipart20210820-4-1srrkc3_html_c751a794d88d647c.png)
+
+Two peaks can be observed around the 200bp and 400bp from the plot
+
+  </details>
 
  
  
