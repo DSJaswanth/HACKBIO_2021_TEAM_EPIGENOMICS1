@@ -28,13 +28,7 @@ The report for each file is generated as an html file and a zip file containing 
 
 <details >
 <summary>Fig of Results</summary>
-<br>
-<table style="padding:10px">
-  <tr>
-    <td align = center><img src="![chr22 to BED](https://user-images.githubusercontent.com/81503326/130264101-4b87a59e-61f9-4125-9837-774d42de51e6.PNG)" height="200" />
-    <p align = center>Output <b>Converting chr22 file into a bed file</b></p>
-    </td>
-    
+<br>    
 </details>   
 
 **Trimming Reads**
