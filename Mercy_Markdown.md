@@ -99,10 +99,10 @@ Select the **Fast QC tool** with the following parameters
 <br>
 -The fastqc report  indicates the presence of an overrepresented sequence and fastqc identifies it as “Nextera Transposase Sequence ''. This sequence is similar to but longer than the one given in the tutorial.
 
-SRR891268_chr22_enriched_R1 = CTGTCTCTTATACACATCTCCGAGCCCACGAGACTAAGGCGAATCTCGTA (fastqc)
-SRR891268_chr22_enriched_R1 = CTGTCTCTTATACACATCTCCGAGCCCACGAGAC (Galaxy tutorial)
-SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGAGTGTAGATCTCGGTGGT (fastqc)
-SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial)
+SRR891268_chr22_enriched_R1 = CTGTCTCTTATACACATCTCCGAGCCCACGAGACTAAGGCGAATCTCGTA (fastqc) <br>
+SRR891268_chr22_enriched_R1 = CTGTCTCTTATACACATCTCCGAGCCCACGAGAC (Galaxy tutorial) <br>
+SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGAGTGTAGATCTCGGTGGT (fastqc) <br>
+SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial) <br>
   
 **Install cutadapt running**
  ```python 
