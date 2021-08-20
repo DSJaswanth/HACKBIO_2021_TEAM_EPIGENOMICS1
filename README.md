@@ -722,7 +722,9 @@ This heatmap is showing a much more symmetric pattern.
         5. Plot labels (name, p-val, q-val): No
     - param-repeat Insert Include tracks in your plot
       - Choose style of the track: X-axis
- </details>
+                                                             
+ <p align="center"> <img src="images/pyGenome%20output.PNG"> 
+</details>
   
  <details>
 <summary>linux implementation</summary>
@@ -804,7 +806,7 @@ _**[x-axis]**_
 - Install pyGenomeTracks using ````conda -install -c bioconda pyGenomeTracks````
 - Visualize regions by running- ````pyGenomeTracks --tracks config.ini --region chr22:37,193,000-37,252,000 -o Genome\_track\_plot.png````
 
-<img src="images/pyGenome%20output.PNG">
+<p align="center"> <img src="images/pyGenome%20output.PNG">
  
 - From the figure, we can see 3 accessible TSS for 6 transcripts for 2 genes. The TSS of RAC2 corresponds to an ATAC-Seq peak whereas there is no significant coverage on both TSS of SSTR3. Again, it can be said that only the first peak on the left overlaps with a CTCF binding site represents accessible loci. Amongst the 4 peaks in this plotted region, the 2 peaks in the middle do not correspond to CTCF peaks or TSS. As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes. More analyses are needed to assess if it is a real enhancer, for example, histone ChIP-seq, 3D structure, transgenic assay, etc. 
 </details>                                                                                  
@@ -826,7 +828,9 @@ ATAC-Seq is a method to investigate the chromatin accessibility and the genome i
 8. Corces, M. R., A. E. Trevino, E. G. Hamilton, P. G. Greenside, N. A. Sinnott-Armstrong _et al._, 2017  **An improved ATAC-seq protocol reduces background and enables interrogation of frozen tissues**. Nature Methods 14: 959–962. [10.1038/nmeth.4396](https://doi.org/10.1038/nmeth.4396)
 
 
-                                                                                                                                                      
+                                                                                                                                                     
+<p align="center"> <img src="https://allfreethankyounotes.com/wp-content/uploads/2021/02/all-free-thank-you-gif-10.gif">
+ 
  
  
  
