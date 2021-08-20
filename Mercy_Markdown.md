@@ -127,7 +127,7 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial
 <details >
 <summary>Galaxy Implementation</summary>
 <br>
--### **Mapping reads to reference genome**
+- **Mapping reads to reference genome**
 
 Select the **Bowtie2**   **tool** with the following parameters:
 
@@ -163,7 +163,7 @@ Select the **Bowtie2**   **tool** with the following parameters:
 -$ wget --timestamping 'ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz' -O chr22.fa.gz
    For mapping to chr22-
 ```
-**install bowtie2**
+**Install bowtie2**
   
 -Create index for Chromosome 22:  
 ```python  bowtie2-build chr22.fa.gz indexed_chr22 ```
