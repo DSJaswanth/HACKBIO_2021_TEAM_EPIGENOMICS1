@@ -81,7 +81,7 @@ The ATAC-Seq analysis described below is based on a [tutorial](https://training.
 4. Click the Change datatype button
  </details>
 
- ### B Obtain Annotation for hg38 genes
+ #### B Obtain Annotation for hg38 genes
  <details>
  <summary>FOR GALAXY IMPLEMEMTATION</summary>
  
@@ -163,7 +163,7 @@ Thus, chr22.gz file will be downloaded.
 ````$ gunzip SRR891268_chr22_enriched_R2.fastq.gz ````
  </details>
  
-### C)QUALITY CONTROL
+#### C)QUALITY CONTROL
  
  <details>
 <summary>Galaxy Implementation</summary>
@@ -191,9 +191,142 @@ The report for each file is generated as an html file and a zip file containing 
 
 #### image 
  
+#### TRIMMING READ
+<details>
+<summary>Galaxy Implementation</summary>
+<br>
+
+ - Select the **Cutadapt tool** with the following parameters
+
+1. &quot;Single-end or Paired-end reads?&quot;: Paired-end
+
+2. param-file &quot;FASTQ/A file #1&quot;: select SRR891268\_R1
+3. param-file &quot;FASTQ/A file #2&quot;: select SRR891268\_R2
+4. In &quot;Read 1 Options&quot;:
+
+In &quot;3&#39; (End) Adapters&quot;:
+
+param-repeat &quot;Insert 3&#39; (End) Adapters&quot;
+
+&quot;Source&quot;: Enter custom sequence
+
+&quot;Enter custom 3&#39; adapter name (Optional if Multiple output is &#39;No&#39;)&quot;: Nextera R1
+
+&quot;Enter custom 3&#39; adapter sequence&quot;: CTGTCTCTTATACACATCTCCGAGCCCACGAGAC
+
+1. In &quot;Read 2 Options&quot;:
+
+In &quot;3&#39; (End) Adapters&quot;:
+
+param-repeat &quot;Insert 3&#39; (End) Adapters&quot;
+
+&quot;Source&quot;: Enter custom sequence
+
+&quot;Enter custom 3&#39; adapter name (Optional)&quot;: Nextera R2
+
+&quot;Enter custom 3&#39; adapter sequence&quot;: CTGTCTCTTATACACATCTGACGCTGCCGACGA
+
+1. In &quot;Filter Options&quot;:
+
+&quot;Minimum length&quot;: 20
+
+1. In &quot;Read Modification Options&quot;:
+
+&quot;Quality cutoff&quot;: 20
+
+1. In &quot;Output Options&quot;:
+
+&quot;Report&quot;: Yes
+
+1. Click on the galaxy-eye (eye) icon of the report and read the first lines.
+  - Check Adapter Removal
+
+Select the **Fast QC tool** with the following parameters
+
+1. &quot;Short read data from your current history&quot;: select the output of Cutadapt param files; use; Multiple datasets to choose both Read 1 Output and Read 2 Output.
+2. Click on the galaxy-eye (eye) icon of the report and read the first lines.
+  </details>
+ 
+<details >
+<summary>Linux Implementation</summary>
+<br> 
+ 
+- ##### Adapter Trimming 
+
+The fastqc report indicates the presence of an overrepresented sequence and fastqc identifies it as &quot;Nextera Transposase Sequence &#39;&#39;. This sequence is similar to but longer than the one given in the tutorial.
+
+```SRR891268\_chr22\_enriched\_R1 = CTGTCTCTTATACACATCTCCGAGCCCACGAGACTAAGGCGAATCTCGTA (fastqc)``` <br>
+
+```SRR891268\_chr22\_enriched\_R1 = CTGTCTCTTATACACATCTCCGAGCCCACGAGAC (Galaxy tutorial)```<br>
+
+```SRR891268\_chr22\_enriched\_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGAGTGTAGATCTCGGTGGT (fastqc)```<br>
 
 
+```SRR891268\_chr22\_enriched\_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial)```<br>
+
+
+ - ##### Adapter Trimming with Cutadapt 
+
+Install cutadapt running-
+
+```$ sudo apt install cutadapt```
+
+For paired end trimming-
+ 
+ ```$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed\_1.fastq -p trimmed\_2.fastq SRR891268\_chr22\_enriched\_R1.fastq SRR891268\_chr22\_enriched\_R2.fastq```
+</details>
+
+### STEP2 :- MAPPING 
   
+<details>
+<summary>Galaxy Implementation</summary>
+<br>
+ 
+ ### **Mapping reads to reference genome**
+
+ - Select the **Bowtie2**   **tool** with the following parameters:
+
+1. &quot;Is this single or paired library&quot;: Paired-end
+2. param-file &quot;FASTQ/A file #1&quot;: select the output of Cutadapt tool &quot;Read 1 Output&quot;
+3. param-file &quot;FASTQ/A file #2&quot;: select the output of Cutadapt tool &quot;Read 2 Output&quot;
+4. &quot;Do you want to set paired-end options?&quot;: Yes
+
+   - &quot;Set the maximum fragment length for valid paired-end alignments&quot;: 1000
+&quot;Allow mate dovetailing&quot;: Yes
+
+1. &quot;Will you select a reference genome from your history or use a built-in index?&quot;: Use a built-in genome index
+2. &quot;Select reference genome&quot;: Human (Homo sapiens): hg38 Canonical
+3. &quot;Set read groups information?&quot;: Do not set
+4. &quot;Select analysis mode&quot;: 1: Default setting only
+
+   - &quot;Do you want to use presets?&quot;: Very sensitive end-to-end (--very-sensitive)
+
+1. &quot;Do you want to tweak SAM/BAM Options?&quot;: No
+2. &quot;Save the bowtie2 mapping statistics to the history&quot;: Yes
+3.Click on the galaxy-eye (eye) icon of the mapping stats.
+  </details>
+
+<details >
+<summary>Linux Implementation</summary>
+<br>
+ 
+- Mapping and Alignment 
+
+  Pulling the sequence for chromosome 22 for indexing and mapping
+```$ wget --timestamping &#39;ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz&#39; -O chr22.fa.gz```
+
+- For mapping to chr22-
+
+1. install bowtie2
+2. Create index for Chromosome 22:``` bowtie2-build chr22.fa.gz indexed\_chr22```
+3. Start mapping for the parameters specified by Galaxy: ```bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed\_chr22 -1 trimmed\_1.fastq -2 trimmed\_2.fastq -S Aligned\_output.sam```
+
+Output should be as follows-
+ 
+### STEP 3 :- Filtering Mapped Reads 
+ 
+
+
 
  
  
@@ -213,3 +346,93 @@ The report for each file is generated as an html file and a zip file containing 
  
 
 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
