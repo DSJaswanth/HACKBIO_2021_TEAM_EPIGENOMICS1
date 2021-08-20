@@ -127,7 +127,7 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial
 <details >
 <summary>Galaxy Implementation</summary>
 <br>
-**Mapping reads to reference genome**
+-Mapping reads to reference genome
 
 Select the **Bowtie2**   **tool** with the following parameters:
 
