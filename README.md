@@ -806,11 +806,11 @@ _**[x-axis]**_
                                                                                                                                                       
 As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes.
 
-**Conclusion**
+## Conclusion
 
 ATAC-Seq is a method to investigate the chromatin accessibility and the genome is treated with a transposase (enzyme) called Tn5. It marks open chromatin regions by cutting and inserting adapters for sequencing. Low quality bases, adapter contamination, correct insert size and PCR duplicates (duplication level) were checked. Mapped the reads with  **Bowtie2** , filtered the reads for properly paired, good quality and reads that do not map to the mitochondrial genome. Open chromatin regions were found with  **MACS2** , a tool to find regions of genomic enrichment (peaks). The read coverage around TSS was investigated with the help of  **computeMatrix**  and  **plotHeatmap**. The peaks and other informative tracks, such as CTCF binding regions and hg38 genes were visualised with the help of  **pyGenomeTracks**. At the end, open chromatin regions that did not overlap with CTCF sites or TSS, which could be potential putative enhancer regions detected by the ATAC-Seq experiment.
 
-**REFERENCES**
+## REFERENCES**
 
 1. Lucille Delisle, Maria Doyle, Florian Heyl, 2021 **ATAC-Seq data analysis (Galaxy Training Materials)**. [https://training.galaxyproject.org/training-material/topics/epigenetics/tutorials/atac-seq/tutorial.html](https://training.galaxyproject.org/training-material/topics/epigenetics/tutorials/atac-seq/tutorial.html) Online; accessed Thu Aug 19 2021
 2. Fu, Y., M. Sinha, C. L. Peterson, and Z. Weng, 2008  **The insulator binding protein CTCF positions 20 nucleosomes around its binding sites across the human genome**. PLoS genetics 4: e1000138. [10.1371/journal.pgen.1000138](https://doi.org/10.1371/journal.pgen.1000138)
