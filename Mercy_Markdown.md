@@ -29,8 +29,8 @@ The report for each file is generated as an html file and a zip file containing 
 <details >
 <summary>Fig of Results</summary>
 <br>  
-<img src=“https://user-images.githubusercontent.com/81503326/130264630-4905fa8f-3f34-4dfc-be63-dd63eac3e49c.PNG”>
-
+<img src="https://user-images.githubusercontent.com/81503326/130265525-1612f50e-4f16-49ef-91cd-75f6ca537464.PNG" "" style="height: 100px; width:100px;"/>
+<p align = left >Output of the chr22 bed file</p>
 </details>   
 
 **Trimming Reads**
