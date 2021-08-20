@@ -116,6 +116,7 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial
 <details >
 <summary>Galaxy Implementation</summary>
 <br>
+</details >
 -### **Mapping reads to reference genome**
 
 Select the **Bowtie2**   **tool** with the following parameters:
@@ -159,6 +160,7 @@ Select the **Bowtie2**   **tool** with the following parameters:
 -Start mapping for the parameters specified by Galaxy: 
 ```pythonbowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed_chr22 -1 trimmed_1.fastq -2 trimmed_2.fastq -S Aligned_output.sam ```
 </details>  
+
 <details>
 <summary>Fig of Results</summary>
 <br>
