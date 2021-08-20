@@ -53,16 +53,16 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
  ## **WORKFLOW/METHODOLOGY**
  
  
- ###GRAPHICAL WORKFLOW DESIGN
+### <p align="center"> GRAPHICAL WORKFLOW DESIGN
  
- <p align="center"> <img src="https://hackbiointernship2021.slack.com/files/U029LFE0FSA/F02BS25EW2H/workflow.png">  #### result image
-
- 
+ <p align="center"> <img src="images/workflow.png" width="800px" height="600px" >
  
  
 ### STEP 1 :- PREPROCESSING 
+  
+ #### A) DATASET 
  
- <details><summary><h3>A)Data Upload for galaxy</h3></summary><br>
+ ***<details><summary>Data Upload for galaxy</summary><br>***
   
 ***Create a new history***
   
@@ -81,7 +81,7 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
 4. Click the Change datatype button
  </details>
 
- #### B Obtain Annotation for hg38 genes
+ #### B) Obtain Annotation for hg38 genes
  <details>
  <summary>FOR GALAXY IMPLEMEMTATION</summary>
  
@@ -161,6 +161,8 @@ Thus, chr22.gz file will be downloaded.
 
 ````$ gunzip SRR891268_chr22_enriched_R1.fastq.gz ````<bR> 
 ````$ gunzip SRR891268_chr22_enriched_R2.fastq.gz ````
+ 
+  <p align="center"> <img src="images/chr22%20to%20BED.PNG">
  </details>
  
 #### C)QUALITY CONTROL
@@ -188,8 +190,7 @@ Make the “fastqc” an executable file<bR>
 ```SRR891268_chr22_enriched_R2.fastq ```<bR> 
 The report for each file is generated as an html file and a zip file containing more files that can be customised for reports. Look into the html files.
   
-<img src="https://user-images.githubusercontent.com/81503326/130265525-1612f50e-4f16-49ef-91cd-75f6ca537464.PNG" " style="height: 100px; width:100px;"/>
-<p align = left >Output of the LINUX chr22 bed file</p>
+<p align="center"> <img src="images/FastQC.PNG">
   
   </details>
   
@@ -277,8 +278,7 @@ For paired end trimming-
  
  ```$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed\_1.fastq -p trimmed\_2.fastq SRR891268\_chr22\_enriched\_R1.fastq SRR891268\_chr22\_enriched\_R2.fastq```
 
-  <img src="https://user-images.githubusercontent.com/81503326/130266472-ff9b7010-5b74-4c4b-9a7d-c5038594bba1.PNG" " style="height: 100px; width:100px;"/>
-<p align = left >Output of the FastQC report</p>
+  <p align="center"> <img src="images//Cutadapt.PNG">
 <img src="https://user-images.githubusercontent.com/81503326/130266652-3617379d-4f3c-4735-b94e-dd187e70ed08.PNG" " style="height: 100px; width:100px;"/>
 <p align = left >Output of the FastQC report after cutadapt</p>
  
@@ -331,10 +331,7 @@ For paired end trimming-
 
 Output should be as follows-
  
- <img src="https://user-images.githubusercontent.com/81503326/130267285-bc54dc25-2f14-4293-b87e-6ab168ebfcbb.PNG" " style="height: 100px; width:100px;"/>
-<p align = left >Output of the LINUX cutadapt adaptor trimming </p>
-<img src="https://user-images.githubusercontent.com/81503326/130267862-141591ac-0e64-4aa6-8003-eb4ac96e5910.PNG" " style="height: 100px; width:100px;"/>
-<p align = left >Output of the FastQC after adaptor trimming </p>                                                                                                                                                    
+<p align="center"> <img src="images/Bowtie2%20output.PNG">                                                                                                                                                
 <br>
  
  </details>
@@ -457,7 +454,7 @@ Check Insert Size tells us the size of the DNA fragment the read pairs came from
 
 ````$ java -jar picard.jar CollectInsertSizeMetrics I=marked\_dup.bam O=chart.txt H=insertSizePlot.pdf M=0.5````
 
-![](RackMultipart20210820-4-1srrkc3_html_c751a794d88d647c.png)
+<p align="center"> <img src="images/Insert sizes.PNG"> 
 
 Two peaks can be observed around the 200bp and 400bp from the plot
 
@@ -606,7 +603,11 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
   - Matrix file from the computeMatrix tool: Select the output of  **computeMatrix**  tool.
   - Show advanced output settings: no
   - Show advanced options: no
+                                                     
+<p align="center"> <img src="images/MACS2%20bigwig.PNG"> 
+ <p align="center"> **** Figure: plotHeatmap output *****
 
+                                     
 The same is repeated for the intergenic CTCF peaks.
 
 **Generate the matrix**
@@ -637,7 +638,12 @@ The same is repeated for the intergenic CTCF peaks.
     - Labels for the regions plotted in the heatmap: CTCF\_peaks
     - Did you compute the matrix with more than one groups of regions?: Yes, I used multiple groups of regions
 
-      </details>                                                                                                                                                
+                                                     
+   <p align="center"> <img src="images/plotHeatmap%20output.PNG">
+     <p align="center"> Figure: plotHeatmap output on CTCF
+                                                           
+                      </details>   
+                      
 <details>
 <summary>LINUX Implementation</summary>
 <br>  
@@ -661,14 +667,14 @@ In the generated heatmaps, each line will be a transcript. The coverage will be 
 
 For TSS, our data gives the following heatmap-
 
-Here will be a figure………
+ <p align="center"> <img src="images/MACS2%20bigwig.PNG"> 
 
 The plot on top shows a non-symmetric pattern that is higher on the left, which is expected as usually the promoter of active genes is accessible.
 
 For CTCF peaks of chr22 in intergenic regions, the following heatmap is generated from our data-
 
-Here will be a figure………
-
+<p align="center"> <img src="images/plotHeatmap%20output.PNG"> 
+                                                        
 This heatmap is showing a much more symmetric pattern.
 
 </details>  
@@ -677,7 +683,7 @@ This heatmap is showing a much more symmetric pattern.
  
   - In order to visualise a specific region (e.g. the gene _RAC2_), we will use pyGenomeTracks 
  
-<details>
+ <details>
 <summary>Galaxy Implementation</summary>
 <br>       
  
@@ -716,10 +722,11 @@ This heatmap is showing a much more symmetric pattern.
         4. display to use: box: Draw a box
         5. Plot labels (name, p-val, q-val): No
     - param-repeat Insert Include tracks in your plot
-      - Choose style of the track: X-axis
-                                                                                                                                                    
-</details>                                                                                                                                                       
-                                                                                                                                                      
+      - Choose style of the track: X-axis.
+                                                             </details>
+                                                             
+                                                             
+                                                             
 <details>
 <summary>linux implementation</summary>
 <br>                                     
@@ -800,7 +807,9 @@ _**[x-axis]**_
 - Install pyGenomeTracks using ````conda -install -c bioconda pyGenomeTracks````
 - Visualize regions by running- ````pyGenomeTracks --tracks config.ini --region chr22:37,193,000-37,252,000 -o Genome\_track\_plot.png````
 
- - From the figure, we can see 3 accessible TSS for 6 transcripts for 2 genes. The TSS of RAC2 corresponds to an ATAC-Seq peak whereas there is no significant coverage on both TSS of SSTR3. Again, it can be said that only the first peak on the left overlaps with a CTCF binding site represents accessible loci. Amongst the 4 peaks in this plotted region, the 2 peaks in the middle do not correspond to CTCF peaks or TSS. As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes. More analyses are needed to assess if it is a real enhancer, for example, histone ChIP-seq, 3D structure, transgenic assay, etc. 
+<img src="images/pyGenome%20output.PNG">
+ 
+- From the figure, we can see 3 accessible TSS for 6 transcripts for 2 genes. The TSS of RAC2 corresponds to an ATAC-Seq peak whereas there is no significant coverage on both TSS of SSTR3. Again, it can be said that only the first peak on the left overlaps with a CTCF binding site represents accessible loci. Amongst the 4 peaks in this plotted region, the 2 peaks in the middle do not correspond to CTCF peaks or TSS. As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes. More analyses are needed to assess if it is a real enhancer, for example, histone ChIP-seq, 3D structure, transgenic assay, etc. 
                                                                                                                                                       
 </details>                                                                                                                                                       
                                                                                                                                                       
