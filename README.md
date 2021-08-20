@@ -52,12 +52,19 @@ The ATAC-Seq analysis described below is based on a [tutorial](https://training.
  
  ## **WORKFLOW/METHODOLOGY**
  
-### Step 1 :- Preprocessing
-<details>
-<summary> <h3>-Data Upload for galaxy </h3> </summary>
-<br>
- ***_Create a new history_***
-
+ 
+ ###GRAPHICAL WORKFLOW DESIGN
+ 
+ <p align="center"> <img src="https://hackbiointernship2021.slack.com/files/U029LFE0FSA/F02BS25EW2H/workflow.png">
+ 
+ 
+ 
+### STEP 1 :- PREPROCESSING 
+ 
+ <details><summary><h3>A)Data Upload for galaxy</h3></summary><br>
+  
+***Create a new history***
+  
 1. Add or import DATASETS (2 fastq.gz files and 1 bed.gz file) for analysis (via link or from a data library)
 2. Add tags to R1 and R2 files. To add tags:
     - Click on the dataset
@@ -65,7 +72,7 @@ The ATAC-Seq analysis described below is based on a [tutorial](https://training.
     - Add a tag starting with **#: FOR  #SRR891268\_R1** FILE to the R1 file and  FOR **#SRR891268\_R2** FILE to the R2 file.
     - Check that tag appears below the dataset name
 
-***_Check datatype of files and edit if necessary_***
+***Check datatype of files and edit if necessary***
 
 1. Click on the pencil icon for the dataset to edit its attributes
 2. In the central panel, click on the Datatypes tab on the top
@@ -75,19 +82,19 @@ The ATAC-Seq analysis described below is based on a [tutorial](https://training.
 
  ### -**Obtain Annotation for hg38 genes**
  <details>
- <summary> <h3 style="display:inline-block">-FOR GALAXY IMPLEMEMTATION : </h3> </summary>
+ <summary>FOR GALAXY IMPLEMEMTATION</summary>
  
 1. Select the **USCS Main table browser tool** with the following parameters
 
-1. &quot;clade&quot;: Mammal
-2. &quot;genome&quot;: Human
-3. &quot;assembly&quot;: Dec. 2013 (GRCh38/hg38)
-4. &quot;group&quot;: Genes and Gene Prediction
-5. &quot;track&quot;: All GENCODE V37
-6. &quot;table&quot;: Basic
-7. &quot;region&quot;: position chr22
-8. &quot;output format&quot;: all fields from selected table
-9. &quot;Send output to&quot;: Galaxy
+- &quot;clade&quot;: Mammal
+- &quot;genome&quot;: Human
+- &quot;assembly&quot;: Dec. 2013 (GRCh38/hg38)
+- &quot;group&quot;: Genes and Gene Prediction
+- &quot;track&quot;: All GENCODE V37
+- &quot;table&quot;: Basic
+- &quot;region&quot;: position chr22
+- &quot;output format&quot;: all fields from selected table
+- &quot;Send output to&quot;: Galaxy
 
 2. Click get output
 
@@ -115,11 +122,33 @@ _Change the datatype to a BED format_
 Click on the eye icon to check changes effected. There should be matching column names in each column of the dataset.
   </details>
  
- <details open>
-<summary>Want to ruin the surprise?</summary>
-<br>
-Well, you asked for it!
-</details>
+  <details><summary>FOR LINUX IMPLEMEMTATION</summary>
+   Go to [http://genome.ucsc.edu/cgi-bin/hgTables](http://genome.ucsc.edu/cgi-bin/hgTables) and set the parameters as-
+
+  - &quot;_ **clade&quot;** _ **:**  **Mammal**
+  - &quot;_ **genome&quot;** _ **:**  **Human**
+  - &quot;_ **assembly&quot;** _ **:** **Dec. 2013 (GRCh38/hg38)**
+  - &quot;_ **group&quot;** _ **:**  **Genes and Gene Prediction**
+  - &quot;_ **track&quot;** _ **:**  **All GENCODE V37**
+  - &quot;_ **table&quot;** _ **:**  **Basic**
+  - &quot;_ **region&quot;** _ **:**  **position**** chr22**
+  - &quot;_ **output format&quot;** _ **:**  **all fields from selected table**
+  - &quot;_ **output filename:&quot; chr22** _
+  - &quot;_ **file type returned:&quot; gzipped compressed** _
+
+And then select **Get output**
+
+Thus, chr22.gz file will be downloaded.
+
+- **Converting chr22 file into a bed file: (added by @Nishat)**
+
+1. Unzip the downloaded chr22.gz using gunzip chr22.gz command
+2. awk -F &quot;\t&quot; &#39;OFS=&quot;\t&quot; {print $3, $5, $6, $13, $12, $4 \&gt; (&quot;chr22.bed&quot;)}&#39; chr22 (to get only expected columns into a newly created chr22.bed file)
+3. Output should be as follows-
+
+![](RackMultipart20210820-4-1srrkc3_html_56d6bf868d184b2e.png)
+
+
   
 
  
