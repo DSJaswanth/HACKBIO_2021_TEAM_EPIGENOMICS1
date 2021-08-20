@@ -30,7 +30,7 @@ The report for each file is generated as an html file and a zip file containing 
 <summary>Fig of Results</summary>
 <br>  
 <img src="https://user-images.githubusercontent.com/81503326/130265525-1612f50e-4f16-49ef-91cd-75f6ca537464.PNG" "" style="height: 100px; width:100px;"/>
-<p align = left >Output of the chr22 bed file</p>
+<p align = left >Output of the LINUX chr22 bed file</p>
 </details>   
 
 **Trimming Reads**
@@ -170,7 +170,7 @@ Select the **Bowtie2**   **tool** with the following parameters:
 <details >
 <summary>Fig of Results</summary>
 <img src="https://user-images.githubusercontent.com/81503326/130267285-bc54dc25-2f14-4293-b87e-6ab168ebfcbb.PNG" " style="height: 100px; width:100px;"/>
-<p align = left >Output of the cutadapt adaptor trimming </p>
+<p align = left >Output of the LINUX cutadapt adaptor trimming </p>
 <img src="https://user-images.githubusercontent.com/81503326/130267862-141591ac-0e64-4aa6-8003-eb4ac96e5910.PNG" " style="height: 100px; width:100px;"/>
 <p align = left >Output of the FastQC after adaptor trimming </p>                                                                                                                                                    
 <br>
