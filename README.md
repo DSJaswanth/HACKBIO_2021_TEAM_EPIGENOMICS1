@@ -462,7 +462,88 @@ Check Insert Size tells us the size of the DNA fragment the read pairs came from
 Two peaks can be observed around the 200bp and 400bp from the plot
 
   </details>
+                                                                                                                                                    
+ ### STEP 4 :- PEAK CALLING
+- Peak calling helps us to identify regions where reads have piled up (peaks) greater than the background read coverage. Using MACS2 we will extend the start sites of the reads by 200bp (100bp in each direction) to assess coverage. Before using MACS2, we need to convert the output BAM file from MarkDuplicate stage to BED format because when we set the extension size in MACS2, it will only consider one read of the pair while here, we would like to use the information from both.
+                                                                                                                                                   
+<details>
+<summary>Galaxy Implementation</summary>
+<br>  
+                                                                                                                                                      
+ ***_Convert BAM to BED_***
 
+Convert BAM file (output of MarkDuplicates) into BED format by **bedtools BAM to BED converter**.
+                                                                                                                                                      
+#### A) MACS2 callpeak  **MACS2 callpeak**
+
+**MACS2 callpeak** with the following parameters:
+
+- Are you pooling Treatment Files?: No
+  - Select the output of  **bedtools BAM to BED**  converter tool
+- Do you have a Control File?: No
+- Format of Input Files: Single-end BED
+- Effective genome size: _H. sapiens_ (2.7e9)
+- Build Model: Do not build the shifting model (--nomodel)
+  - Set extension size: 200
+  - Set shift size: -100. It needs to be - half the extension size to be centered on the 5&#39;.
+- In Additional Outputs:
+  - Check Peaks as tabular file (compatible with MultiQC)
+  - Check Peak summits
+  - Check Scores in bedGraph files
+- In  Advanced Options:
+  - Composite broad regions: No broad regions
+    - Use a more sophisticated signal processing approach to find subpeak summits in each enriched peak region: Yes
+  - How many duplicate tags at the exact same location are allowed?: all                                                                                                         </details>                                        
+<details>
+<summary> LINUX Implementation</summary>
+<br> 
+                                                                                                                                                      
+Install bamtools and convert bam file to bed file using bamtools:  ````bedtools bamtobed -i marked\_dup.bam \&gt; marked\_dup.bed```` <br>
+Install macs2 : ````conda install -c bioconda macs2````
+Then run the command for peak calling: ````macs2 callpeak -t marked\_dup.bed -n macs\_output -g 50818468 --nomodel --shift -100 --extsize 200 --keep-dup all --call-summits --bdg````
+
+***This will give us the following 5 output files-***
+
+```Macs\_output\_control\_lambda.bdg```
+
+```macs\_output\_peaks.narrowPeak```
+
+```Macs\_output\_peaks.xls```
+
+```Macs\_output\_summits.bed```
+
+```macs\_output\_treat\_pileup.bdg```
+  </details>                                                                                                                                                           
+   
+### STEP 5 :-Visualisation of Coverage 
+
+                                                                                                                                                      
+<details>
+<summary>Galaxy Implementation</summary>
+<br>                                                                                                                                                   
+</details>                                                                                                                                                      
+                                                                                                                                                      
+                                                                                                                                                      
+                                                                                                                                                      
+                                                                                                                                                      
+                                                                                                                                                      
+ <details>
+<summary>Galaxy Implementation</summary>
+<br>                                                                                                                                                                 
+                                                                                                                                                      
+ </details>                                                                                                                                                     
+                                                                                                                                                      
+                                                                                                                                                      
+                                                                                                                                                      
+                                                                                                                                                      
+                                                                                                                                                      
+  ### STEP 5 :- PEAK CALLING                                                                                                                                                      
+ 
+ #### A)
+  
+  <details>
+<summary>Galaxy Implementation</summary>
+<br>                                     
  
  
  
@@ -477,6 +558,11 @@ Two peaks can be observed around the 200bp and 400bp from the plot
  
  
  
+ #### A) Filter Uninformative Reads
+  
+  <details>
+<summary>Galaxy Implementation</summary>
+<br>                                     
  
  
  
@@ -486,6 +572,11 @@ Two peaks can be observed around the 200bp and 400bp from the plot
  
  
  
+#### A) Filter Uninformative Reads
+  
+  <details>
+<summary>Galaxy Implementation</summary>
+<br>                                      
  
  
  
@@ -495,11 +586,11 @@ Two peaks can be observed around the 200bp and 400bp from the plot
  
  
  
- 
- 
- 
- 
- 
+ #### A) Filter Uninformative Reads
+  
+  <details>
+<summary>Galaxy Implementation</summary>
+<br>                                     
  
  
  
