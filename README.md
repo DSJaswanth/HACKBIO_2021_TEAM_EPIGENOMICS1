@@ -55,7 +55,8 @@ The ATAC-Seq analysis described below is based on a [tutorial](https://training.
  
  ###GRAPHICAL WORKFLOW DESIGN
  
- <p align="center"> <img src="https://hackbiointernship2021.slack.com/files/U029LFE0FSA/F02BS25EW2H/workflow.png">
+ <p align="center"> <img src="https://hackbiointernship2021.slack.com/files/U029LFE0FSA/F02BS25EW2H/workflow.png">  #### result image
+
  
  
  
@@ -96,7 +97,8 @@ The ATAC-Seq analysis described below is based on a [tutorial](https://training.
 - &quot;output format&quot;: all fields from selected table
 - &quot;Send output to&quot;: Galaxy
 
-2. Click get output
+2. Click get output  #### result image
+
 
 3. Click Send Query to Galaxy
 
@@ -140,8 +142,8 @@ And then select **Get output**
 
 Thus, chr22.gz file will be downloaded.
 
-- **Converting chr22 file into a bed file: (added by @Nishat)**
-
+- **Converting chr22 file into a bed file: 
+   
 1. Unzip the downloaded chr22.gz using 
    ````gunzip chr22.gz ````
    command
@@ -150,7 +152,45 @@ Thus, chr22.gz file will be downloaded.
    
 3. Output should be as follows-
 
-![](RackMultipart20210820-4-1srrkc3_html_56d6bf868d184b2e.png)
+![](RackMultipart20210820-4-1srrkc3_html_56d6bf868d184b2e.png) 
+   #### result image  </details>
+
+  
+<details><summary>DATA PREPROCESSING FOR LINUX</summary>
+  ***You can unzip the sequence files with gunzip***
+
+````$ gunzip SRR891268_chr22_enriched_R1.fastq.gz ````<bR> 
+````$ gunzip SRR891268_chr22_enriched_R2.fastq.gz ````
+ </details>
+ 
+### C)QUALITY CONTROL
+ 
+ <details>
+<summary>Galaxy Implementation</summary>
+<br>
+Select the **FastQC tool** with the following parameters
+1. &quot;Short read data from your current history&quot;: Choose here either only the SRR891268\_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268\_R1 and SRR891268\_R2.
+2. Inspect the web page output of FastQC tool for the SRR891268\_R1 sample. Check what adapters are found at the end of the reads.
+</details>  
+ 
+ <details >
+<summary>Linux Implementation</summary>
+<br>
+
+- Download the FastQC module
+Note: FASTQC requires java and javac installed for implementation and you need to run the fastqc file from the folder (using the relative/absolute links to the sequence reads)<bR> 
+```$ sudo apt install default-jre```<br>
+```$ sudo apt install default-jdk```<bR> 
+Make the “fastqc” an executable file<bR>
+```python $ chmod 755 fastqc```<bR> 
+- Run the fastqc on all sequenced reads from its folder<bR> 
+```python  $ fastqc SRR891268_chr22_enriched_R1.fastq```<bR> 
+```SRR891268_chr22_enriched_R2.fastq ```<bR> 
+The report for each file is generated as an html file and a zip file containing more files that can be customised for reports. Look into the html files.
+</details>
+
+#### image 
+ 
 
 
   
