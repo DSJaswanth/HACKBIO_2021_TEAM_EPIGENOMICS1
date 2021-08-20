@@ -1,4 +1,4 @@
-###**Quality Control**###
+###**Quality Control**
 
 <details open>
 <summary>Galaxy Implementation</summary>
