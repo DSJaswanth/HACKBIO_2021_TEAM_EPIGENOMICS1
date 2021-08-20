@@ -1,13 +1,16 @@
-**Quality Control**
+###**Quality Control**###
+
 <details open>
 <summary>Galaxy Implementation</summary>
 <br>
 -Select the **FastQC tool** with the following parameters
 1. &quot;Short read data from your current history&quot;: Choose here either only the SRR891268\_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268\_R1 and SRR891268\_R2.
 2. Inspect the web page output of FastQC tool for the SRR891268\_R1 sample. Check what adapters are found at the end of the reads.
+  
 <details open>
 <summary>Linux Implementation</summary>
 <br>
+  
 -Download the FastQC module
 Note: FASTQC requires java and javac installed for implementation and you need to run the fastqc file from the folder (using the relative/absolute links to the sequence reads)
 $ sudo apt install default-jre
@@ -17,12 +20,13 @@ $ chmod 755 fastqc
 -Run the fastqc on all sequenced reads from its folder
 $ fastqc SRR891268_chr22_enriched_R1.fastq SRR891268_chr22_enriched_R2.fastq  
 The report for each file is generated as an html file and a zip file containing more files that can be customised for reports. Look into the html files
+  
 </details>
 <details open>
 <summary>Fig of Results</summary>
 <br>
   
- **Trimming Reads**
+###**Trimming Reads**###
   
 <details open>
 <summary>Galaxy Implementation</summary>
@@ -98,7 +102,8 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial
 <details open>
 <summary>Fig of Results</summary>
 <br>
-**Mapping**
+  
+###**Mapping**###
   
 <details open>
 <summary>Galaxy Implementation</summary>
