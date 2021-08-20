@@ -29,7 +29,12 @@ The report for each file is generated as an html file and a zip file containing 
 <details >
 <summary>Fig of Results</summary>
 <br>
-<img src=“https://github.com/KrisKasprzak/ILI9341_t3_controls 520”>
+<table style="padding:10px">
+  <tr>
+    <td align = center><img src="https://user-images.githubusercontent.com/81503326/127814590-66117c61-a1ae-47a5-8399-82582e4e5a42.png" height="200" />
+    <p align = center>Output <b>Converting chr22 file into a bed file</b></p>
+    </td>
+    
 </details>   
 
 **Trimming Reads**
