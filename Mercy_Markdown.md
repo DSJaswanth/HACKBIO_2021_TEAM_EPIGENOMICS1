@@ -1,4 +1,4 @@
-###**Quality Control**
+**Quality Control**
 
 <details open>
 <summary>Galaxy Implementation</summary>
@@ -86,6 +86,7 @@ Select the **Fast QC tool** with the following parameters
 
 1. &quot;Short read data from your current history&quot;: select the output of Cutadapt param files; use; Multiple datasets to choose both Read 1 Output and Read 2 Output.
 2. Click on the galaxy-eye (eye) icon of the report and read the first lines.
+</details>  
 <details open>
 <summary>Linux Implementation</summary>
 <br>
@@ -97,16 +98,17 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGAGTGTAGATCTCGGTGGT
 SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial)
   
 **Install cutadapt running**
-  
+ ```python 
 -$ sudo apt install cutadapt
-
+```
 **For paired end trimming**
-  
+ ```python 
 -$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed_1.fastq -p trimmed_2.fastq SRR891268_chr22_enriched_R1.fastq SRR891268_chr22_enriched_R2.fastq
+ ```
 <details open>
 <summary>Fig of Results</summary>
 <br>
-  
+</details>    
 ###**Mapping**###
   
 <details open>
@@ -138,6 +140,7 @@ Select the **Bowtie2**   **tool** with the following parameters:
 2. &quot;Save the bowtie2 mapping statistics to the history&quot;: Yes
 
 1. Click on the galaxy-eye (eye) icon of the mapping stats.
+</details>  
 <details open>
 <summary>Linux Implementation</summary>
 <br>
@@ -151,6 +154,7 @@ Select the **Bowtie2**   **tool** with the following parameters:
   
 -Create index for Chromosome 22: bowtie2-build chr22.fa.gz indexed_chr22
 -Start mapping for the parameters specified by Galaxy: bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed_chr22 -1 trimmed_1.fastq -2 trimmed_2.fastq -S Aligned_output.sam 
+</details>  
 
   
   
