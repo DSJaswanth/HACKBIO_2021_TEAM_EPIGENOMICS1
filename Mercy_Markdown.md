@@ -28,7 +28,9 @@ The report for each file is generated as an html file and a zip file containing 
 
 <details >
 <summary>Fig of Results</summary>
-<br>    
+<br>  
+<img src=“https://user-images.githubusercontent.com/81503326/130264630-4905fa8f-3f34-4dfc-be63-dd63eac3e49c.PNG”>
+
 </details>   
 
 **Trimming Reads**
