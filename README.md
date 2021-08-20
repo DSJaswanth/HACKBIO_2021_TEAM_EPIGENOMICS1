@@ -80,7 +80,7 @@ The ATAC-Seq analysis described below is based on a [tutorial](https://training.
 4. Click the Change datatype button
  </details>
 
- ### -**Obtain Annotation for hg38 genes**
+ ### B Obtain Annotation for hg38 genes
  <details>
  <summary>FOR GALAXY IMPLEMEMTATION</summary>
  
@@ -142,8 +142,12 @@ Thus, chr22.gz file will be downloaded.
 
 - **Converting chr22 file into a bed file: (added by @Nishat)**
 
-1. Unzip the downloaded chr22.gz using gunzip chr22.gz command
-2. awk -F &quot;\t&quot; &#39;OFS=&quot;\t&quot; {print $3, $5, $6, $13, $12, $4 \&gt; (&quot;chr22.bed&quot;)}&#39; chr22 (to get only expected columns into a newly created chr22.bed file)
+1. Unzip the downloaded chr22.gz using 
+   ````gunzip chr22.gz ````
+   command
+2. ````awk -F &quot;\t&quot; &#39;OFS=&quot;\t&quot; {print $3, $5, $6, $13, $12, $4 \&gt; (&quot;chr22.bed&quot;)}&#39; chr22 ````
+   (to get only expected columns into a newly created chr22.bed file)
+   
 3. Output should be as follows-
 
 ![](RackMultipart20210820-4-1srrkc3_html_56d6bf868d184b2e.png)
