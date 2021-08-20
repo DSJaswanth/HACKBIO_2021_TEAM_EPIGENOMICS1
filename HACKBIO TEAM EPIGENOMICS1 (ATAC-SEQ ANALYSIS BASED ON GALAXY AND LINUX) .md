@@ -1,5 +1,5 @@
-<details open>
-<summary>ATAC SEQUCENCE BASED ON GALAXY </summary> <br>
+<details>
+  <summary><h1 style="display:inline-block">ATAC SEQUCENCE BASED ON GALAXY </h1></summary>
 
 
 # <p align="center"> TEAM EPIGENOMICS1
