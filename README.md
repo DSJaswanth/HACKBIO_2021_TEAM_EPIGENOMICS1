@@ -554,10 +554,10 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
 <br>                                                                                                                                                                 
 <p><strong>Select CTCF peaks from chr22 in intergenic regions </p></strong>
 
-1. Filter only data for chr22 from file using python````grep -w &quot;chr22&quot; ENCFF933NTR.bed \&gt;\&gt; file\_A.bed````
-2. python````Extract filtered chrr22 (as c1) into a new file- $ grep c1 ENCFF933NTR\_filt.bed \&gt; ENCFF933NTR\_chr22.bed````
-3. python````Replace c1 with chr22- $ sed &#39;s/c1/chr22/&#39; ENCFF933NTR\_chr22.bed \&gt; ENCFF933NTR\_CHR22genes.bed````
-4. bedtools Intersect intervals find overlapping intervals : ````$ bedtools intersect -v -a ENCFF933NTR\_CHR22genes.bed -b chr22\_genes.bed \&gt; intergenic\_CTCF\_peaks\_chr22````
+1. Filter only data for chr22 from file using <br>````grep -w chr22; ENCFF933NTR.bed \ file\_A.bed````<br>
+2. ````Extract filtered chrr22 (as c1) into a new file- $ grep c1 ENCFF933NTR\_filt.bed \ENCFF933NTR\_chr22.bed````<br>
+3. ````Replace c1 with chr22- $ sed s/c1/chr22/ ENCFF933NTR\_chr22.bed ; ENCFF933NTR\_CHR22genes.bed````<br>
+4. bedtools Intersect intervals find overlapping intervals : <br>````$ bedtools intersect -v -a ENCFF933NTR\_CHR22genes.bed -b chr22\_genes.bed \intergenic\_CTCF\_peaks\_chr22````
                                                                                                                                                      
  </details> 
                                                                                                                                                       
@@ -580,24 +580,15 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
 <br>        
  Install <strong>bedGraphtoBigWig</strong> and go through the following commands for converting the output bedGraph file from macs2 to bigwig (refer to this link if you want to understand the commands [https://www.biostars.org/p/176875/](https://www.biostars.org/p/176875/) )
 
-python````
- awk &#39;NR!=1&#39; macs\_output\_treat\_pileup.bdg \&gt; macs.deheader.bedGraph
- ```` <br>
-python````
- sort -k1,1 -k2,2n macs.deheader.bedGraph \&gt; macs.sorted.bedGraph
- ````<br>
-python````
- touch chrom22.sizes````
+````awk NR!=1 macs\_output\_treat\_pileup.bdg \ macs.deheader.bedGraph```` <br>
+````sort -k1,1 -k2,2n macs.deheader.bedGraph \ macs.sorted.bedGraph ````<br>
+````touch chrom22.sizes````
  <br>
-python````
- nano hg19.chrom.sizes
+````nano hg19.chrom.sizes
  ```` → write only one line (tab delimited) in this file chr22 51304566 <br>
-python````
- awk &#39;{print $1,$2,$3,$4}&#39; macs.sorted.bedGraph \&gt; macs.sorted.4.bedGraph
+````awk {print $1,$2,$3,$4} macs.sorted.bedGraph \ macs.sorted.4.bedGraph
  ````<br>
-python```` 
- bedGraphToBigWig macs.sorted.4.bedGraph hg19.chrom.sizes macs.bw
- ````
+````bedGraphToBigWig macs.sorted.4.bedGraph hg19.chrom.sizes macs.bw````
                                                                                                                                                       
  </details>                                                                                                                                                    
 
@@ -671,17 +662,18 @@ The same is repeated for the intergenic CTCF peaks.
 - Using <strong>computeMatrix</strong> generate the matrix
 
 1. Remove the first header line from chr22.bed file
-2. Then run python```` computeMatrix reference-point --referencePoint TSS -R chr22.bed -S macs.bw --missingDataAsZero -o output\_from\_computeMatrix.gz````
+2. Then run <br>
+ ````computeMatrix reference-point --referencePoint TSS -R chr22.bed -S macs.bw --missingDataAsZero -o output\_from\_computeMatrix.gz````
 
-- plotHeatmap will generate the plot using the output of computeMatrix
+- plotHeatmap will generate the plot using the output of computeMatrix <br>
 
-python````plotHeatmap -m output\_from\_computeMatrix.gz -out plotHeatMap.png````
+````plotHeatmap -m output\_from\_computeMatrix.gz -out plotHeatMap.png````
 
-- Repeating the previous two steps for plotting **CTCF peaks of chr22 in intergenic regions** with slight moderation:
+- Repeating the previous two steps for plotting **CTCF peaks of chr22 in intergenic regions** with slight moderation: <br>
 
-python````computeMatrix reference-point --referencePoint center -R intergenic\_ctcf\_peaks\_chr22 -S macs.bw --missingDataAsZero -o peak\_output\_from\_computeMatrix.gz````
+````computeMatrix reference-point --referencePoint center -R intergenic\_ctcf\_peaks\_chr22 -S macs.bw --missingDataAsZero -o peak\_output\_from\_computeMatrix.gz```` <br>
 
-python````- plotHeatmap -m peak\_output\_from\_computeMatrix.gz -out intragenic\_plotHeatMap.png````
+````plotHeatmap -m peak\_output\_from\_computeMatrix.gz -out intragenic\_plotHeatMap.png````
 
 In the generated heatmaps, each line will be a transcript. The coverage will be summarized with a color code from red (no coverage) to blue (maximum coverage). All TSS will be aligned in the middle of the figure and only the 2 kb around the TSS will be displayed. Another plot, on top of the heatmap, will show the mean signal at the TSS. There will be one heatmap per bigwig.
 
