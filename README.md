@@ -298,7 +298,7 @@ For paired end trimming-
  
  </details>
  
-  <img src="images/FastQC%20after%20cutadapt.PNG">
+  <p align="center"> <img src="images/FastQC%20after%20cutadapt.PNG">
 
 
 ### STEP2 :- MAPPING 
@@ -355,7 +355,7 @@ For paired end trimming-
  bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed\_chr22 -1 trimmed\_1.fastq -2 trimmed\_2.fastq -S Aligned\_output.sam
  ```
 
-![Bowtie2 output](https://user-images.githubusercontent.com/81503326/130309804-653ca29e-b462-4445-8113-c19a52dcc721.PNG)<figcaption align = "center"><b>Bowtie2 LINUX Output</b></figcaption>
+ <p align="center"> <img src="images/Bowtie2%20output.PNG">
 
 </details>    
   
