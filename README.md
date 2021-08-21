@@ -145,7 +145,7 @@ Thus, chr22.gz file will be downloaded.
    ```unzip chr22.gz ```
    command
 2. ```awk -F \tOFS=\t {print $3, $5, $6, $13, $12, $4 \ (chr22.bed)} chr22 ```
-   (to get only expected columns into a newly created chr22.bed file)
+   (to get only expected columns into a newly created chr22.bed file e.g. _chrom_, _cdsStart_, _cdsEnd_, _genename_, _score_, _strand_)
    
 3. Output should be as follows-
 
