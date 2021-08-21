@@ -170,9 +170,9 @@ awk -F "\t" 'OFS="\t" {print $3, $5, $6, $13, $12, $4 > ("chr22.bed")}' chr22
  <details>
 <summary>Galaxy Implementation</summary>
 <br>
-Select the ***_FastQC tool_*** with the following parameters
-   - 1. &quot;Short read data from your current history&quot;: Choose here either only the SRR891268_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268_R1 and SRR891268\_R2.<br>
-  - 2. Inspect the web page output of FastQC tool for the SRR891268\_R1 sample. Check what adapters are found at the end of the reads.
+  - Select the <b> FastQC tool </b> with the following parameters <br>
+   - 1. &quot;Short read data from your current history&quot;: Choose here either only the SRR891268_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268_R1 and SRR891268\_R2. <br>
+   - 2. Inspect the web page output of FastQC tool for the SRR891268\_R1 sample. Check what adapters are found at the end of the reads.
 </details>  
  
  <details >
@@ -722,11 +722,11 @@ The same is repeated for the intergenic CTCF peaks.
     - Reference point label: peak center
     - Labels for the regions plotted in the heatmap: CTCF\_peaks
     - Did you compute the matrix with more than one groups of regions?: Yes, I used multiple groups of regions
-
+ </details>  
                                                      
    <p align="center"> <img src="images/plotHeatmap%20output.PNG">
      <p align="center"> Figure: plotHeatmap output on CTCF
- </details>   
+ 
                       
 <details>
 <summary>LINUX Implementation</summary>
