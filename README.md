@@ -346,9 +346,13 @@ For paired end trimming-
 - For mapping to chr22-
 
 1. Install bowtie2 <bR> 
- ```bowtie2-build chr22.fa.gz indexed\_chr22```
+```python
+ bowtie2-build chr22.fa.gz indexed\_chr22
+ ```
 2. Create index for Chromosome 22: <bR> 
-```bowtie2-build chr22.fa.gz indexed_chr22```
+```python
+ bowtie2-build chr22.fa.gz indexed_chr22
+ ```
 3. Start mapping for the parameters specified by Galaxy: <bR> 
 
  ```python
