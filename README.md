@@ -155,17 +155,15 @@ Thus, chr22.gz file will be downloaded.
 - <b>Converting chr22 file into a bed file:</b> 
    
 1. Unzip the downloaded chr22.gz using 
-   ```unzip chr22.gz ```
-   command
-2. ```awk -F \tOFS=\t {print $3, $5, $6, $13, $12, $4 \ (chr22.bed)} chr22 ```
-   (to get only expected columns into a newly created chr22.bed file)
+   ```unzip chr22.gz 
+   ```
+ command
+ ```python
+ awk -F \tOFS=\t {print $3, $5, $6, $13, $12, $4 \ (chr22.bed)} chr22 
+ ```
+(to get only expected columns into a newly created chr22.bed file)
    
-3. Output should be as follows-
-
-![](RackMultipart20210820-4-1srrkc3_html_56d6bf868d184b2e.png) 
-   #### result image  </details>
-
-#### C)QUALITY CONTROL
+#### C) QUALITY CONTROL
  
  <details>
 <summary>Galaxy Implementation</summary>
