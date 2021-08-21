@@ -291,7 +291,7 @@ For paired end trimming-
   </details>
 </details> 
 <details >
-<summary>Fig of Results</summary>
+<summary>Fig of the Output</summary>
 <br>
 <img src="https://user-images.githubusercontent.com/81503326/130266472-ff9b7010-5b74-4c4b-9a7d-c5038594bba1.PNG" " style="height: 100px; width:100px;"/>
 <p align = left >Output of the FastQC report</p>
@@ -344,12 +344,18 @@ For paired end trimming-
 2. Create index for Chromosome 22:``` bowtie2-build chr22.fa.gz indexed\_chr22```
 3. Start mapping for the parameters specified by Galaxy: ```bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed\_chr22 -1 trimmed\_1.fastq -2 trimmed\_2.fastq -S Aligned\_output.sam```
 
-Output should be as follows-
- 
-<p align="center"> <img src="images/Bowtie2%20output.PNG">                                                                                                                                                
-<br>
+O
  
  </details>
+<details >
+<summary>Fig of the Output</summary>
+<img src="https://user-images.githubusercontent.com/81503326/130267285-bc54dc25-2f14-4293-b87e-6ab168ebfcbb.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the LINUX cutadapt adaptor trimming </p>
+<img src="https://user-images.githubusercontent.com/81503326/130267862-141591ac-0e64-4aa6-8003-eb4ac96e5910.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the FastQC after adaptor trimming </p>                                                                                                                                                    
+<br>
+</details>    
+
   
 ### STEP 3 :- Filtering Mapped Reads 
   
