@@ -142,9 +142,9 @@ Thus, chr22.gz file will be downloaded.
 - **Converting chr22 file into a bed file: 
    
 1. Unzip the downloaded chr22.gz using 
-   ````gunzip chr22.gz ````
+   ```unzip chr22.gz ```
    command
-2. ````awk -F &quot;\t&quot; &#39;OFS=&quot;\t&quot; {print $3, $5, $6, $13, $12, $4 \&gt; (&quot;chr22.bed&quot;)}&#39; chr22 ````
+2. ```awk -F \tOFS=\t {print $3, $5, $6, $13, $12, $4 \ (chr22.bed)} chr22 ```
    (to get only expected columns into a newly created chr22.bed file)
    
 3. Output should be as follows-
@@ -156,8 +156,8 @@ Thus, chr22.gz file will be downloaded.
 <details><summary>DATA PREPROCESSING FOR LINUX</summary>
   ***You can unzip the sequence files with gunzip***
 
-````$ gunzip SRR891268_chr22_enriched_R1.fastq.gz ````<bR> 
-````$ gunzip SRR891268_chr22_enriched_R2.fastq.gz ````
+```$ gunzip SRR891268_chr22_enriched_R1.fastq.gz ```<bR> 
+```$ gunzip SRR891268_chr22_enriched_R2.fastq.gz ```<bR> 
  
   <p align="center"> <img src="images/chr22%20to%20BED.PNG">
  </details>
@@ -181,9 +181,9 @@ Note: FASTQC requires java and javac installed for implementation and you need t
 ```$ sudo apt install default-jre```<br>
 ```$ sudo apt install default-jdk```<bR> 
 Make the “fastqc” an executable file<bR>
-```python $ chmod 755 fastqc```<bR> 
+```$ chmod 755 fastqc```<bR> 
 - Run the fastqc on all sequenced reads from its folder<bR> 
-```python  $ fastqc SRR891268_chr22_enriched_R1.fastq```<bR> 
+```$ fastqc SRR891268_chr22_enriched_R1.fastq```<bR> 
 ```SRR891268_chr22_enriched_R2.fastq ```<bR> 
 The report for each file is generated as an html file and a zip file containing more files that can be customised for reports. Look into the html files.
   
@@ -269,11 +269,15 @@ The fastqc report indicates the presence of an overrepresented sequence and fast
 
 Install cutadapt running-
 
-```$ sudo apt install cutadapt```
+```python
+$ sudo apt install cutadapt
+```
 
 For paired end trimming-
  
- ```$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed\_1.fastq -p trimmed\_2.fastq SRR891268\_chr22\_enriched\_R1.fastq SRR891268\_chr22\_enriched\_R2.fastq```
+ ```python
+ -$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed\_1.fastq -p trimmed\_2.fastq SRR891268\_chr22\_enriched\_R1.fastq SRR891268\_chr22\_enriched\_R2.fastq
+ ```
 
 ![Cutadapt](https://user-images.githubusercontent.com/81503326/130309371-611bde25-a310-444d-8100-4cff3fe998fb.PNG)
 <figcaption align = "left"><b>Output of the Adaptor Trimming</b></figcaption> <br> 
@@ -321,13 +325,16 @@ For paired end trimming-
 - Mapping and Alignment 
 
   Pulling the sequence for chromosome 22 for indexing and mapping
-```$ wget --timestamping &#39;ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz&#39; -O chr22.fa.gz```
+```$ wget --timestamping ;ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz; -O chr22.fa.gz```
 
 - For mapping to chr22-
 
-1. Install bowtie2
-2. Create index for Chromosome 22:``` bowtie2-build chr22.fa.gz indexed\_chr22```
-3. Start mapping for the parameters specified by Galaxy: ```bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed\_chr22 -1 trimmed\_1.fastq -2 trimmed\_2.fastq -S Aligned\_output.sam```
+1. Install bowtie2 <bR> 
+ ```bowtie2-build chr22.fa.gz indexed\_chr22```
+2. Create index for Chromosome 22: <bR> 
+```bowtie2-build chr22.fa.gz indexed_chr22```
+3. Start mapping for the parameters specified by Galaxy: <bR> 
+```bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed\_chr22 -1 trimmed\_1.fastq -2 trimmed\_2.fastq -S Aligned\_output.sam```
 
 ![Bowtie2 output](https://user-images.githubusercontent.com/81503326/130309804-653ca29e-b462-4445-8113-c19a52dcc721.PNG)<figcaption align = "center"><b>Bowtie2 LINUX Output</b></figcaption>
 
@@ -372,8 +379,7 @@ In &quot;Condition&quot;:
 &quot;Would you like to set rules?&quot;: No
 
 Click on the input and the output BAM files of the filtering step. Check the size of the files.
-
-  
+ 
  </details >
   
 <details >
@@ -383,7 +389,7 @@ Click on the input and the output BAM files of the filtering step. Check the siz
 ****_Filtering of uninformative mapped reads_****
 
 1. Install samtools
-2. ```samtools view -q 30 -f 0x2 -b -h Aligned\_output.sam \&gt; Filtered\_output.bam```
+2.```samtools view -q 30 -f 0x2 -b -h Aligned\_output.sam \; Filtered\_output.bam```
 
 This will filter out uninformative reads (Mapping quality \&gt;= 30 &amp; Properly Paired)
 
@@ -413,9 +419,9 @@ Click on the eye icon of the MarkDuplicate metrics.
  **_Mark Duplicate Reads_**
 
 - Download picard.jar in your working folder from [here](https://github.com/broadinstitute/picard/releases/download/2.26.0/picard.jar)
-- From that directory, run ````java -jar picard.jar -h```` to check whether it works (you can skip this step)
-- For sorting the output file from last step use-```` samtools sort -T temp -O bam -o filtered\_output\_sorted.bam Filtered\_output.bam````
-- Finally, run ````java -jar picard.jar MarkDuplicates I=filtered\_output\_sorted.bam O=marked\_dup.bam M=marked\_dup.metrics.txt```` for marking duplicates
+- From that directory, run <br> ````java -jar picard.jar -h```` to check whether it works (you can skip this step)
+- For sorting the output file from last step use- <br>``` samtools sort -T temp -O bam -o filtered\_output\_sorted.bam Filtered\_output.bam```
+- Finally, run <br>```java -jar picard.jar MarkDuplicates I=filtered\_output\_sorted.bam O=marked\_dup.bam M=marked\_dup.metrics.txt``` <br>for marking duplicates
 - If you can have a look into the metrics in the metrics.txt file
   
     </details>
@@ -444,11 +450,11 @@ Click on the galaxy-eye (eye) icon of the lower one of the 2 outputs (the png fi
 
 ***_Check Insert Sizes_***
    
-Check Insert Size tells us the size of the DNA fragment the read pairs came from. For this step we have to make a plot of the frequencies of the reads in the bam file to observe the peaks around where there are likely Tn5 transposase activities into nucleosome-free regions.
+Check Insert Size tells us the size of the DNA fragment the read pairs came from. For this step we have to make a plot of the frequencies of the reads in the bam file to observe the peaks around where there are likely Tn5 transposase activities into nucleosome-free regions.<br>
 
-````$ sudo apt install r-base````<br>
+```$ sudo apt install r-base```<br>
 
-````$ java -jar picard.jar CollectInsertSizeMetrics I=marked\_dup.bam O=chart.txt H=insertSizePlot.pdf M=0.5````
+```$ java -jar picard.jar CollectInsertSizeMetrics I=marked\_dup.bam O=chart.txt H=insertSizePlot.pdf M=0.5```<br>
 
 <p align="center"> <img src="images/Insert sizes.PNG"> 
 
@@ -491,9 +497,13 @@ Convert BAM file (output of MarkDuplicates) into BED format by **bedtools BAM to
 <summary> LINUX Implementation</summary>
 <br> 
                                                                                                                                                       
-Install bamtools and convert bam file to bed file using bamtools:  ````bedtools bamtobed -i marked\_dup.bam \&gt; marked\_dup.bed```` <br>
-Install macs2 : ````conda install -c bioconda macs2````
-Then run the command for peak calling: ````macs2 callpeak -t marked\_dup.bed -n macs\_output -g 50818468 --nomodel --shift -100 --extsize 200 --keep-dup all --call-summits --bdg````
+Install bamtools and convert bam file to bed file using bamtools:  ```python bedtools bamtobed -i marked\_dup.bam \marked\_dup.bed```` <br>
+Install macs2 : ``` conda install -c bioconda macs2````
+Then run the command for peak calling: 
+
+ ```python
+ macs2 callpeak -t marked\_dup.bed -n macs\_output -g 50818468 --nomodel --shift -100 --extsize 200 --keep-dup all --call-summits --bdg
+ ```
 
 ***This will give us the following 5 output files-***
 
@@ -539,9 +549,9 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
 <br>                                                                                                                                                                 
 <p><strong>Select CTCF peaks from chr22 in intergenic regions </p></strong>
 
-1. Filter only data for chr22 from file using ````grep -w &quot;chr22&quot; ENCFF933NTR.bed \&gt;\&gt; file\_A.bed````
-2. ````Extract filtered chrr22 (as c1) into a new file- $ grep c1 ENCFF933NTR\_filt.bed \&gt; ENCFF933NTR\_chr22.bed````
-3. ````Replace c1 with chr22- $ sed &#39;s/c1/chr22/&#39; ENCFF933NTR\_chr22.bed \&gt; ENCFF933NTR\_CHR22genes.bed````
+1. Filter only data for chr22 from file using python````grep -w &quot;chr22&quot; ENCFF933NTR.bed \&gt;\&gt; file\_A.bed````
+2. python````Extract filtered chrr22 (as c1) into a new file- $ grep c1 ENCFF933NTR\_filt.bed \&gt; ENCFF933NTR\_chr22.bed````
+3. python````Replace c1 with chr22- $ sed &#39;s/c1/chr22/&#39; ENCFF933NTR\_chr22.bed \&gt; ENCFF933NTR\_CHR22genes.bed````
 4. bedtools Intersect intervals find overlapping intervals : ````$ bedtools intersect -v -a ENCFF933NTR\_CHR22genes.bed -b chr22\_genes.bed \&gt; intergenic\_CTCF\_peaks\_chr22````
                                                                                                                                                      
  </details> 
@@ -565,12 +575,24 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
 <br>        
  Install <strong>bedGraphtoBigWig</strong> and go through the following commands for converting the output bedGraph file from macs2 to bigwig (refer to this link if you want to understand the commands [https://www.biostars.org/p/176875/](https://www.biostars.org/p/176875/) )
 
-- ````awk &#39;NR!=1&#39; macs\_output\_treat\_pileup.bdg \&gt; macs.deheader.bedGraph```` <br>
-- ````sort -k1,1 -k2,2n macs.deheader.bedGraph \&gt; macs.sorted.bedGraph````<br>
-- ````touch chrom22.sizes````<br>
-- ````nano hg19.chrom.sizes```` → write only one line (tab delimited) in this file chr22 51304566 <br>
-- ````awk &#39;{print $1,$2,$3,$4}&#39; macs.sorted.bedGraph \&gt; macs.sorted.4.bedGraph````<br>
--```` bedGraphToBigWig macs.sorted.4.bedGraph hg19.chrom.sizes macs.bw````
+python````
+ awk &#39;NR!=1&#39; macs\_output\_treat\_pileup.bdg \&gt; macs.deheader.bedGraph
+ ```` <br>
+python````
+ sort -k1,1 -k2,2n macs.deheader.bedGraph \&gt; macs.sorted.bedGraph
+ ````<br>
+python````
+ touch chrom22.sizes````
+ <br>
+python````
+ nano hg19.chrom.sizes
+ ```` → write only one line (tab delimited) in this file chr22 51304566 <br>
+python````
+ awk &#39;{print $1,$2,$3,$4}&#39; macs.sorted.bedGraph \&gt; macs.sorted.4.bedGraph
+ ````<br>
+python```` 
+ bedGraphToBigWig macs.sorted.4.bedGraph hg19.chrom.sizes macs.bw
+ ````
                                                                                                                                                       
  </details>                                                                                                                                                    
 
@@ -644,17 +666,17 @@ The same is repeated for the intergenic CTCF peaks.
 - Using <strong>computeMatrix</strong> generate the matrix
 
 1. Remove the first header line from chr22.bed file
-2. Then run ```` computeMatrix reference-point --referencePoint TSS -R chr22.bed -S macs.bw --missingDataAsZero -o output\_from\_computeMatrix.gz````
+2. Then run python```` computeMatrix reference-point --referencePoint TSS -R chr22.bed -S macs.bw --missingDataAsZero -o output\_from\_computeMatrix.gz````
 
 - plotHeatmap will generate the plot using the output of computeMatrix
 
-````plotHeatmap -m output\_from\_computeMatrix.gz -out plotHeatMap.png````
+python````plotHeatmap -m output\_from\_computeMatrix.gz -out plotHeatMap.png````
 
 - Repeating the previous two steps for plotting **CTCF peaks of chr22 in intergenic regions** with slight moderation:
 
-````computeMatrix reference-point --referencePoint center -R intergenic\_ctcf\_peaks\_chr22 -S macs.bw --missingDataAsZero -o peak\_output\_from\_computeMatrix.gz````
+python````computeMatrix reference-point --referencePoint center -R intergenic\_ctcf\_peaks\_chr22 -S macs.bw --missingDataAsZero -o peak\_output\_from\_computeMatrix.gz````
 
-````- plotHeatmap -m peak\_output\_from\_computeMatrix.gz -out intragenic\_plotHeatMap.png````
+python````- plotHeatmap -m peak\_output\_from\_computeMatrix.gz -out intragenic\_plotHeatMap.png````
 
 In the generated heatmaps, each line will be a transcript. The coverage will be summarized with a color code from red (no coverage) to blue (maximum coverage). All TSS will be aligned in the middle of the figure and only the 2 kb around the TSS will be displayed. Another plot, on top of the heatmap, will show the mean signal at the TSS. There will be one heatmap per bigwig.
 
