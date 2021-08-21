@@ -1,4 +1,0 @@
-- Using ATAC-Seq analysis, here we will compare the predicted open chromatin regions to the known binding sites of CTCF (a DNA-binding protein implicated in 3D structure). CTCF is known to bind to thousands of sites in the genome and thus it can be used as a positive control for assessing if the ATAC-Seq experiment is good quality.
-
-#### About Dataset
- - The dataset we will use here is a subset of the data used in the study of Buenrostro et al. 2013. The data from the original dataset is downsized to 200,000 randomly selected reads and about 200,000 reads pairs that will map to chromosome 22. We are only focusing on chromosome 22 so that we can handle the analysis in less time. Binding sites of CTCF identified by ChIP in the same cell line from ENCODE (ENCSR000AKB, dataset ENCFF933NTR) will also be used.
