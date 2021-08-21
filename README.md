@@ -283,12 +283,6 @@ SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial
 
 ### STEP2 :- MAPPING 
   
-<details>
-<summary>Galaxy Implementation</summary>
-<br>
- 
- ### **Mapping reads to reference genome**
-
 <details >
 <summary>Galaxy Implementation</summary>
 <br>
@@ -334,9 +328,11 @@ Select the **Bowtie2**   **tool** with the following parameters:
 ```python  bowtie2-build chr22.fa.gz indexed_chr22 ```
 -Start mapping for the parameters specified by Galaxy: 
 ```pythonbowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed_chr22 -1 trimmed_1.fastq -2 trimmed_2.fastq -S Aligned_output.sam ```
+                                                                                                                                                      
+Output should be as follows-
 
-<img src="https://user-images.githubusercontent.com/81503326/130267862-141591ac-0e64-4aa6-8003-eb4ac96e5910.PNG" " style="height: 100px; width:100px;"/>
-<p align = left >Output of the FastQC after adaptor trimming </p>                                                                                                                                                    
+<img src="images/Bowtie2 output.PNG">
+                                                                                                                                                  
 <br>
 </details>    
   
