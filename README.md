@@ -177,7 +177,7 @@ Select the ***_FastQC tool_*** with the following parameters
 </details>  
  
  <details >
-<summary>Linux Implementation</summary>
+<summary>LINUX Implementation</summary>
 <br>
 
 - Download the FastQC module
@@ -331,7 +331,7 @@ For paired end trimming-
   </details>
 
 <details >
-<summary>Linux Implementation</summary>
+<summary>LINUX Implementation</summary>
 <br>
  
 - Mapping and Alignment 
@@ -405,7 +405,7 @@ Click on the input and the output BAM files of the filtering step. Check the siz
  </details >
   
 <details >
-<summary>Linux Implementation</summary>
+<summary>LINUX Implementation</summary>
 <br>
  
 ****_Filtering of uninformative mapped reads_****
@@ -481,7 +481,7 @@ Click on the galaxy-eye (eye) icon of the lower one of the 2 outputs (the png fi
 </details>
  
   <details >
-<summary>Linux Implementation</summary>
+<summary>LINUX Implementation</summary>
 <br>
 
 ```python
@@ -818,7 +818,7 @@ This heatmap is showing a much more symmetric pattern.
 </details>
   
  <details>
-<summary>Linux Implementation</summary>
+<summary>LINUX Implementation</summary>
 <br>                                     
 <p><strong>Set up the config.ini file with the following contents-</p></strong>
 
