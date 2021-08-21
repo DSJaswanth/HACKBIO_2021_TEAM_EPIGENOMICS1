@@ -193,6 +193,12 @@ The report for each file is generated as an html file and a zip file containing 
 <p align="center"> <img src="images/FastQC.PNG">
   
   </details>
+<details >
+<summary>Fig of Results</summary>
+<br>  
+<img src="https://user-images.githubusercontent.com/81503326/130265525-1612f50e-4f16-49ef-91cd-75f6ca537464.PNG" "" style="height: 100px; width:100px;"/>
+<p align = left >Output of the LINUX chr22 bed file</p>
+</details>   
   
  #### TRIMMING READ
 <details>
