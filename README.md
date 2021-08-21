@@ -109,8 +109,7 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
 - &quot;output format&quot;: all fields from selected table
 - &quot;Send output to&quot;: Galaxy
 
-2. Click get output  #### result image
-
+2. Click get output 
 
 3. Click Send Query to Galaxy
 
