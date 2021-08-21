@@ -95,7 +95,7 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
   
 #### B) Obtain Annotation for hg38 genes
  <details>
- <summary>FOR GALAXY IMPLEMEMTATION</summary>
+  <summary><b>Galaxy Implementation</b></summary>
  
 1. Select the **USCS Main table browser tool** with the following parameters
 
@@ -135,7 +135,7 @@ _Change the datatype to a BED format_
 Click on the eye icon to check changes effected. There should be matching column names in each column of the dataset.
   </details>
  
-  <details><summary>FOR LINUX IMPLEMEMTATION</summary>
+  <details><summary><b>Linux Implementation</b></summary>
    Go to [http://genome.ucsc.edu/cgi-bin/hgTables](http://genome.ucsc.edu/cgi-bin/hgTables) and set the parameters as-
 
   - <b>clade</b>:<h style="color:blue;">Mammal</h>
