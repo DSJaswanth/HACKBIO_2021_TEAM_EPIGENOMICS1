@@ -423,9 +423,9 @@ Click on the eye icon of the MarkDuplicate metrics.
   
  **_Mark Duplicate Reads_**
 
-- Download picard.jar in your working folder from [here](https://github.com/broadinstitute/picard/releases/download/2.26.0/picard.jar)
-- From that directory, run <br> ````java -jar picard.jar -h```` to check whether it works (you can skip this step)
-- For sorting the output file from last step use- <br>``` samtools sort -T temp -O bam -o filtered\_output\_sorted.bam Filtered\_output.bam```
+- Download picard.jar in your working folder from [here](https://github.com/broadinstitute/picard/releases/download/2.26.0/picard.jar) <br>
+- From that directory, run <br> ````java -jar picard.jar -h```` to check whether it works (you can skip this step) <br>
+- For sorting the output file from last step use- <br>``` samtools sort -T temp -O bam -o filtered\_output\_sorted.bam Filtered\_output.bam```<br>
 - Finally, run <br>```java -jar picard.jar MarkDuplicates I=filtered\_output\_sorted.bam O=marked\_dup.bam M=marked\_dup.metrics.txt``` <br>for marking duplicates
 - If you can have a look into the metrics in the metrics.txt file
   
@@ -663,7 +663,7 @@ The same is repeated for the intergenic CTCF peaks.
 
 1. Remove the first header line from chr22.bed file
 2. Then run <br>
- ````computeMatrix reference-point --referencePoint TSS -R chr22.bed -S macs.bw --missingDataAsZero -o output\_from\_computeMatrix.gz````
+ ```computeMatrix reference-point --referencePoint TSS -R chr22.bed -S macs.bw --missingDataAsZero -o output\_from\_computeMatrix.gz``` <br>
 
 - plotHeatmap will generate the plot using the output of computeMatrix <br>
 
@@ -813,8 +813,11 @@ This heatmap is showing a much more symmetric pattern.
 
 ````sort -k 1,1 -k2,2n ENCFF933NTR.bed \&gt; ENCFF933NTR\_sorted.bed````
 
-- Install pyGenomeTracks using ````conda -install -c bioconda pyGenomeTracks````
-- Visualize regions by running- ````pyGenomeTracks --tracks config.ini --region chr22:37,193,000-37,252,000 -o Genome\_track\_plot.png````
+- Install pyGenomeTracks using <br>
+ 
+ ```conda -install -c bioconda pyGenomeTracks```` <br>
+ 
+- Visualize regions by running- <br>```pyGenomeTracks --tracks config.ini --region chr22:37,193,000-37,252,000 -o Genome\_track\_plot.png```<br>
 
 <p align="center"> <img src="images/pyGenome%20output.PNG">
  
@@ -825,6 +828,8 @@ As CTCF creates accessible regions, a region containing a peak with no correspon
 ## Conclusion
 
 ATAC-Seq is a method to investigate the chromatin accessibility and the genome is treated with a transposase (enzyme) called Tn5. It marks open chromatin regions by cutting and inserting adapters for sequencing. Low quality bases, adapter contamination, correct insert size and PCR duplicates (duplication level) were checked. Mapped the reads with  **Bowtie2** , filtered the reads for properly paired, good quality and reads that do not map to the mitochondrial genome. Open chromatin regions were found with  **MACS2** , a tool to find regions of genomic enrichment (peaks). The read coverage around TSS was investigated with the help of  **computeMatrix**  and  **plotHeatmap**. The peaks and other informative tracks, such as CTCF binding regions and hg38 genes were visualised with the help of  **pyGenomeTracks**. At the end, open chromatin regions that did not overlap with CTCF sites or TSS, which could be potential putative enhancer regions detected by the ATAC-Seq experiment.
+
+</details>
 
 ## REFERENCES**
 
