@@ -851,7 +851,23 @@ ATAC-Seq is a method to investigate the chromatin accessibility and the genome i
 - [x] BedGraphtoBigWig
 - [x] PyGenomeTracks                                                       
                                                                           
-
- 
+| Slack username  | Suggesting workflows | Workflow Design & Writing text for marketing | Galaxy Based Implementation | Linux Based Implementation | Creating github repo & Markdown file formatting | Writing the galaxy workflow for markdown |
+| --------------- | -------------------- | -------------------------------------------- | --------------------------- | -------------------------- | ----------------------------------------------- | ---------------------------------------- |
+| @Sanjana1404    | :heavy\_check\_mark: |                                              | :heavy\_check\_mark:        |                            |                                                 |                                          |
+| @Comfortojedapo | :heavy\_check\_mark: |                                              | :heavy\_check\_mark:        |                            | :heavy\_check\_mark:                            |                                          |
+| @Jaswanth       | :heavy\_check\_mark: | :heavy\_check\_mark:                         | :heavy\_check\_mark:        |                            | :heavy\_check\_mark:                            |                                          |
+| @Jeeel193       | :heavy\_check\_mark: |                                              | :heavy\_check\_mark:        |                            |                                                 |                                          |
+| @Sathya         | :heavy\_check\_mark: |                                              | :heavy\_check\_mark:        |                            |                                                 | :heavy\_check\_mark:                     |
+| @Malu           | :heavy\_check\_mark: | :heavy\_check\_mark:                         | :heavy\_check\_mark:        |                            |                                                 |                                          |
+| @Adams          | :heavy\_check\_mark: |                                              | :heavy\_check\_mark:        |                            |                                                 |                                          |
+| @Mercyme        | :heavy\_check\_mark: |                                              | :heavy\_check\_mark:        |                            |                                                 |                                          |
+| @Wealth88       | :heavy\_check\_mark: |                                              | :heavy\_check\_mark:        |                            |                                                 | :heavy\_check\_mark:                     |
+| @Maryamabdul    | :heavy\_check\_mark: |                                              | :heavy\_check\_mark:        |                            |                                                 |                                          |
+| @Nishat         | :heavy\_check\_mark: |                                              |                             | :heavy\_check\_mark:       | :heavy\_check\_mark:                            |                                          |
+| @Akinmode       |                      |                                              |                             | :heavy\_check\_mark:       | :heavy\_check\_mark:                            |                                          |
+| @XR2            | :heavy\_check\_mark: |                                              |                             |                            |                                                 |                                          |
+| @Kehinde16      |                      |                                              |                             | :heavy\_check\_mark:       |                                                 |                                          |
+| @Sakshi\_r\_    |                      |                                              |                             |                            |                                                 |                                          |
+| @Tardigrade     |                      |                                              | :heavy\_check\_mark:        |                            |                                                 |                                          |
 
 <p align="center"> <img src="https://allfreethankyounotes.com/wp-content/uploads/2021/02/all-free-thank-you-gif-10.gif">
