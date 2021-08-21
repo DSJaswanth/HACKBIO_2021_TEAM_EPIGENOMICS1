@@ -411,10 +411,12 @@ Click on the input and the output BAM files of the filtering step. Check the siz
  
 ****_Filtering of uninformative mapped reads_****
 
-1. Install samtools
-2.```samtools view -q 30 -f 0x2 -b -h Aligned\_output.sam \; Filtered\_output.bam```
+1. Install samtools.
+```python
+ samtools view -q 30 -f 0x2 -b -h Aligned\_output.sam \; Filtered\_output.bam
+ ```
 
-This will filter out uninformative reads (Mapping quality \&gt;= 30 &amp; Properly Paired)
+we will filter out uninformative reads (Mapping quality \&gt;= 30 &amp; Properly Paired)
 
  </details> 
   
@@ -442,9 +444,18 @@ Click on the eye icon of the MarkDuplicate metrics.
  **_Mark Duplicate Reads_**
 
 - Download picard.jar in your working folder from [here](https://github.com/broadinstitute/picard/releases/download/2.26.0/picard.jar) <br>
-- From that directory, run <br> ````java -jar picard.jar -h```` to check whether it works (you can skip this step) <br>
-- For sorting the output file from last step use- <br>``` samtools sort -T temp -O bam -o filtered\_output\_sorted.bam Filtered\_output.bam```<br>
-- Finally, run <br>```java -jar picard.jar MarkDuplicates I=filtered\_output\_sorted.bam O=marked\_dup.bam M=marked\_dup.metrics.txt``` <br>for marking duplicates
+- From that directory, run <br> ````python
+  java -jar picard.jar -h
+  ````
+  to check whether it works (you can skip this step) <br>
+- For sorting the output file from last step use- <br>
+  ```python
+  samtools sort -T temp -O bam -o filtered\_output\_sorted.bam Filtered\_output.bam
+  ```
+- Finally, run <br>
+  ```pythonjava -jar picard.jar MarkDuplicates I=filtered\_output\_sorted.bam O=marked\_dup.bam M=marked\_dup.metrics.txt
+  ``` 
+  <br>for marking duplicates
 - If you can have a look into the metrics in the metrics.txt file
   
     </details>
@@ -471,19 +482,23 @@ Click on the galaxy-eye (eye) icon of the lower one of the 2 outputs (the png fi
 <summary>Linux Implementation</summary>
 <br>
 
-***_Check Insert Sizes_***
+```python
+   sudo apt install r-base
+   ```
+```python
+   java -jar picard.jar CollectInsertSizeMetrics I=marked\_dup.bam O=chart.txt H=insertSizePlot.pdf M=0.5
+   ```
    
-Check Insert Size tells us the size of the DNA fragment the read pairs came from. For this step we have to make a plot of the frequencies of the reads in the bam file to observe the peaks around where there are likely Tn5 transposase activities into nucleosome-free regions.<br>
+   </details>
+ 
+ Check Insert Size tells us the size of the DNA fragment the read pairs came from. For this step we have to make a plot of the frequencies of the reads in the bam file to observe the peaks around where there are likely Tn5 transposase activities into nucleosome-free regions.<br>
 
-```$ sudo apt install r-base```<br>
-
-```$ java -jar picard.jar CollectInsertSizeMetrics I=marked\_dup.bam O=chart.txt H=insertSizePlot.pdf M=0.5```<br>
 
 <p align="center"> <img src="images/Insert sizes.PNG"> 
 
 Two peaks can be observed around the 200bp and 400bp from the plot
 
-  </details>
+  
                                                                                                                                                     
  ### STEP 4 :- PEAK CALLING
 - Peak calling helps us to identify regions where reads have piled up (peaks) greater than the background read coverage. Using MACS2 we will extend the start sites of the reads by 200bp (100bp in each direction) to assess coverage. Before using MACS2, we need to convert the output BAM file from MarkDuplicate stage to BED format because when we set the extension size in MACS2, it will only consider one read of the pair while here, we would like to use the information from both.
