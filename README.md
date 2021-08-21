@@ -39,13 +39,7 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
 #### Datasets
  - Data is gotten from the study of Buenrostro et al. 2013. The data from the original dataset is downsized to 200,000 randomly selected reads and about 200,000 reads pairs that will map to chromosome 22. Binding sites of CTCF identified by ChIP in the same cell line from ENCODE (ENCSR000AKB, dataset ENCFF933NTR are also used.
 
- **Downloading Dataset: **
-
- ***Download files from the [here](https://zenodo.org/record/3862793#.YRze2XUvNH4) directly for galaxy  or use the wget command along with link in the linux***
  
- 1. [https://zenodo.org/record/3862793/files/ENCFF933NTR.bed.gz] <br>
- 2. [https://zenodo.org/record/3862793/files/SRR891268\_chr22\_enriched\_R1.fastq.gz]<br>
- 3. [https://zenodo.org/record/3862793/files/SRR891268\_chr22\_enriched\_R2.fastq.gz] <br>
  
  ## **WORKFLOW/METHODOLOGY**
  
@@ -57,13 +51,14 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
  
 ### STEP 1 :- PREPROCESSING 
   
- #### A) DATASET 
- 
- ***<details><summary>Data Upload for galaxy</summary><br>***
+  #### A) DATASET 
+  
+***<details><summary>Data Upload for galaxy</summary><br>***
   
 ***Create a new history***
   
-1. Add or import DATASETS (2 fastq.gz files and 1 bed.gz file) for analysis (via link or from a data library)
+1. Add or import DATASETS (2 fastq.gz files and 1 bed.gz file) for analysis via [LINK](https://zenodo.org/record/3862793#.YRze2XUvNH4) 
+  
 2. Add tags to R1 and R2 files. To add tags:
     - Click on the dataset
     - Click on the tag icon
@@ -76,9 +71,29 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
 2. In the central panel, click on the Datatypes tab on the top
 3. Select correct datatype (fastqsanger.gz for the FASTQ files, and encodepeak for the bed.gz file)
 4. Click the Change datatype button
- </details>
+ </details> 
+  
+  ***<details><summary> Get Data for LINUX </summary><br>***
+````python
+  wget https://zenodo.org/record/3862793/files/ENCFF933NTR.bed.gz
+  ````
+````python
+  wget https://zenodo.org/record/3862793/files/SRR891268_chr22_enriched_R1.fastq.gz
+  ````
+````python
+  wget https://zenodo.org/record/3862793/files/SRR891268_chr22_enriched_R2.fastq.gz
+  ````
+ ***You can unzip the sequence files with gunzip***
 
- #### B) Obtain Annotation for hg38 genes
+```python
+   gunzip SRR891268_chr22_enriched_R1.fastq.gz 
+  ```
+```python
+  gunzip SRR891268_chr22_enriched_R2.fastq.gz
+  ``` 
+ </details> 
+  
+#### B) Obtain Annotation for hg38 genes
  <details>
  <summary>FOR GALAXY IMPLEMEMTATION</summary>
  
@@ -152,15 +167,6 @@ Thus, chr22.gz file will be downloaded.
 ![](RackMultipart20210820-4-1srrkc3_html_56d6bf868d184b2e.png) 
    #### result image  </details>
 
-  
-<details><summary>DATA PREPROCESSING FOR LINUX</summary>
-  ***You can unzip the sequence files with gunzip***
-
-```$ gunzip SRR891268_chr22_enriched_R1.fastq.gz ```<bR> 
-```$ gunzip SRR891268_chr22_enriched_R2.fastq.gz ```<bR> 
- 
- </details>
- 
 #### C)QUALITY CONTROL
  
  <details>
