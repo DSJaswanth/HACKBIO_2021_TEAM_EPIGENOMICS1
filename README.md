@@ -154,15 +154,12 @@ Thus, chr22.gz file will be downloaded.
 
 - <b>Converting chr22 file into a bed file:</b> 
    
-1. Unzip the downloaded chr22.gz using 
+1. Unzip the downloaded chr22.gz using command
 
    ```python
    unzip chr22.gz 
  ```
- command
- 
- ```python
- awk -F \tOFS=\t {print $3, $5, $6, $13, $12, $4 \ (chr22.bed)} chr22 
+awk -F \tOFS=\t {print $3, $5, $6, $13, $12, $4 \ (chr22.bed)} chr22 
  ```
 (to get only expected columns into a newly created chr22.bed file)
    
