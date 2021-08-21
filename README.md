@@ -332,6 +332,8 @@ For paired end trimming-
 2. Create index for Chromosome 22:``` bowtie2-build chr22.fa.gz indexed\_chr22```
 3. Start mapping for the parameters specified by Galaxy: ```bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed\_chr22 -1 trimmed\_1.fastq -2 trimmed\_2.fastq -S Aligned\_output.sam```
 
+![Bowtie2 output](https://user-images.githubusercontent.com/81503326/130309804-653ca29e-b462-4445-8113-c19a52dcc721.PNG)<figcaption align = "left"><b>Bowtie2 LINUX Output</b></figcaption>
+
 </details>    
   
 ### STEP 3 :- Filtering Mapped Reads 
