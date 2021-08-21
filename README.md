@@ -41,7 +41,7 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
 
  
  
- ## :raised_hands: **WORKFLOW** :raised_hands:
+ ## **WORKFLOW**
  
  
 ### <p align="center"> GRAPHICAL WORKFLOW DESIGN
@@ -159,7 +159,7 @@ Thus, chr22.gz file will be downloaded.
    ```python
    unzip chr22.gz 
  ```
-awk -F \tOFS=\t {print $3, $5, $6, $13, $12, $4 \ (chr22.bed)} chr22 
+awk -F "\t" 'OFS="\t" {print $3, $5, $6, $13, $12, $4 > ("chr22.bed")}' chr22 
  ```
 (to get only expected columns into a newly created chr22.bed file)
    
@@ -288,7 +288,7 @@ $ sudo apt install cutadapt
 For paired end trimming-
  
  ```python
- $ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed\_1.fastq -p trimmed\_2.fastq SRR891268\_chr22\_enriched\_R1.fastq SRR891268\_chr22\_enriched\_R2.fastq
+cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed_1.fastq -p trimmed_2.fastq SRR891268_chr22_enriched_R1.fastq SRR891268_chr22_enriched_R2.fastq
  ```
 
 ![Cutadapt](https://user-images.githubusercontent.com/81503326/130309371-611bde25-a310-444d-8100-4cff3fe998fb.PNG)
@@ -344,9 +344,6 @@ For paired end trimming-
 - For mapping to chr22-
 
 1. Install bowtie2 <bR> 
-```python
- bowtie2-build chr22.fa.gz indexed\_chr22
- ```
 2. Create index for Chromosome 22: <bR> 
 ```python
  bowtie2-build chr22.fa.gz indexed_chr22
@@ -354,7 +351,7 @@ For paired end trimming-
 3. Start mapping for the parameters specified by Galaxy: <bR> 
 
  ```python
- bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed\_chr22 -1 trimmed\_1.fastq -2 trimmed\_2.fastq -S Aligned\_output.sam
+ bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed_chr22 -1 trimmed_1.fastq -2 trimmed_2.fastq -S Aligned_output.sam
  ```
 
  <p align="center"> <img src="images/Bowtie2%20output.PNG">
@@ -411,7 +408,7 @@ Click on the input and the output BAM files of the filtering step. Check the siz
 
 1. Install samtools.
 ```python
- samtools view -q 30 -f 0x2 -b -h Aligned\_output.sam \; Filtered\_output.bam
+ samtools view -q 30 -f 0x2 -b -h Aligned_output.sam > Filtered_output.bam
  ```
 
 we will filter out uninformative reads (Mapping quality \&gt;= 30 &amp; Properly Paired)
@@ -447,12 +444,17 @@ Click on the eye icon of the MarkDuplicate metrics.
   ````
   to check whether it works (you can skip this step) <br>
 - For sorting the output file from last step use- <br>
+  
   ```python
-  samtools sort -T temp -O bam -o filtered\_output\_sorted.bam Filtered\_output.bam
+  samtools sort -T temp -O bam -o filtered_output_sorted.bam Filtered_output.bam
   ```
+  
 - Finally, run <br>
-  ```pythonjava -jar picard.jar MarkDuplicates I=filtered\_output\_sorted.bam O=marked\_dup.bam M=marked\_dup.metrics.txt
+  
+  ```python 
+  java -jar picard.jar MarkDuplicates I=filtered_output_sorted.bam O=marked_dup.bam M=marked_dup.metrics.txt 
   ``` 
+  
   <br>for marking duplicates
 - If you can have a look into the metrics in the metrics.txt file
   
@@ -487,7 +489,7 @@ Click on the galaxy-eye (eye) icon of the lower one of the 2 outputs (the png fi
    sudo apt install r-base
    ```
 ```python
-   java -jar picard.jar CollectInsertSizeMetrics I=marked\_dup.bam O=chart.txt H=insertSizePlot.pdf M=0.5
+   java -jar picard.jar CollectInsertSizeMetrics I=marked_dup.bam O=chart.txt H=insertSizePlot.pdf M=0.5
    ```
    
    </details>
@@ -537,7 +539,7 @@ Convert BAM file (output of MarkDuplicates) into BED format by **bedtools BAM to
                                                                                                                                                       
 Install bamtools and convert bam file to bed file using bamtools:  
  ```python
- bedtools bamtobed -i marked\_dup.bam \marked\_dup.bed
+ bedtools bamtobed -i marked_dup.bam > marked_dup.bed
  ```` 
 Install macs2 :
  ```python
@@ -546,20 +548,16 @@ Install macs2 :
 Then run the command for peak calling: 
 
  ```python
- macs2 callpeak -t marked\_dup.bed -n macs\_output -g 50818468 --nomodel --shift -100 --extsize 200 --keep-dup all --call-summits --bdg
+ macs2 callpeak -t marked_dup.bed -n macs_output -g 50818468 --nomodel --shift -100 --extsize 200 --keep-dup all --call-summits --bdg
  ```
 
 ***This will give us the following 5 output files-***
 
-- Macs\_output\_control\_lambda.bdg 
-
-- macs\_output\_peaks.narrowPeak    
- 
-- Macs\_output\_peaks.xls          
-
-- Mac_output_summits.bed           
- 
-- macs_output_treat_pileup.bdg     
+-Macs_output_control_lambda.bdg
+-macs_output_peaks.narrowPeak
+-Macs_output_peaks.xls
+-Macs_output_summits.bed
+-macs_output_treat_pileup.bdg     
  
   </details>                                                                                                                                                           
    
@@ -595,20 +593,25 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
 1. Filter only data for chr22 from file using 
  
  ````python
- grep -w chr22; ENCFF933NTR.bed \ file\_A.bed
+ grep -w "chr22" ENCFF933NTR.bed >> file_A.bed
  ````
  
- ````python
- Extract filtered chrr22 (as c1) into a new file- $ grep c1 ENCFF933NTR\_filt.bed \ENCFF933NTR\_chr22.bed
- ````
+2.Extract filtered chrr22 (as c1) into a new file
  
  ````python
- Replace c1 with chr22- sed s/c1/chr22/ ENCFF933NTR\_chr22.bed ; ENCFF933NTR\_CHR22genes.bed
+ grep c1 ENCFF933NTR_filt.bed > ENCFF933NTR_chr22.bed
  ````
-4. bedtools Intersect intervals find overlapping intervals : 
+ 
+3.Replace c1 with chr22
  
  ````python
- bedtools intersect -v -a ENCFF933NTR\_CHR22genes.bed -b chr22\_genes.bed \intergenic\_CTCF\_peaks\_chr22
+sed 's/c1/chr22/' ENCFF933NTR_chr22.bed > ENCFF933NTR_CHR22genes.bed
+ ````
+ 
+4.bedtools Intersect intervals find overlapping intervals : 
+ 
+ ````python
+ bedtools intersect -v -a ENCFF933NTR_CHR22genes.bed -b chr22_genes.bed > intergenic_CTCF_peaks_chr22
  ````
                                                                                                                                                      
  </details> 
@@ -632,11 +635,11 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
  Install <strong>bedGraphtoBigWig</strong> and go through the following commands for converting the output bedGraph file from macs2 to bigwig (refer to this link if you want to understand the commands [https://www.biostars.org/p/176875/](https://www.biostars.org/p/176875/) )
 
 ````python
- awk NR!=1 macs\_output\_treat\_pileup.bdg \ macs.deheader.bedGraph
+ awk 'NR!=1' macs_output_treat_pileup.bdg > macs.deheader.bedGraph
  ```` 
 
 ````python
- sort -k1,1 -k2,2n macs.deheader.bedGraph \ macs.sorted.bedGraph 
+ sort -k1,1 -k2,2n macs.deheader.bedGraph > macs.sorted.bedGraph 
  ````
 
 ````python
@@ -649,7 +652,7 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
  → write only one line (tab delimited) in this file chr22 51304566 
  
 ````python
- awk {print $1,$2,$3,$4} macs.sorted.bedGraph \ macs.sorted.4.bedGraph
+ awk '{print $1,$2,$3,$4}' macs.sorted.bedGraph > macs.sorted.4.bedGraph
  ````
  
 ````python
@@ -731,25 +734,25 @@ The same is repeated for the intergenic CTCF peaks.
 2. Then run
  
  ```python
- computeMatrix reference-point --referencePoint TSS -R chr22.bed -S macs.bw --missingDataAsZero -o output\_from\_computeMatrix.gz
+ computeMatrix reference-point --referencePoint TSS -R chr22.bed -S macs.bw --missingDataAsZero -o output_from_computeMatrix.gz
  ``` 
  
 - plotHeatmap will generate the plot using the output of computeMatrix 
 
  
 ````python
- plotHeatmap -m output\_from\_computeMatrix.gz -out plotHeatMap.png
+ plotHeatmap -m output_from_computeMatrix.gz -out plotHeatMap.png
  ````
 
 - Repeating the previous two steps for plotting **CTCF peaks of chr22 in intergenic regions** with slight moderation: 
 
  
 ````python
- computeMatrix reference-point --referencePoint center -R intergenic\_ctcf\_peaks\_chr22 -S macs.bw --missingDataAsZero -o peak\_output\_from\_computeMatrix.gz
+ computeMatrix reference-point --referencePoint center -R intergenic_ctcf_peaks_chr22 -S macs.bw --missingDataAsZero -o peak_output_from_computeMatrix.gz
  ```` 
 
 ````python
- plotHeatmap -m peak\_output\_from\_computeMatrix.gz -out intragenic\_plotHeatMap.png
+ plotHeatmap -m peak_output_from_computeMatrix.gz -out intragenic_plotHeatMap.png
  ````
 
 In the generated heatmaps, each line will be a transcript. The coverage will be summarized with a color code from red (no coverage) to blue (maximum coverage). All TSS will be aligned in the middle of the figure and only the 2 kb around the TSS will be displayed. Another plot, on top of the heatmap, will show the mean signal at the TSS. There will be one heatmap per bigwig.
@@ -889,7 +892,7 @@ This heatmap is showing a much more symmetric pattern.
 - Sort ENCFF933NTR.bed file-
 
 ````python
- sort -k 1,1 -k2,2n ENCFF933NTR.bed ; ENCFF933NTR\_sorted.bed
+ sort -k 1,1 -k2,2n ENCFF933NTR.bed > ENCFF933NTR_sorted.bed
  ````
 
 - Install pyGenomeTracks using <br>
@@ -901,7 +904,7 @@ This heatmap is showing a much more symmetric pattern.
 - Visualize regions by running- <br>
  
  ```python
- pyGenomeTracks --tracks config.ini --region chr22:37,193,000-37,252,000 -o Genome\_track\_plot.png
+ pyGenomeTracks --tracks config.ini --region chr22:37,193,000-37,252,000 -o Genome_track_plot.png
  ```
  
  </details>
@@ -940,27 +943,9 @@ ATAC-Seq is a method to investigate the chromatin accessibility and the genome i
 - [x] BedGraphtoBigWig
 - [x] PyGenomeTracks     
  
- ### TEAM WORK CONTRIBUTION 
-| Slack username  | Suggesting workflows | Workflow Design      | Galaxy Based Implementation | Linux Based Implementation | Creating github repo & Markdown file formatting | Writing the galaxy workflow for markdown | Writing the Linux workflow for markdown | Others                                                              |
-|-----------------|----------------------|----------------------|-----------------------------|----------------------------|--------------------------------------------------------------------------------------------|-----------------------------------------|---------------------------------------------------------------------|
-| @Sanjana1404    | :heavy\_check\_mark: |                      | :heavy\_check\_mark:        |                            |                                                 |                                          |                                         |                                                                     |
-| @Comfortojedapo | :heavy\_check\_mark: |                      | :heavy\_check\_mark:        |                            | :heavy\_check\_mark:                            |                                          |                                         | Team Lead                                                           |
-| @Jaswanth       | :heavy\_check\_mark: | :heavy\_check\_mark: | :heavy\_check\_mark:        |                            | :heavy\_check\_mark:                            |                                          |                                         |                                                                     |
-| @Jeeel193       | :heavy\_check\_mark: |                      | :heavy\_check\_mark:        |                            |                                                 |                                          |                                         | Creating a new workflow design for markdown file                    |
-| @Sathya         | :heavy\_check\_mark: |                      | :heavy\_check\_mark:        |                            |                                                 | :heavy\_check\_mark:                     |                                         |                                                                     |
-| @Malu           | :heavy\_check\_mark: | :heavy\_check\_mark: | :heavy\_check\_mark:        |                            |                                                 |                                          |                                         |                                                                     |
-| @Adams          | :heavy\_check\_mark: |                      | :heavy\_check\_mark:        |                            |                                                 |                                          |                                         |                                                                     |
-| @Mercyme        | :heavy\_check\_mark: |                      | :heavy\_check\_mark:        |                            | :heavy\_check\_mark:                            |                                          |                                         |                                                                     |
-| @Wealth88       | :heavy\_check\_mark: |                      | :heavy\_check\_mark:        |                            |                                                 | :heavy\_check\_mark:                     |                                         |                                                                     |
-| @Maryamabdul    | :heavy\_check\_mark: |                      | :heavy\_check\_mark:        |                            |                                                 |                                          |                                         |                                                                     |
-| @Nishat         | :heavy\_check\_mark: |                      |                             | :heavy\_check\_mark:       |                                                 |                                          |                                         | Team Lead                                                           |
-| @Akinmode       |                      |                      |                             | :heavy\_check\_mark:       |                                                 |                                          | :heavy\_check\_mark:                    | Creating the workflow design for marketing  at the transfer market  |
-| @XR2            | :heavy\_check\_mark: |                      | :heavy\_check\_mark:        |                            |                                                 |                                          |                                         |                                                                     |
-| @Kehinde16      |                      |                      |                             | :heavy\_check\_mark:       |                                                 |                                          | :heavy\_check\_mark:                    |                                                                     |
-| @Sakshi_r_      |                      |                      | :heavy\_check\_mark:        |                            |                                                 |                                          |                                         |                                                                     |
-| @Tardigrade     |                      |                      | :heavy\_check\_mark:        |                            |                                                 |                                          |                                         | Provided Result Images                                              |
  
- 
+
+
                                                                                                                                                      
 <p align="center"> <img src="https://allfreethankyounotes.com/wp-content/uploads/2021/02/all-free-thank-you-gif-10.gif">
  
