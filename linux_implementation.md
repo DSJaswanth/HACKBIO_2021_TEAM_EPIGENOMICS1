@@ -1,4 +1,4 @@
-**#ATAC-seq Data Analysis-Linux Implementation**
+# ATAC-seq Data Analysis-Linux Implementation
 
 The genome of eukaryotes such has human is packed and organized in place with the assembling of smaller structures called nucleosome. This structure is a complex of 8 histone protein with dna tightly wound around it, ~147bp. The nature of packing (open/loose or tight) of these nucleosomes complex plays a major role in Transcription and it determines the accessibility of transcription factors and protein(RNA polymerase) to bind to the transcription site. Several factors are responsible for the accessibility of the DNA including histone modifications, position of nucleosomes etc., these regulates the activation and deactivation of genes.
 
@@ -10,37 +10,37 @@ This tutorial uses data from a study by Buenrostro et al. 2013 ([https://trainin
 
 Good ATAC-Seq data would have accessible regions both within and outside of Transcription Start Site (TSS), for example, at some CTCF binding sites. For that reason, we will download binding sites of CTCF identified by ChIP in the same cell line from ENCODE (ENCSR000AKB, dataset ENCFF933NTR).
 
-##Tutorial Sections
+## Tutorial Sections
 
-###Preprocessing
+### Preprocessing
 
 1. Get Data
 2. Quality Control
 3. Trimming Reads
 
-###Mapping
+### Mapping
 
 1. Mapping Reads to Reference Genome
 
-###Filtering Mapped Reads
+### Filtering Mapped Reads
 
 1. Filter Uninformative Reads
 2. Filter Duplicate Reads
 3. Check Insert Sizes
 
-###Peak calling
+### Peak calling
 
 1. Call Peaks
 
-###Visualisation of Coverage
+### Visualisation of Coverage
 
 1. Prepare the Datasets
 2. Create heatmap of coverage at TSS with deepTools
 3. Visualise Regions with pyGenomeTracks
 
-##Conclusion
+## Conclusion
 
-##Tools Used
+## Tools Used
 
 - FastQC
 - Cutadapt
@@ -52,9 +52,9 @@ Good ATAC-Seq data would have accessible regions both within and outside of Tran
 - Deeptool
 - pyGenome Tracks
 
-#Lets get started
+# Lets get started
 
-##Getting Tutorial dataset
+## Getting Tutorial dataset
 
 The data that will be used from this tutorial will be imported from Zenodo. Get files using wget command
 
@@ -64,7 +64,7 @@ $ wget [https://zenodo.org/record/3862793/files/SRR891268\_chr22\_enriched\_R1.f
 
 $ wget [https://zenodo.org/record/3862793/files/SRR891268\_chr22\_enriched\_R2.fastq.gz](https://zenodo.org/record/3862793/files/SRR891268_chr22_enriched_R2.fastq.gz)
 
-##Obtain Annotation for hg38 genes
+## Obtain Annotation for hg38 genes
 
 Go to [http://genome.ucsc.edu/cgi-bin/hgTables](http://genome.ucsc.edu/cgi-bin/hgTables) and set the parameters as follows-
 
@@ -81,7 +81,7 @@ Go to [http://genome.ucsc.edu/cgi-bin/hgTables](http://genome.ucsc.edu/cgi-bin/h
 
 And then select **Get output.** This downloads a zipped file, chr22.gz
 
-#Cutting columns from table and converting to .bed file
+# Cutting columns from table and converting to .bed file
 
 $ gunzip chr22.gz (this uncompressed the zipped file)
 
@@ -95,7 +95,7 @@ Output should look like this-
 
 
 
-##Quality Control
+## Quality Control
 
 The first step is to check the quality of the reads and the presence of the Nextera adapters. When we perform ATAC-Seq, we can get DNA fragments of about 40 bp if two adjacent Tn5 transposases cut the DNA Adey et al. 2010. This can be smaller than the sequencing length so we expect to have Nextera adapters at the end of those reads.
 
@@ -123,7 +123,7 @@ This generates a HTML report for each file which looks like this, indicating whi
 
 ![QC_report](C:\Users\KEHINDE\Desktop\task3\QC(2).png "QC report")
 
-##Trimming
+## Trimming
 
 The fastqc report indicates the presence of an overrepresented sequence and fastqc identifies it as &quot;Nextera Transposase Sequence &#39;&#39; and also adapter content sequence. This sequence is a 3`-adapter sequence which has to be trimmed out.
 
@@ -147,9 +147,9 @@ This command cut out these sequences at the 3` from the forward and reverse read
 ![QC report](C:\Users\KEHINDE\Desktop\task3\QC4.png "QC report after trimming")
 
 
-#Mapping
+# Mapping
 
-##Mapping Reads to Reference Genome
+## Mapping Reads to Reference Genome
 
 Now we will map the trimmed reads to the human reference genome using **Bowtie2**. We will extend the maximum fragment length (distance between read pairs) from 500 to 1000 because we know some valid read pairs are from this fragment length, then use --very-sensitive parameter to have more chance to get the best match even if it takes a bit longer to run. We will run the end-to-end mode because we trimmed the adapters so we expect the whole read to map, no clipping of ends is needed. Reference genome chosen is Human chr22 .
 
@@ -172,9 +172,9 @@ Output should be as follows-
 ![alignment results](C:\Users\KEHINDE\Desktop\task3\align5.png "reads alignment")
 
 
-**#Filtering Mapped Reads**
+# Filtering Mapped Reads
 
-**##Filter Uninformative Reads**
+## Filter Uninformative Reads
 
 We apply some filters to the reads after the mapping. Here remove reads with low mapping quality and reads that are not properly paired **.**
 
@@ -188,7 +188,7 @@ $ samtools view -q 30 -f 0x2 -b -h SRR891268\_chr22\_enriched\_out.bam \&gt; SRR
 
 This will filter out uninformative reads (Mapping quality \&gt;= 30 &amp; Properly Paired)
 
-##Filter Duplicate Reads
+## Filter Duplicate Reads
 
 Because of the PCR amplification, there might be read duplicates (different reads mapping to exactly the same genomic region) from overamplification of some regions. As the Tn5 insertion is random within an accessible region, we do not expect to see fragments with the same coordinates. We consider such fragments to be PCR duplicates. We will remove them with Picard MarkDuplicates Module.
 
@@ -213,7 +213,7 @@ Next, index markdup file
 
 $ samtools index SRR891268\_chr22\_enriched\_out.markdup.bam
 
-##Check Insert Sizes
+## Check Insert Sizes
 
 Check Insert Size tells us the size of the DNA fragment the read pairs they came from. For this step we have to make a plot of the frequencies of the reads in the bam file to observe the peaks around where there are likely Tn5 transposase activities into nucleosome-free regions.
 
@@ -230,9 +230,9 @@ Two peaks can be observed around the 200bp and 400bp from the plot
 ![reads insert size](C:\Users\KEHINDE\Desktop\task3\insertsize7.png "insert size"))
 
 
-#Peak calling
+# Peak calling
 
-##Call Peaks
+## Call Peaks
 
 First, convert the markdup bam file to bed file:
 
@@ -242,9 +242,9 @@ Using macs2 tool, perform peak calling:
 
 $ macs2 callpeak -t SRR891268\_chr22\_enriched\_out.markdup.bed -n macs\_output -g 50818468 --nomodel --shift -100 --extsize 200 --keep-dup all --call-summits –bdg
 
-#Visualisation of Coverage
+# Visualisation of Coverage
 
-##Extract CTCF peaks on chr22 in intergenic regions
+## Extract CTCF peaks on chr22 in intergenic regions
 
 filter dataset with condition c1==chr22, this command replaces chr22 with c1 in the file
 
@@ -262,7 +262,7 @@ Finding overlapping intervals
 
 $ bedtools intersect -v -a ENCFF933NTR\_CHR22genes.bed -b chr22\_genes.bed \&gt; intergenic\_CTCF\_peaks\_chr22
 
-##Convert bedgraph from MACS2 to bigwig
+## Convert bedgraph from MACS2 to bigwig
 
 Execute the following commands to convert the output bedGraph file from macs2 to bigwig (refer to this link for better understand the commands [https://www.biostars.org/p/176875/](https://www.biostars.org/p/176875/) )
 
@@ -278,7 +278,7 @@ $ awk &#39;{print $1,$2,$3,$4}&#39; macs.sorted.bedGraph \&gt; macs.sorted.4.bed
 
 $ bedGraphToBigWig macs.sorted.4.bedGraph hg19.chrom.sizes macs.bw
 
-## **##Create heatmap of coverage at TSS with deepTools**
+## Create heatmap of coverage at TSS with deepTools
 
 To check the coverage on specific regions, you can compute a heatmap. We will use the deepTools plotHeatmap
 
@@ -308,7 +308,7 @@ $ plotHeatmap -m peak\_output\_from\_computeMatrix.gz -out intragenic\_plotHeatM
 ![Heatmap for CTCF peaks](C:\Users\KEHINDE\Desktop\task3\heat9.png "Heatmap")
 
 
-**##Visualise Regions with pyGenomeTracks**
+## Visualise Regions with pyGenomeTracks
 
 In order to visualize a specific region (e.g. the gene RAC2), we can either use a genome browser like IGV or UCSC browser, or use pyGenomeTracks to make publishable figures.
 
