@@ -17,24 +17,21 @@
 
 <br>  
    
-##  :scroll: HEADING OVER TO THE TASK :scroll:
-## <p align="center"> STAGE-2-PROBE
+##  :scroll: STAGE-2-PROBE :scroll:
+## <p align="center"> THE TASK WE NEED TO DO IN THIS STAGE
 
-👉 SEARCH FOR DESIRED TUTORIALS OF BIOSTACK (EPIGENOMICS) ANALYSIS.<br>
-👉 REPRODUCE THE ANALYSIS.<br>
-👉 CREATE A COMPREHENSIVE MARKDOWN.<br>
-👉 ADD STEP BY STEP OF ANALYSIS TO GITHUB LINK.<br>
+👉 SEARCHING FOR DESIRED TUTORIALS OF BIOSTACK EPIGENOMICS.<br>
+👉 HAVING A WONDERFUL WORKFLOW DESIGN.<br>
+👉 REPRODUCING THE ANALYSIS.<br>
+👉 CREATING A COMPREHENSIVE MARKDOWN OF THE ANALYSIS.<br>
 
-#Dont be so crazy to look up our workflow 
-BEFORE LETS KNOW WHAT IS MY TEAM BIOSTACK IS ABOUT
-
-##  <p align="center"> **ATAC-Seq Analysis**
+##  <p align="center"> **WE CHOOSE ATAC-Seq Analysis**
  
- ### **INTRODUCTION**
+ ### **What ATAC-Seq is**
 
-ATAC-Seq, short for Assay for Transposase-Accessible Chromatin using Sequencing, is a technique for assessing chromatin accessibility and how it affects gene expression. The chromatin consists of several nucleosome units. A nucleosome is a complex of DNA and histone proteins that keeps DNA compact through packaging. For transcription to occur, DNA must be loosened from the nucleosomes to make it accessible to transcription factors. This accessibility of DNA mediated by chromatin is a key component of epigenetics.
+ATAC-Seq, acronym of Assay for Transposase-Accessible Chromatin using Sequencing, is a technique for assessing chromatin accessibility and how it affects gene expression. The chromatin consists of several nucleosome units. A nucleosome is a complex of DNA and histone proteins that keeps DNA compact through packaging. For transcription to occur, DNA must be loosened from the nucleosomes to make it accessible to transcription factors. This accessibility of DNA mediated by chromatin is a key component of epigenetics.
 
-In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://training.galaxyproject.org/training-material/topics/epigenetics/tutorials/atac-seq/tutorial.html#trimming-reads) from the Galaxy Project. We've reproduced in completely with Linux Command Line tools too.
+In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://training.galaxyproject.org/training-material/topics/epigenetics/tutorials/atac-seq/tutorial.html#trimming-reads) from the Galaxy Project. We've reproduced it completely with Linux Command Line tools too.
 
 #### What Our Analysis is About?
  - The ATAC-Seq analysis is done compare the predicted open chromatin regions to the known binding sites of CTCF, a DNA-binding protein implicated in 3D structure: CTCF. CTCF is known to bind to thousands of sites in the genome and thus it can be used as a positive control for assessing if the ATAC-Seq experiment is good quality. Good ATAC-Seq data would have accessible regions both within and outside of TSS, for example, at some CTCF binding sites. For that reason, we will download
