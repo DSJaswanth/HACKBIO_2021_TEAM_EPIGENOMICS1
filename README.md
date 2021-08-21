@@ -566,7 +566,7 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
 <details>
 <summary>LINUX Implementation</summary>
 <br>        
- Install bedGraphtoBigWig and go through the following commands for converting the output bedGraph file from macs2 to bigwig (refer to this link if you want to understand the commands [https://www.biostars.org/p/176875/](https://www.biostars.org/p/176875/) )
+ Install <strong>bedGraphtoBigWig</strong> and go through the following commands for converting the output bedGraph file from macs2 to bigwig (refer to this link if you want to understand the commands [https://www.biostars.org/p/176875/](https://www.biostars.org/p/176875/) )
 
 - ````awk &#39;NR!=1&#39; macs\_output\_treat\_pileup.bdg \&gt; macs.deheader.bedGraph```` <br>
 - ````sort -k1,1 -k2,2n macs.deheader.bedGraph \&gt; macs.sorted.bedGraph````<br>
