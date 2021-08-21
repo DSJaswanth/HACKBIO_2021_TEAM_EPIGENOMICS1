@@ -163,6 +163,8 @@ awk -F \tOFS=\t {print $3, $5, $6, $13, $12, $4 \ (chr22.bed)} chr22
  ```
 (to get only expected columns into a newly created chr22.bed file)
    
+  </details>
+   
 #### C) QUALITY CONTROL
  
  <details>
