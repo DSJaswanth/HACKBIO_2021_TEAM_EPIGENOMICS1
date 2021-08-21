@@ -584,7 +584,7 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
 <details>
 <summary>Galaxy Implementation</summary>
 <br>                                                                                                                                                               
-- <strong>computeMatrix</strong> with the following parameters:
+* <strong>computeMatrix</strong> with the following parameters:
   - In  Select regions:
     - Insert Select regions
       - Regions to plot: Select the dataset chr22 genes
@@ -597,7 +597,7 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
   - Convert missing values to 0?: Yes
   1. **Plot with plotHeatmap**
 
-- **plotHeatmap**   with the following parameters:
+* **plotHeatmap**   with the following parameters:
   - Matrix file from the computeMatrix tool: Select the output of  **computeMatrix**  tool.
   - Show advanced output settings: no
   - Show advanced options: no
@@ -610,7 +610,7 @@ The same is repeated for the intergenic CTCF peaks.
 
 **Generate the matrix**
 
-- **computeMatrix** with the following parameters:
+* **computeMatrix** with the following parameters:
   - In Select regions:
     - Insert Select regions
       - Regions to plot: Select the dataset intergenic CTCF peaks chr22
@@ -623,7 +623,7 @@ The same is repeated for the intergenic CTCF peaks.
   - Show advanced options: yes
     - Convert missing values to 0?: Yes
 
- - **plotHeatmap**   with the following parameters:
+ * **plotHeatmap**   with the following parameters:
   - Matrix file from the computeMatrix tool: Select the output of  **computeMatrix**  tool.
   - Show advanced output settings: no
   - Show advanced options: yes
