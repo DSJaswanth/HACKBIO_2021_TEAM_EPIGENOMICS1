@@ -34,14 +34,14 @@ ATAC-Seq, acronym of Assay for Transposase-Accessible Chromatin using Sequencing
 In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://training.galaxyproject.org/training-material/topics/epigenetics/tutorials/atac-seq/tutorial.html#trimming-reads) from the Galaxy Project. We've reproduced it completely with Linux Command Line tools too.
 
 #### What Our Analysis is About?
- - The ATAC-Seq analysis is done compare the predicted open chromatin regions to the known binding sites of CTCF, a DNA-binding protein implicated in 3D structure: CTCF. CTCF is known to bind to thousands of sites in the genome and thus it can be used as a positive control for assessing if the ATAC-Seq experiment is good quality. Good ATAC-Seq data would have accessible regions both within and outside of TSS, for example, at some CTCF binding sites. For that reason, we will download
+ - Using ATAC-Seq analysis, here we will compare the predicted open chromatin regions to the known binding sites of CTCF (a DNA-binding protein implicated in 3D structure). CTCF is known to bind to thousands of sites in the genome and thus it can be used as a positive control for assessing if the ATAC-Seq experiment is good quality.
 
-#### Datasets
- - Data is gotten from the study of Buenrostro et al. 2013. The data from the original dataset is downsized to 200,000 randomly selected reads and about 200,000 reads pairs that will map to chromosome 22. Binding sites of CTCF identified by ChIP in the same cell line from ENCODE (ENCSR000AKB, dataset ENCFF933NTR are also used.
+#### About Dataset
+ - The dataset we will use here is a subset of the data used in the study of Buenrostro et al. 2013. The data from the original dataset is downsized to 200,000 randomly selected reads and about 200,000 reads pairs that will map to chromosome 22. We are only focusing on chromosome 22 so that we can handle the analysis in less time. Binding sites of CTCF identified by ChIP in the same cell line from ENCODE (ENCSR000AKB, dataset ENCFF933NTR) will also be used.
 
  
  
- ## **WORKFLOW/METHODOLOGY**
+ ## **WORKFLOW**
  
  
 ### <p align="center"> GRAPHICAL WORKFLOW DESIGN
@@ -168,8 +168,8 @@ awk -F \tOFS=\t {print $3, $5, $6, $13, $12, $4 \ (chr22.bed)} chr22
  <details>
 <summary>Galaxy Implementation</summary>
 <br>
-Select the <b>FastQC tool</b> with the following parameters <br>
-   - 1. Short read data from your current history Choose here either only the SRR891268_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268_R1 and SRR891268\_R2.<br>
+Select the ***_FastQC tool_*** with the following parameters
+   - 1. &quot;Short read data from your current history&quot;: Choose here either only the SRR891268_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268_R1 and SRR891268\_R2.<br>
   - 2. Inspect the web page output of FastQC tool for the SRR891268\_R1 sample. Check what adapters are found at the end of the reads.
 </details>  
  
@@ -409,7 +409,7 @@ Click on the input and the output BAM files of the filtering step. Check the siz
 
 1. Install samtools.
 ```python
- samtools view -q 30 -f 0x2 -b -h Aligned_output.sam > Filtered_output.bam
+ samtools view -q 30 -f 0x2 -b -h Aligned\_output.sam \; Filtered\_output.bam
  ```
 
 we will filter out uninformative reads (Mapping quality \&gt;= 30 &amp; Properly Paired)
@@ -485,7 +485,7 @@ Click on the galaxy-eye (eye) icon of the lower one of the 2 outputs (the png fi
    sudo apt install r-base
    ```
 ```python
-   java -jar picard.jar CollectInsertSizeMetrics I=marked_dup.bam O=chart.txt H=insertSizePlot.pdf M=0.5
+   java -jar picard.jar CollectInsertSizeMetrics I=marked\_dup.bam O=chart.txt H=insertSizePlot.pdf M=0.5
    ```
    
    </details>
@@ -535,7 +535,7 @@ Convert BAM file (output of MarkDuplicates) into BED format by **bedtools BAM to
                                                                                                                                                       
 Install bamtools and convert bam file to bed file using bamtools:  
  ```python
- bedtools bamtobed -i marked_dup.bam > marked_dup.bed
+ bedtools bamtobed -i marked\_dup.bam \marked\_dup.bed
  ```` 
 Install macs2 :
  ```python
@@ -544,16 +544,16 @@ Install macs2 :
 Then run the command for peak calling: 
 
  ```python
- macs2 callpeak -t marked_dup.bed -n macs_output -g 50818468 --nomodel --shift -100 --extsize 200 --keep-dup all --call-summits --bdg
+ macs2 callpeak -t marked\_dup.bed -n macs\_output -g 50818468 --nomodel --shift -100 --extsize 200 --keep-dup all --call-summits --bdg
  ```
 
 ***This will give us the following 5 output files-***
 
-- Macs_output_control_lambda.bdg 
+- Macs\_output\_control\_lambda.bdg 
 
-- macs_output_peaks.narrowPeak    
+- macs\_output\_peaks.narrowPeak    
  
-- Macs_output_peaks.xls          
+- Macs\_output\_peaks.xls          
 
 - Mac_output_summits.bed           
  
@@ -593,23 +593,20 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
 1. Filter only data for chr22 from file using 
  
  ````python
- grep -w "chr22" ENCFF933NTR.bed >> file_A.bed     
+ grep -w chr22; ENCFF933NTR.bed \ file\_A.bed
  ````
  
  ````python
- grep c1 ENCFF933NTR_filt.bed > ENCFF933NTR_chr22.bed
+ Extract filtered chrr22 (as c1) into a new file- $ grep c1 ENCFF933NTR\_filt.bed \ENCFF933NTR\_chr22.bed
  ````
- 
- Replace c1 with chr22-<br>
  
  ````python
- sed 's/c1/chr22/' ENCFF933NTR_chr22.bed > ENCFF933NTR_CHR22genes.bed 
+ Replace c1 with chr22- sed s/c1/chr22/ ENCFF933NTR\_chr22.bed ; ENCFF933NTR\_CHR22genes.bed
  ````
- 
 4. bedtools Intersect intervals find overlapping intervals : 
  
  ````python
- bedtools intersect -v -a ENCFF933NTR_CHR22genes.bed -b chr22_genes.bed > intergenic_CTCF_peaks_chr22
+ bedtools intersect -v -a ENCFF933NTR\_CHR22genes.bed -b chr22\_genes.bed \intergenic\_CTCF\_peaks\_chr22
  ````
                                                                                                                                                      
  </details> 
