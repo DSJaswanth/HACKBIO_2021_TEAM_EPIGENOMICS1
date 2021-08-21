@@ -160,6 +160,7 @@ Thus, chr22.gz file will be downloaded.
    unzip chr22.gz 
  ```
  command
+ 
  ```python
  awk -F \tOFS=\t {print $3, $5, $6, $13, $12, $4 \ (chr22.bed)} chr22 
  ```
