@@ -145,9 +145,9 @@ Click on the eye icon to check changes effected. There should be matching column
   - <b>track</b>:<h style="color:blue;">All GENCODE V37</h>
   - <b>table</b>:<h style="color:blue;">Basic</h>
   - <b>region</b>:<h style="color:blue;">position chr22</h>
-  - <b>output format</h>:<p style="color:blue;">all fields from selected table</h>
-  - <b>output filename</h>:<p style="color:blue;">chr22</h>
-  - <b>file type returned</h>:<p style="color:blue;">gzipped compressed</h>
+  - <b>output format</h>:<h style="color:blue;">all fields from selected table</h>
+  - <b>output filename</h>:<h style="color:blue;">chr22</h>
+  - <b>file type returned</h>:<h style="color:blue;">gzipped compressed</h>
 
 And then select **Get output**
 
