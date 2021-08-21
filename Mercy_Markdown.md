@@ -97,16 +97,16 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
 - <b>output format</b>:<h style="color:blue;">all fields from selected table</h>
 - <b>Send output to</b>:<h style="color:blue;">Galaxy</h>
 
-2. Click get output  #### result image
+2. Click get output  ####result image
 
 
 3. Click Send Query to Galaxy
 
 4. Select the **Cut columns from a table tool** with the following parameters
 
-1. <b>Cut columns</b>: <p style="color:blue;">c3,c5,c6,c13,c12,c4</h>
-2. <b>Delimited by</b>: <p style="color:blue;">Tab</h>
-3. <b>param-file From</b>: <p style="color:blue;">UCSC Main on Human: wgEncodeGencodeBasicV37 (chr22:1-50,818,468)</h>
+1. <b>Cut columns</b>: <h style="color:blue;">c3,c5,c6,c13,c12,c4</h>
+2. <b>Delimited by</b>: <h style="color:blue;">Tab</h>
+3. <b>param-file From</b>: <h style="color:blue;">UCSC Main on Human: wgEncodeGencodeBasicV37 (chr22:1-50,818,468)</h>
 
 _Rename the dataset as chr22 genes_
 
@@ -118,7 +118,7 @@ _Change the datatype to a BED format_
 
 1. Click on the pencil icon for the dataset to edit its attributes
 2. In the central panel, click on the Datatypes tab on the top
-3. Select  **bed**
+3. Select **bed**
 4. Click the Change datatype button
 
 Click on the eye icon to check changes effected. There should be matching column names in each column of the dataset.
