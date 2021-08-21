@@ -423,7 +423,6 @@ Click on the eye icon of the MarkDuplicate metrics.
   
     </details>
   
-  
   #### C) Check Insert Sizes 
   
   <details>
@@ -645,7 +644,7 @@ The same is repeated for the intergenic CTCF peaks.
 <details>
 <summary>LINUX Implementation</summary>
 <br>                                                                                                                                                    
-  -Using computeMatrix generate the matrix
+  -Using <strong>computeMatrix</strong> generate the matrix
 
 1. Remove the first header line from chr22.bed file
 2. Then run ```` computeMatrix reference-point --referencePoint TSS -R chr22.bed -S macs.bw --missingDataAsZero -o output\_from\_computeMatrix.gz````
