@@ -159,7 +159,6 @@ Thus, chr22.gz file will be downloaded.
 ```$ gunzip SRR891268_chr22_enriched_R1.fastq.gz ```<bR> 
 ```$ gunzip SRR891268_chr22_enriched_R2.fastq.gz ```<bR> 
  
-  <p align="center"> <img src="images/chr22%20to%20BED.PNG">
  </details>
  
 #### C)QUALITY CONTROL
@@ -168,7 +167,7 @@ Thus, chr22.gz file will be downloaded.
 <summary>Galaxy Implementation</summary>
 <br>
 Select the **FastQC tool** with the following parameters
-1. &quot;Short read data from your current history&quot;: Choose here either only the SRR891268\_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268\_R1 and SRR891268\_R2.
+1. &quot;Short read data from your current history&quot;: Choose here either only the SRR891268_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268_R1 and SRR891268\_R2.
 2. Inspect the web page output of FastQC tool for the SRR891268\_R1 sample. Check what adapters are found at the end of the reads.
 </details>  
  
