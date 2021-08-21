@@ -728,73 +728,70 @@ This heatmap is showing a much more symmetric pattern.
 <br>                                     
 <p><strong>Set up the config.ini file with the following contents-</p></strong>
 
-_**[test bedgraph]**_
+<i>**[test bedgraph]**</i>
 
-_ **file = macs.bw** _
+<i>**file = macs.bw** </i>
 
-_ **color = blue** _
+<i> **color = blue**</i>
 
-_ **height = 5** _
+<i>**height = 5** </i>
+<i>**title = Coverage from MACS2 (extended +/-100bp)**</i>
 
-_**title = Coverage from MACS2 (extended +/-100bp)**_
+<i> **min\_value = 0**</i>
 
-_ **min\_value = 0** _
+<i>**[spacer]**</i>
 
-_**[spacer]**_
+<i>**height = 0.5**</i>
 
-_ **height = 0.5** _
+<i>**[narrow]**</i>
 
-_**[narrow]**_
+<i>**file = intergenic\_ctcf\_peaks\_chr22.encodepeak**</i>
 
-_ **file = intergenic\_ctcf\_peaks\_chr22.encodepeak** _
+<i>**line\_width = 2**</i>
 
-_ **line\_width = 2** _
+<i>**title = Peaks from MACS2 (extended +/-100bp)**</i>
 
-_**title = Peaks from MACS2 (extended +/-100bp)**_
+<i>**type = box**</i>
 
-_ **type = box** _
+<i>**color = red** </i>
 
-_ **color = red** _
+<i>**show\_labels = false**</i>
 
-_ **show\_labels = false** _
+<i>**file\_type = narrow\_peak**</i>
 
-_ **file\_type = narrow\_peak** _
+<i>**[spacer]**</i>
+<i>**height = 0.5** </i>
 
-_**[spacer]**_
+<i>**[genes 0]**</i>
 
-_ **height = 0.5** _
+<i>**file = chr22.bed**</i>
 
-_**[genes 0]**_
+<i>**height = 7** </i>
 
-_ **file = chr22.bed** _
+<i>**title = genes**</i>
 
-_ **height = 7** _
+<i>**height = 5** </i>
 
-_ **title = genes** _
+<i>**color = #ffbbff** </i>
+<i>**[spacer]**</i>
 
-_ **height = 5** _
+<i>**height = 0.5**</i>
 
-_ **color = #ffbbff** _
+<i>**[narrow 1]**</i>
 
-_**[spacer]**_
+<i>**file = ENCFF933NTR\_sorted.bed** </i>
 
-_ **height = 0.5** _
+<i>**color = #A020F0** </i>
 
-_**[narrow 1]**_
+<i>**line\_width = 2**</i>
 
-_ **file = ENCFF933NTR\_sorted.bed** _
+<i>**title = CTCF peaks** </i>
 
-_ **color = #A020F0** _
+<i>**type = box** </i>
 
-_ **line\_width = 2** _
+<i>**show\_labels = false**</i>
 
-_ **title = CTCF peaks** _
-
-_ **type = box** _
-
-_ **show\_labels = false** _
-
-_**[x-axis]**_
+<i>**[x-axis]**</i>
 
 - Sort ENCFF933NTR.bed file-
 
