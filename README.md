@@ -585,7 +585,6 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
 <details>
 <summary>Galaxy Implementation</summary>
 <br>                                                                                                                                                               
-
 - **computeMatrix**   with the following parameters:
   - In  Select regions:
     - Insert Select regions
@@ -645,8 +644,7 @@ The same is repeated for the intergenic CTCF peaks.
                       
 <details>
 <summary>LINUX Implementation</summary>
-<br>  
-                                                                                                                                                      
+<br>                                                                                                                                                    
   -Using computeMatrix generate the matrix
 
 1. Remove the first header line from chr22.bed file
