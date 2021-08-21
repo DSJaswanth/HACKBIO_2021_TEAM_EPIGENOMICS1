@@ -851,13 +851,25 @@ ATAC-Seq is a method to investigate the chromatin accessibility and the genome i
 ## REFERENCES**
 
 1. Lucille Delisle, Maria Doyle, Florian Heyl, 2021 **ATAC-Seq data analysis (Galaxy Training Materials)**. [https://training.galaxyproject.org/training-material/topics/epigenetics/tutorials/atac-seq/tutorial.html](https://training.galaxyproject.org/training-material/topics/epigenetics/tutorials/atac-seq/tutorial.html) Online; accessed Thu Aug 19 2021
-2. Fu, Y., M. Sinha, C. L. Peterson, and Z. Weng, 2008  **The insulator binding protein CTCF positions 20 nucleosomes around its binding sites across the human genome**. PLoS genetics 4: e1000138. [10.1371/journal.pgen.1000138](https://doi.org/10.1371/journal.pgen.1000138)
-3. Adey, A., H. G. Morrison, A. (no last name), X. Xun, J. O. Kitzman _et al._, 2010  **Rapid, low-input, low-bias construction of shotgun fragment libraries by high-density in vitro transposition**. Genome Biology 11: R119. [10.1186/gb-2010-11-12-r119](https://doi.org/10.1186/gb-2010-11-12-r119)
-4. Green, B., C. Bouchier, C. Fairhead, N. L. Craig, and B. P. Cormack, 2012  **Insertion site preference of Mu, Tn5, and Tn7 transposons**. Mobile DNA 3: 3. [10.1186/1759-8753-3-3](https://doi.org/10.1186/1759-8753-3-3)
-5. Buenrostro, J. D., P. G. Giresi, L. C. Zaba, H. Y. Chang, and W. J. Greenleaf, 2013  **Transposition of native chromatin for fast and sensitive epigenomic profiling of open chromatin, DNA-binding proteins and nucleosome position**. Nature Methods 10: 1213–1218. [10.1038/nmeth.2688](https://doi.org/10.1038/nmeth.2688)
-6. Litzenburger, U. M., J. D. Buenrostro, B. Wu, Y. Shen, N. C. Sheffield _et al._, 2017  **Single-cell epigenomic variability reveals functional cancer heterogeneity**. Genome Biology 18: [10.1186/s13059-016-1133-7](https://doi.org/10.1186/s13059-016-1133-7)
-7. Kia, A., C. Gloeckner, T. Osothprarop, N. Gormley, E. Bomati _et al._, 2017  **Improved genome sequencing using an engineered transposase**. BMC Biotechnology 17: [10.1186/s12896-016-0326-1](https://doi.org/10.1186/s12896-016-0326-1)
-8. Corces, M. R., A. E. Trevino, E. G. Hamilton, P. G. Greenside, N. A. Sinnott-Armstrong _et al._, 2017  **An improved ATAC-seq protocol reduces background and enables interrogation of frozen tissues**. Nature Methods 14: 959–962. [10.1038/nmeth.4396](https://doi.org/10.1038/nmeth.4396)
+
+ 
+ ## ⚙ TOOL USED  🦾
+- [x] Fastqc       
+- [x] Cutadapt
+- [x] Bowtie2
+- [x] Samtools
+- [x] Picard
+     - CollectInsertSizeMetrics
+     - MarkDuplicates 
+- [x] Bedtools
+- [x] DeepTool
+     - ComputeMatrix
+     -  PlotHeatmap
+- [x] MACS2                                                                                                                                                                         
+- [x] BedGraphtoBigWig
+- [x] PyGenomeTracks     
+ 
+ 
 
 
                                                                                                                                                      
