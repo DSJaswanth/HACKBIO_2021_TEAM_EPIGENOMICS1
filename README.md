@@ -167,45 +167,51 @@ Thus, chr22.gz file will be downloaded.
  
 #### C)QUALITY CONTROL
  
- <details>
+<details >
 <summary>Galaxy Implementation</summary>
 <br>
-Select the **FastQC tool** with the following parameters
+-Select the **FastQC tool** with the following parameters
 1. &quot;Short read data from your current history&quot;: Choose here either only the SRR891268\_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268\_R1 and SRR891268\_R2.
 2. Inspect the web page output of FastQC tool for the SRR891268\_R1 sample. Check what adapters are found at the end of the reads.
 </details>  
- 
- <details >
+<details >
 <summary>Linux Implementation</summary>
 <br>
-
-- Download the FastQC module
-Note: FASTQC requires java and javac installed for implementation and you need to run the fastqc file from the folder (using the relative/absolute links to the sequence reads)<bR> 
-```$ sudo apt install default-jre```<br>
-```$ sudo apt install default-jdk```<bR> 
-Make the “fastqc” an executable file<bR>
-```python $ chmod 755 fastqc```<bR> 
-- Run the fastqc on all sequenced reads from its folder<bR> 
-```python  $ fastqc SRR891268_chr22_enriched_R1.fastq```<bR> 
-```SRR891268_chr22_enriched_R2.fastq ```<bR> 
-The report for each file is generated as an html file and a zip file containing more files that can be customised for reports. Look into the html files.
+  
+-Download the FastQC module
+Note: FASTQC requires java and javac installed for implementation and you need to run the fastqc file from the folder (using the relative/absolute links to the sequence reads)
+```python
+$ sudo apt install default-jre
+```
+```python
+$ sudo apt install default-jdk
+```
+-Make the “fastqc” an executable file
+```python
+$ chmod 755 fastqc
+```
+-Run the fastqc on all sequenced reads from its folder
+```python  
+$ fastqc SRR891268_chr22_enriched_R1.fastq SRR891268_chr22_enriched_R2.fastq  
+``` 
+The report for each file is generated as an html file and a zip file containing more files that can be customised for reports. Look into the html files
   
 <p align="center"> <img src="images/FastQC.PNG">
   
   </details>
   
  #### TRIMMING READ
-<details>
+<details >
 <summary>Galaxy Implementation</summary>
 <br>
-
- - Select the **Cutadapt tool** with the following parameters
+  
+-Select the **Cutadapt tool** with the following parameters
 
 1. &quot;Single-end or Paired-end reads?&quot;: Paired-end
 
-2. param-file &quot;FASTQ/A file #1&quot;: select SRR891268\_R1
-3. param-file &quot;FASTQ/A file #2&quot;: select SRR891268\_R2
-4. In &quot;Read 1 Options&quot;:
+1. param-file &quot;FASTQ/A file #1&quot;: select SRR891268\_R1
+2. param-file &quot;FASTQ/A file #2&quot;: select SRR891268\_R2
+3. In &quot;Read 1 Options&quot;:
 
 In &quot;3&#39; (End) Adapters&quot;:
 
@@ -242,50 +248,38 @@ param-repeat &quot;Insert 3&#39; (End) Adapters&quot;
 &quot;Report&quot;: Yes
 
 1. Click on the galaxy-eye (eye) icon of the report and read the first lines.
-  - Check Adapter Removal
+
+-*Check Adapter Removal*
 
 Select the **Fast QC tool** with the following parameters
 
 1. &quot;Short read data from your current history&quot;: select the output of Cutadapt param files; use; Multiple datasets to choose both Read 1 Output and Read 2 Output.
 2. Click on the galaxy-eye (eye) icon of the report and read the first lines.
-  </details>
- 
+</details>  
 <details >
 <summary>Linux Implementation</summary>
-<br> 
- 
-- ##### Adapter Trimming 
+<br>
+-The fastqc report  indicates the presence of an overrepresented sequence and fastqc identifies it as “Nextera Transposase Sequence ''. This sequence is similar to but longer than the one given in the tutorial.
 
-The fastqc report indicates the presence of an overrepresented sequence and fastqc identifies it as &quot;Nextera Transposase Sequence &#39;&#39;. This sequence is similar to but longer than the one given in the tutorial.
-
-```SRR891268\_chr22\_enriched\_R1 = CTGTCTCTTATACACATCTCCGAGCCCACGAGACTAAGGCGAATCTCGTA (fastqc)``` <br>
-
-```SRR891268\_chr22\_enriched\_R1 = CTGTCTCTTATACACATCTCCGAGCCCACGAGAC (Galaxy tutorial)```<br>
-
-```SRR891268\_chr22\_enriched\_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGAGTGTAGATCTCGGTGGT (fastqc)```<br>
-
-
-```SRR891268\_chr22\_enriched\_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial)```<br>
-
-
- - ##### Adapter Trimming with Cutadapt 
-
-Install cutadapt running-
-
-```$ sudo apt install cutadapt```
-
-For paired end trimming-
- 
- ```$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed\_1.fastq -p trimmed\_2.fastq SRR891268\_chr22\_enriched\_R1.fastq SRR891268\_chr22\_enriched\_R2.fastq```
-
-![Cutadapt](https://user-images.githubusercontent.com/81503326/130309371-611bde25-a310-444d-8100-4cff3fe998fb.PNG)
-<figcaption align = "left"><b>Output of the Adaptor Trimming</b></figcaption> <br> 
- 
-![FastQC after cutadapt](https://user-images.githubusercontent.com/81503326/130309615-98fd29a6-d280-4820-b459-c558dc732c43.PNG)
-<figcaption align = "left"><b>FastQC Output after Adaptor Trimming</b></figcaption>
-
- 
+SRR891268_chr22_enriched_R1 = CTGTCTCTTATACACATCTCCGAGCCCACGAGACTAAGGCGAATCTCGTA (fastqc) <br>
+SRR891268_chr22_enriched_R1 = CTGTCTCTTATACACATCTCCGAGCCCACGAGAC (Galaxy tutorial) <br>
+SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGAGTGTAGATCTCGGTGGT (fastqc) <br>
+SRR891268_chr22_enriched_R2 = CTGTCTCTTATACACATCTGACGCTGCCGACGA (Galaxy tutorial) <br>
+  
+**Install cutadapt running**
+ ```python 
+-$ sudo apt install cutadapt
+```
+**For paired end trimming**
+ ```python 
+-$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed_1.fastq -p trimmed_2.fastq SRR891268_chr22_enriched_R1.fastq SRR891268_chr22_enriched_R2.fastq
+ ```
   </details>
+ 
+ <img src="images/Cutadapt.PNG">
+<p align = left >Output of the FastQC report</p>
+<img src="https://user-images.githubusercontent.com/81503326/130266652-3617379d-4f3c-4735-b94e-dd187e70ed08.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the FastQC report after cutadapt</p>
 
 ### STEP2 :- MAPPING 
   
@@ -295,45 +289,55 @@ For paired end trimming-
  
  ### **Mapping reads to reference genome**
 
- - Select the **Bowtie2**   **tool** with the following parameters:
+<details >
+<summary>Galaxy Implementation</summary>
+<br>
+-Mapping reads to reference genome
+
+Select the **Bowtie2**   **tool** with the following parameters:
 
 1. &quot;Is this single or paired library&quot;: Paired-end
-2. param-file &quot;FASTQ/A file #1&quot;: select the output of Cutadapt tool &quot;Read 1 Output&quot;
-3. param-file &quot;FASTQ/A file #2&quot;: select the output of Cutadapt tool &quot;Read 2 Output&quot;
-4. &quot;Do you want to set paired-end options?&quot;: Yes
 
-   - &quot;Set the maximum fragment length for valid paired-end alignments&quot;: 1000
+1. param-file &quot;FASTQ/A file #1&quot;: select the output of Cutadapt tool &quot;Read 1 Output&quot;
+2. param-file &quot;FASTQ/A file #2&quot;: select the output of Cutadapt tool &quot;Read 2 Output&quot;
+3. &quot;Do you want to set paired-end options?&quot;: Yes
+
+&quot;Set the maximum fragment length for valid paired-end alignments&quot;: 1000
+
 &quot;Allow mate dovetailing&quot;: Yes
 
 1. &quot;Will you select a reference genome from your history or use a built-in index?&quot;: Use a built-in genome index
-2. &quot;Select reference genome&quot;: Human (Homo sapiens): hg38 Canonical
-3. &quot;Set read groups information?&quot;: Do not set
-4. &quot;Select analysis mode&quot;: 1: Default setting only
 
-   - &quot;Do you want to use presets?&quot;: Very sensitive end-to-end (--very-sensitive)
+1. &quot;Select reference genome&quot;: Human (Homo sapiens): hg38 Canonical
+2. &quot;Set read groups information?&quot;: Do not set
+3. &quot;Select analysis mode&quot;: 1: Default setting only
+
+&quot;Do you want to use presets?&quot;: Very sensitive end-to-end (--very-sensitive)
 
 1. &quot;Do you want to tweak SAM/BAM Options?&quot;: No
 2. &quot;Save the bowtie2 mapping statistics to the history&quot;: Yes
-3.Click on the galaxy-eye (eye) icon of the mapping stats.
-  </details>
 
+1. Click on the galaxy-eye (eye) icon of the mapping stats.
+</details>  
 <details >
 <summary>Linux Implementation</summary>
 <br>
- 
-- Mapping and Alignment 
+  
+**Pulling the sequence for chromosome 22 for indexing and mapping**
+```python   
+-$ wget --timestamping 'ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz' -O chr22.fa.gz
+   For mapping to chr22-
+```
+**Install bowtie2**
+  
+-Create index for Chromosome 22:  
+```python  bowtie2-build chr22.fa.gz indexed_chr22 ```
+-Start mapping for the parameters specified by Galaxy: 
+```pythonbowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed_chr22 -1 trimmed_1.fastq -2 trimmed_2.fastq -S Aligned_output.sam ```
 
-  Pulling the sequence for chromosome 22 for indexing and mapping
-```$ wget --timestamping &#39;ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz&#39; -O chr22.fa.gz```
-
-- For mapping to chr22-
-
-1. install bowtie2
-2. Create index for Chromosome 22:``` bowtie2-build chr22.fa.gz indexed\_chr22```
-3. Start mapping for the parameters specified by Galaxy: ```bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed\_chr22 -1 trimmed\_1.fastq -2 trimmed\_2.fastq -S Aligned\_output.sam```
-
-![Bowtie2 output](https://user-images.githubusercontent.com/81503326/130309804-653ca29e-b462-4445-8113-c19a52dcc721.PNG)<figcaption align = "center"><b>Bowtie2 LINUX Output</b></figcaption>
-
+<img src="https://user-images.githubusercontent.com/81503326/130267862-141591ac-0e64-4aa6-8003-eb4ac96e5910.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the FastQC after adaptor trimming </p>                                                                                                                                                    
+<br>
 </details>    
   
 ### STEP 3 :- Filtering Mapped Reads 
@@ -498,7 +502,9 @@ Convert BAM file (output of MarkDuplicates) into BED format by **bedtools BAM to
 Install bamtools and convert bam file to bed file using bamtools:  ````bedtools bamtobed -i marked\_dup.bam \&gt; marked\_dup.bed```` <br>
 Install macs2 : ````conda install -c bioconda macs2````
 Then run the command for peak calling: ````macs2 callpeak -t marked\_dup.bed -n macs\_output -g 50818468 --nomodel --shift -100 --extsize 200 --keep-dup all --call-summits --bdg````
-
+                                                     
+</details>  
+                                                     
 ***This will give us the following 5 output files-***
 
 ```Macs\_output\_control\_lambda.bdg```
@@ -510,7 +516,7 @@ Then run the command for peak calling: ````macs2 callpeak -t marked\_dup.bed -n 
 ```Macs\_output\_summits.bed```
 
 ```macs\_output\_treat\_pileup.bdg```
-  </details>                                                                                                                                                           
+                                                                                                                                                           
    
 ### STEP 5 :-Visualisation of Coverage 
 
@@ -660,7 +666,8 @@ The same is repeated for the intergenic CTCF peaks.
 
 ````computeMatrix reference-point --referencePoint center -R intergenic\_ctcf\_peaks\_chr22 -S macs.bw --missingDataAsZero -o peak\_output\_from\_computeMatrix.gz````
 
-````- plotHeatmap -m peak\_output\_from\_computeMatrix.gz -out intragenic\_plotHeatMap.png````
+````plotHeatmap -m peak\_output\_from\_computeMatrix.gz -out intragenic\_plotHeatMap.png````
+                      </details>
 
 In the generated heatmaps, each line will be a transcript. The coverage will be summarized with a color code from red (no coverage) to blue (maximum coverage). All TSS will be aligned in the middle of the figure and only the 2 kb around the TSS will be displayed. Another plot, on top of the heatmap, will show the mean signal at the TSS. There will be one heatmap per bigwig.
 
@@ -723,7 +730,6 @@ This heatmap is showing a much more symmetric pattern.
     - param-repeat Insert Include tracks in your plot
       - Choose style of the track: X-axis
                                                              
- <p align="center"> <img src="images/pyGenome%20output.PNG"> 
 </details>
   
  <details>
@@ -801,15 +807,17 @@ _**[x-axis]**_
 
 - Sort ENCFF933NTR.bed file-
 
-````sort -k 1,1 -k2,2n ENCFF933NTR.bed \&gt; ENCFF933NTR\_sorted.bed````
+```` sort -k 1,1 -k2,2n ENCFF933NTR.bed \&gt; ENCFF933NTR\_sorted.bed````
 
 - Install pyGenomeTracks using ````conda -install -c bioconda pyGenomeTracks````
 - Visualize regions by running- ````pyGenomeTracks --tracks config.ini --region chr22:37,193,000-37,252,000 -o Genome\_track\_plot.png````
-
+                                                             
+ </details> 
+                                                             
 <p align="center"> <img src="images/pyGenome%20output.PNG">
  
 - From the figure, we can see 3 accessible TSS for 6 transcripts for 2 genes. The TSS of RAC2 corresponds to an ATAC-Seq peak whereas there is no significant coverage on both TSS of SSTR3. Again, it can be said that only the first peak on the left overlaps with a CTCF binding site represents accessible loci. Amongst the 4 peaks in this plotted region, the 2 peaks in the middle do not correspond to CTCF peaks or TSS. As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes. More analyses are needed to assess if it is a real enhancer, for example, histone ChIP-seq, 3D structure, transgenic assay, etc. 
-</details>                                                                                  
+                                                                                 
 As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes.
 
 ## Conclusion
