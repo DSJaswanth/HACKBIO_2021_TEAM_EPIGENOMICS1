@@ -201,7 +201,8 @@ The report for each file is generated as an html file and a zip file containing 
   
 <p align="center"> <img src="images/FastQC.PNG">
   
- 
+ The overrepresented sequence segment shows that we have some overrepresented sequence, that is adapter sequence. We have to trim that adapter sequence to move forward with our analysis.
+  <p align="center"> <img src="over_represented.png" width = "1000px">
   
  #### TRIMMING READ
 <details>
