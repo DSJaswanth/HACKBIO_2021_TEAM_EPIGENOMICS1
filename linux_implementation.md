@@ -87,7 +87,7 @@ $ gunzip chr22.gz (this uncompressed the zipped file)
 
 To filter out columns 3, 5, 6, 13, 12 and 4 and save in a new file
 
-$ awk -F &quot;\t&quot; &#39;BEGIN{OFS = &quot;\t&quot;}{print $3,$5,$6,$13,$12,$4}&#39; chr22 \&gt; chr22.bed
+$ awk -F &quot;\t&quot; &#39;BEGIN{OFS = &quot;\t&quot;}{print $3,$5,$6,$13,$12,$4}&#39; chr22 > chr22.bed
 
 Output should look like this-
 
@@ -155,11 +155,11 @@ Now we will map the trimmed reads to the human reference genome using **Bowtie2*
 
 Firstly, we have to download our reference genome, chr22 which would be used for mapping.
 
-$ wget --timestamping &#39;ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz&#39; -O chr22.fa.gz
+$ wget --timestamping &#39;ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz -O chr22.fa.gz
 
 Then we create an index file for our reference genome
 
-$ bowtie2-build chr22.fa.gz indexed\_chr22
+$ bowtie2-build chr22.fa.gz indexed_chr22
 
 Mapping our reads (forward and reverse) to reference genome
 
@@ -184,7 +184,7 @@ $ samtools view -bSo SRR891268\_chr22\_enriched\_out.bam SRR891268\_chr22\_enric
 
 Then we filter
 
-$ samtools view -q 30 -f 0x2 -b -h SRR891268\_chr22\_enriched\_out.bam \&gt; SRR891268\_chr22\_enriched\_out.filt.bam
+$ samtools view -q 30 -f 0x2 -b -h SRR891268\_chr22\_enriched\_out.bam > SRR891268\_chr22\_enriched\_out.filt.bam
 
 This will filter out uninformative reads (Mapping quality \&gt;= 30 &amp; Properly Paired)
 
@@ -236,7 +236,7 @@ Two peaks can be observed around the 200bp and 400bp from the plot
 
 First, convert the markdup bam file to bed file:
 
-$ bedtools bamtobed -i SRR891268\_chr22\_enriched\_out.markdup.bam \&gt; SRR891268\_chr22\_enriched\_out.markdup.bed
+$ bedtools bamtobed -i SRR891268\_chr22\_enriched\_out.markdup.bam > SRR891268\_chr22\_enriched\_out.markdup.bed
 
 Using macs2 tool, perform peak calling:
 
@@ -248,33 +248,33 @@ $ macs2 callpeak -t SRR891268\_chr22\_enriched\_out.markdup.bed -n macs\_output 
 
 filter dataset with condition c1==chr22, this command replaces chr22 with c1 in the file
 
-$ sed &#39;s/chr22/c1/&#39; ENCFF933NTR.bed \&gt; ENCFF933NTR\_filt.bed (replaces chr22 with c1)
+$ sed &#39;s/chr22/c1/&#39; ENCFF933NTR.bed > ENCFF933NTR\_filt.bed (replaces chr22 with c1)
 
 Extract colunms with c1 into a new file
 
-$ grep c1 ENCFF933NTR\_filt.bed \&gt; ENCFF933NTR\_chr22.bed
+$ grep c1 ENCFF933NTR\_filt.bed > ENCFF933NTR\_chr22.bed
 
 Change c1 back to chr22
 
-$ sed &#39;s/c1/chr22/&#39; ENCFF933NTR\_chr22.bed \&gt; ENCFF933NTR\_CHR22genes.bed
+$ sed &#39;s/c1/chr22/&#39; ENCFF933NTR\_chr22.bed > ENCFF933NTR\_CHR22genes.bed
 
 Finding overlapping intervals
 
-$ bedtools intersect -v -a ENCFF933NTR\_CHR22genes.bed -b chr22\_genes.bed \&gt; intergenic\_CTCF\_peaks\_chr22
+$ bedtools intersect -v -a ENCFF933NTR\_CHR22genes.bed -b chr22\_genes.bed > intergenic\_CTCF\_peaks\_chr22
 
 ## Convert bedgraph from MACS2 to bigwig
 
 Execute the following commands to convert the output bedGraph file from macs2 to bigwig (refer to this link for better understand the commands [https://www.biostars.org/p/176875/](https://www.biostars.org/p/176875/) )
 
-$ awk &#39;NR!=1&#39; macs\_output\_treat\_pileup.bdg \&gt; macs.deheader.bedGraph
+$ awk &#39;NR!=1&#39; macs\_output\_treat\_pileup.bdg > macs.deheader.bedGraph
 
-$ sort -k1,1 -k2,2n macs.deheader.bedGraph \&gt; macs.sorted.bedGraph
+$ sort -k1,1 -k2,2n macs.deheader.bedGraph > macs.sorted.bedGraph
 
 $ touch chrom22.sizes
 
 $ nano hg19.chrom.sizes → write only one line (tab delimited) in this file chr22 51304566
 
-$ awk &#39;{print $1,$2,$3,$4}&#39; macs.sorted.bedGraph \&gt; macs.sorted.4.bedGraph
+$ awk &#39;{print $1,$2,$3,$4}&#39; macs.sorted.bedGraph > macs.sorted.4.bedGraph
 
 $ bedGraphToBigWig macs.sorted.4.bedGraph hg19.chrom.sizes macs.bw
 
