@@ -439,9 +439,12 @@ Click on the eye icon of the MarkDuplicate metrics.
  **_Mark Duplicate Reads_**
 
 - Download picard.jar in your working folder from [here](https://github.com/broadinstitute/picard/releases/download/2.26.0/picard.jar) <br>
-- From that directory, run <br> ````python
+- From that directory, run <br>
+  
+  ````python
   java -jar picard.jar -h
   ````
+  
   to check whether it works (you can skip this step) <br>
 - For sorting the output file from last step use- <br>
   
