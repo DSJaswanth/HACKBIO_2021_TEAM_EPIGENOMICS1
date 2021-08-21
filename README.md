@@ -153,7 +153,7 @@ And then select **Get output**
 
 Thus, chr22.gz file will be downloaded.
 
-- **Converting chr22 file into a bed file: 
+- <b>Converting chr22 file into a bed file:</b> 
    
 1. Unzip the downloaded chr22.gz using 
    ```unzip chr22.gz ```
