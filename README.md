@@ -461,6 +461,9 @@ Click on the eye icon of the MarkDuplicate metrics.
     </details>
   
   #### C) Check Insert Sizes 
+ 
+   - Check Insert Size tells us the size of the DNA fragment the read pairs came from this step we have to make a plot of the frequencies of the reads in the bam file to observe the peaks around where there are likely Tn5 transposase activities into nucleosome-free regions.<br>
+
   
   <details>
 <summary>Galaxy Implementation</summary>
@@ -491,7 +494,6 @@ Click on the galaxy-eye (eye) icon of the lower one of the 2 outputs (the png fi
    
    </details>
  
- Check Insert Size tells us the size of the DNA fragment the read pairs came from. For this step we have to make a plot of the frequencies of the reads in the bam file to observe the peaks around where there are likely Tn5 transposase activities into nucleosome-free regions.<br>
 
 
 <p align="center"> <img src="images/Insert sizes.PNG"> 
