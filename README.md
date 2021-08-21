@@ -900,7 +900,9 @@ This heatmap is showing a much more symmetric pattern.
  conda -install -c bioconda pyGenomeTracks
  ```
  
-- Visualize regions by running- <br>```python
+- Visualize regions by running- <br>
+ 
+ ```python
  pyGenomeTracks --tracks config.ini --region chr22:37,193,000-37,252,000 -o Genome\_track\_plot.png
  ```
  
