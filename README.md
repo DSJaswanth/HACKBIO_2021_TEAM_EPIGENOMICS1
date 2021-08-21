@@ -278,8 +278,12 @@ For paired end trimming-
  
  ```$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed\_1.fastq -p trimmed\_2.fastq SRR891268\_chr22\_enriched\_R1.fastq SRR891268\_chr22\_enriched\_R2.fastq```
 
- ![Cutadapt](https://user-images.githubusercontent.com/81503326/130309371-611bde25-a310-444d-8100-4cff3fe998fb.PNG)
-<figcaption align = "left"><b>Output of the Adaptor Trimming</b></figcaption> 
+![Cutadapt](https://user-images.githubusercontent.com/81503326/130309371-611bde25-a310-444d-8100-4cff3fe998fb.PNG)
+<figcaption align = "left"><b>Output of the Adaptor Trimming</b></figcaption> <br> 
+ 
+![FastQC after cutadapt](https://user-images.githubusercontent.com/81503326/130309615-98fd29a6-d280-4820-b459-c558dc732c43.PNG)
+<figcaption align = "left"><b>FastQC Output after Adaptor Trimming</b></figcaption>
+
  
   </details>
 
