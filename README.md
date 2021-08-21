@@ -99,15 +99,15 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
  
 1. Select the **USCS Main table browser tool** with the following parameters
 
-- &quot;clade&quot;: Mammal
-- &quot;genome&quot;: Human
-- &quot;assembly&quot;: Dec. 2013 (GRCh38/hg38)
-- &quot;group&quot;: Genes and Gene Prediction
-- &quot;track&quot;: All GENCODE V37
-- &quot;table&quot;: Basic
-- &quot;region&quot;: position chr22
-- &quot;output format&quot;: all fields from selected table
-- &quot;Send output to&quot;: Galaxy
+- <b>clade</b>:<h style="color:blue;">Mammal</h>
+- <b>genome</b>:<h style="color:blue;">Human</h>
+- <b>assembly</b>:<h style="color:blue;">Dec. 2013(GRCh38/hg38)</h>
+- <b>group</b>:<h style="color:blue;">Genes and Gene Prediction</h>
+- <b>track</b>:<h style="color:blue;">All GENCODE V37</h>
+- <b>table</b>:<h style="color:blue;">Basic</h>
+- <b>region</b>:<h style="color:blue;">position chr22</h>
+- <b>output format</b>:<h style="color:blue;">all fields from selected table</h>
+- <b>Send output to</b>:<h style="color:blue;">Galaxy</h>
 
 2. Click get output 
 
@@ -115,9 +115,9 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
 
 4. Select the **Cut columns from a table tool** with the following parameters
 
-1. &quot;Cut columns&quot;: c3,c5,c6,c13,c12,c4
-2. &quot;Delimited by&quot;: Tab
-3. param-file &quot;From&quot;: UCSC Main on Human: wgEncodeGencodeBasicV37 (chr22:1-50,818,468)
+1. <b>Cut columns</b>: <h style="color:blue;">c3,c5,c6,c13,c12,c4</h>
+2. <b>Delimited by</b>: <h style="color:blue;">Tab</h>
+3. <b>param-file From</b>: <h style="color:blue;">UCSC Main on Human: wgEncodeGencodeBasicV37 (chr22:1-50,818,468)</h>
 
 _Rename the dataset as chr22 genes_
 
@@ -138,16 +138,16 @@ Click on the eye icon to check changes effected. There should be matching column
   <details><summary>FOR LINUX IMPLEMEMTATION</summary>
    Go to [http://genome.ucsc.edu/cgi-bin/hgTables](http://genome.ucsc.edu/cgi-bin/hgTables) and set the parameters as-
 
-  - &quot;_ **clade&quot;** _ **:**  **Mammal**
-  - &quot;_ **genome&quot;** _ **:**  **Human**
-  - &quot;_ **assembly&quot;** _ **:** **Dec. 2013 (GRCh38/hg38)**
-  - &quot;_ **group&quot;** _ **:**  **Genes and Gene Prediction**
-  - &quot;_ **track&quot;** _ **:**  **All GENCODE V37**
-  - &quot;_ **table&quot;** _ **:**  **Basic**
-  - &quot;_ **region&quot;** _ **:**  **position**** chr22**
-  - &quot;_ **output format&quot;** _ **:**  **all fields from selected table**
-  - &quot;_ **output filename:&quot; chr22** _
-  - &quot;_ **file type returned:&quot; gzipped compressed** _
+  - <b>clade</b>:<h style="color:blue;">Mammal</h>
+  - <b>genome</b>:<h style="color:blue;">Human</h>
+  - <b>assembly</b>:<h style="color:blue;">Dec. 2013(GRCh38/hg38)</h>
+  - <b>group</b>:<h style="color:blue;">Genes and Gene Prediction</h>
+  - <b>track</b>:<h style="color:blue;">All GENCODE V37</h>
+  - <b>table</b>:<h style="color:blue;">Basic</h>
+  - <b>region</b>:<h style="color:blue;">position chr22</h>
+  - <b>output format</h>:<p style="color:blue;">all fields from selected table</h>
+  - <b>output filename</h>:<p style="color:blue;">chr22</h>
+  - <b>file type returned</h>:<p style="color:blue;">gzipped compressed</h>
 
 And then select **Get output**
 
