@@ -835,6 +835,23 @@ ATAC-Seq is a method to investigate the chromatin accessibility and the genome i
 7. Kia, A., C. Gloeckner, T. Osothprarop, N. Gormley, E. Bomati _et al._, 2017  **Improved genome sequencing using an engineered transposase**. BMC Biotechnology 17: [10.1186/s12896-016-0326-1](https://doi.org/10.1186/s12896-016-0326-1)
 8. Corces, M. R., A. E. Trevino, E. G. Hamilton, P. G. Greenside, N. A. Sinnott-Armstrong _et al._, 2017  **An improved ATAC-seq protocol reduces background and enables interrogation of frozen tissues**. Nature Methods 14: 959–962. [10.1038/nmeth.4396](https://doi.org/10.1038/nmeth.4396)
 
+## ⚙ TOOL USED  🦾
+- [x] Fastqc       
+- [x] Cutadapt
+- [x] Bowtie2
+- [x] Samtools
+- [x] Picard
+     - CollectInsertSizeMetrics
+     - MarkDuplicates 
+- [x] Bedtools
+- [x] DeepTool
+     - ComputeMatrix
+     -  PlotHeatmap
+- [x] MACS2                                                                                                                                                                         
+- [x] BedGraphtoBigWig
+- [x] PyGenomeTracks                                                       
+                                                                          
 
-                                                                                                                                                     
+ 
+
 <p align="center"> <img src="https://allfreethankyounotes.com/wp-content/uploads/2021/02/all-free-thank-you-gif-10.gif">
