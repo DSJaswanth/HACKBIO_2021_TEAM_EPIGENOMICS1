@@ -275,7 +275,7 @@ $ sudo apt install cutadapt
 For paired end trimming-
  
  ```python
- -$ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed\_1.fastq -p trimmed\_2.fastq SRR891268\_chr22\_enriched\_R1.fastq SRR891268\_chr22\_enriched\_R2.fastq
+ $ cutadapt -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA --minimum-length 20 -q 20 -o trimmed\_1.fastq -p trimmed\_2.fastq SRR891268\_chr22\_enriched\_R1.fastq SRR891268\_chr22\_enriched\_R2.fastq
  ```
 
 ![Cutadapt](https://user-images.githubusercontent.com/81503326/130309371-611bde25-a310-444d-8100-4cff3fe998fb.PNG)
@@ -323,8 +323,11 @@ For paired end trimming-
  
 - Mapping and Alignment 
 
-  Pulling the sequence for chromosome 22 for indexing and mapping
-```$ wget --timestamping ;ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz; -O chr22.fa.gz```
+  Pulling the sequence for chromosome 22 for indexing and mapping <br>
+ 
+ ```python
+ $ wget --timestamping ;ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/chr22.fa.gz; -O chr22.fa.gz
+ ```
 
 - For mapping to chr22-
 
@@ -333,7 +336,10 @@ For paired end trimming-
 2. Create index for Chromosome 22: <bR> 
 ```bowtie2-build chr22.fa.gz indexed_chr22```
 3. Start mapping for the parameters specified by Galaxy: <bR> 
-```bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed\_chr22 -1 trimmed\_1.fastq -2 trimmed\_2.fastq -S Aligned\_output.sam```
+
+ ```python
+ bowtie2 --very-sensitive --maxins 1000 --dovetail -x indexed\_chr22 -1 trimmed\_1.fastq -2 trimmed\_2.fastq -S Aligned\_output.sam
+ ```
 
 ![Bowtie2 output](https://user-images.githubusercontent.com/81503326/130309804-653ca29e-b462-4445-8113-c19a52dcc721.PNG)<figcaption align = "center"><b>Bowtie2 LINUX Output</b></figcaption>
 
@@ -343,7 +349,7 @@ For paired end trimming-
   
 #### A) Filter Uninformative Reads
   
-  <details>
+ <details>
 <summary>Galaxy Implementation</summary>
 <br>
    
