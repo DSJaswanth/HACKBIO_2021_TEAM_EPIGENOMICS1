@@ -172,9 +172,9 @@ Thus, chr22.gz file will be downloaded.
  <details>
 <summary>Galaxy Implementation</summary>
 <br>
-Select the **FastQC tool** with the following parameters
-1. &quot;Short read data from your current history&quot;: Choose here either only the SRR891268_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268_R1 and SRR891268\_R2.
-2. Inspect the web page output of FastQC tool for the SRR891268\_R1 sample. Check what adapters are found at the end of the reads.
+Select the ***_FastQC tool_*** with the following parameters
+   - 1. &quot;Short read data from your current history&quot;: Choose here either only the SRR891268_R1 file with param-file or use param-files; use Multiple datasets to choose both SRR891268_R1 and SRR891268\_R2.<br>
+  - 2. Inspect the web page output of FastQC tool for the SRR891268\_R1 sample. Check what adapters are found at the end of the reads.
 </details>  
  
  <details >
@@ -183,17 +183,27 @@ Select the **FastQC tool** with the following parameters
 
 - Download the FastQC module
 Note: FASTQC requires java and javac installed for implementation and you need to run the fastqc file from the folder (using the relative/absolute links to the sequence reads)<bR> 
-```$ sudo apt install default-jre```<br>
-```$ sudo apt install default-jdk```<bR> 
-Make the “fastqc” an executable file<bR>
-```$ chmod 755 fastqc```<bR> 
+```python
+  sudo apt install default-jre
+  ```
+```python
+  sudo apt install default-jdk
+  ```
+  Make the “fastqc” an executable file<bR>
+```python 
+  chmod 755 fastqc
+  ```
 - Run the fastqc on all sequenced reads from its folder<bR> 
-```$ fastqc SRR891268_chr22_enriched_R1.fastq SRR891268_chr22_enriched_R2.fastq ```<bR> 
+```python 
+  fastqc SRR891268_chr22_enriched_R1.fastq SRR891268_chr22_enriched_R2.fastq 
+  ```
+  
+   </details>
 The report for each file is generated as an html file and a zip file containing more files that can be customised for reports. Look into the html files.
   
 <p align="center"> <img src="images/FastQC.PNG">
   
-  </details>
+ 
   
  #### TRIMMING READ
 <details>
@@ -286,11 +296,10 @@ For paired end trimming-
 ![Cutadapt](https://user-images.githubusercontent.com/81503326/130309371-611bde25-a310-444d-8100-4cff3fe998fb.PNG)
 <figcaption align = "left"><b>Output of the Adaptor Trimming</b></figcaption> <br> 
  
-![FastQC after cutadapt](https://user-images.githubusercontent.com/81503326/130309615-98fd29a6-d280-4820-b459-c558dc732c43.PNG)
-<figcaption align = "left"><b>FastQC Output after Adaptor Trimming</b></figcaption>
-
+ </details>
  
-  </details>
+  <img src="images/FastQC%20after%20cutadapt.PNG">
+
 
 ### STEP2 :- MAPPING 
   
