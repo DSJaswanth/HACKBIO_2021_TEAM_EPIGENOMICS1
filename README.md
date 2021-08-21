@@ -689,10 +689,6 @@ sed 's/c1/chr22/' ENCFF933NTR_chr22.bed > ENCFF933NTR_CHR22genes.bed
   - Show advanced output settings: no
   - Show advanced options: no
                                                      
-<p align="center"> <img src="images/MACS2%20bigwig.PNG"> 
- <p align="center"> **** Figure: plotHeatmap output *****
-
-                                     
 The same is repeated for the intergenic CTCF peaks.
 
 **Generate the matrix**
@@ -722,12 +718,10 @@ The same is repeated for the intergenic CTCF peaks.
     - Reference point label: peak center
     - Labels for the regions plotted in the heatmap: CTCF\_peaks
     - Did you compute the matrix with more than one groups of regions?: Yes, I used multiple groups of regions
- </details>  
+      </details>  
                                                      
-   <p align="center"> <img src="images/plotHeatmap%20output.PNG">
-     <p align="center"> Figure: plotHeatmap output on CTCF
+
  
-                      
 <details>
 <summary>LINUX Implementation</summary>
 <br>                                                                                                                                                    
@@ -757,7 +751,8 @@ The same is repeated for the intergenic CTCF peaks.
 ````python
  plotHeatmap -m peak_output_from_computeMatrix.gz -out intragenic_plotHeatMap.png
  ````
-
+</details>  
+ 
 In the generated heatmaps, each line will be a transcript. The coverage will be summarized with a color code from red (no coverage) to blue (maximum coverage). All TSS will be aligned in the middle of the figure and only the 2 kb around the TSS will be displayed. Another plot, on top of the heatmap, will show the mean signal at the TSS. There will be one heatmap per bigwig.
 
 For TSS, our data gives the following heatmap-
@@ -772,7 +767,7 @@ For CTCF peaks of chr22 in intergenic regions, the following heatmap is generate
                                                         
 This heatmap is showing a much more symmetric pattern.
 
-</details>  
+
  
 #### D)Visualise Regions with pyGenomeTracks
  
