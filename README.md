@@ -289,6 +289,15 @@ For paired end trimming-
 <p align = left >Output of the FastQC report after cutadapt</p>
  
   </details>
+</details> 
+<details >
+<summary>Fig of Results</summary>
+<br>
+<img src="https://user-images.githubusercontent.com/81503326/130266472-ff9b7010-5b74-4c4b-9a7d-c5038594bba1.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the FastQC report</p>
+<img src="https://user-images.githubusercontent.com/81503326/130266652-3617379d-4f3c-4735-b94e-dd187e70ed08.PNG" " style="height: 100px; width:100px;"/>
+<p align = left >Output of the FastQC report after cutadapt</p>
+</details> 
 
 ### STEP2 :- MAPPING 
   
