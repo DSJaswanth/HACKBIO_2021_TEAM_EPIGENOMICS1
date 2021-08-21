@@ -183,8 +183,7 @@ Note: FASTQC requires java and javac installed for implementation and you need t
 Make the “fastqc” an executable file<bR>
 ```$ chmod 755 fastqc```<bR> 
 - Run the fastqc on all sequenced reads from its folder<bR> 
-```$ fastqc SRR891268_chr22_enriched_R1.fastq```<bR> 
-```SRR891268_chr22_enriched_R2.fastq ```<bR> 
+```$ fastqc SRR891268_chr22_enriched_R1.fastq SRR891268_chr22_enriched_R2.fastq ```<bR> 
 The report for each file is generated as an html file and a zip file containing more files that can be customised for reports. Look into the html files.
   
 <p align="center"> <img src="images/FastQC.PNG">
