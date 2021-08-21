@@ -46,7 +46,7 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
  
 ### <p align="center"> GRAPHICAL WORKFLOW DESIGN
  
- <p align="center"> <img src="images/workflow.png" width="800px" height="600px" >
+ <p align="center"> <img src="20210821_120019_0000.png" width="800px" height="600px" >
  
  
 ### STEP 1 :- PREPROCESSING 
@@ -95,19 +95,19 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
   
 #### B) Obtain Annotation for hg38 genes
  <details>
-  <summary><b>Galaxy Implementation</b></summary>
+ <summary>FOR GALAXY IMPLEMEMTATION</summary>
  
 1. Select the **USCS Main table browser tool** with the following parameters
 
-- <b>clade</b>:<h style="color:blue;">Mammal</h>
-- <b>genome</b>:<h style="color:blue;">Human</h>
-- <b>assembly</b>:<h style="color:blue;">Dec. 2013(GRCh38/hg38)</h>
-- <b>group</b>:<h style="color:blue;">Genes and Gene Prediction</h>
-- <b>track</b>:<h style="color:blue;">All GENCODE V37</h>
-- <b>table</b>:<h style="color:blue;">Basic</h>
-- <b>region</b>:<h style="color:blue;">position chr22</h>
-- <b>output format</b>:<h style="color:blue;">all fields from selected table</h>
-- <b>Send output to</b>:<h style="color:blue;">Galaxy</h>
+- &quot;clade&quot;: Mammal
+- &quot;genome&quot;: Human
+- &quot;assembly&quot;: Dec. 2013 (GRCh38/hg38)
+- &quot;group&quot;: Genes and Gene Prediction
+- &quot;track&quot;: All GENCODE V37
+- &quot;table&quot;: Basic
+- &quot;region&quot;: position chr22
+- &quot;output format&quot;: all fields from selected table
+- &quot;Send output to&quot;: Galaxy
 
 2. Click get output 
 
@@ -115,9 +115,9 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
 
 4. Select the **Cut columns from a table tool** with the following parameters
 
-1. <b>Cut columns</b>: <h style="color:blue;">c3,c5,c6,c13,c12,c4</h>
-2. <b>Delimited by</b>: <h style="color:blue;">Tab</h>
-3. <b>param-file From</b>: <h style="color:blue;">UCSC Main on Human: wgEncodeGencodeBasicV37 (chr22:1-50,818,468)</h>
+1. &quot;Cut columns&quot;: c3,c5,c6,c13,c12,c4
+2. &quot;Delimited by&quot;: Tab
+3. param-file &quot;From&quot;: UCSC Main on Human: wgEncodeGencodeBasicV37 (chr22:1-50,818,468)
 
 _Rename the dataset as chr22 genes_
 
@@ -135,19 +135,19 @@ _Change the datatype to a BED format_
 Click on the eye icon to check changes effected. There should be matching column names in each column of the dataset.
   </details>
  
-  <details><summary><b>Linux Implementation</b></summary>
+  <details><summary>FOR LINUX IMPLEMEMTATION</summary>
    Go to [http://genome.ucsc.edu/cgi-bin/hgTables](http://genome.ucsc.edu/cgi-bin/hgTables) and set the parameters as-
 
-  - <b>clade</b>:<h style="color:blue;">Mammal</h>
-  - <b>genome</b>:<h style="color:blue;">Human</h>
-  - <b>assembly</b>:<h style="color:blue;">Dec. 2013(GRCh38/hg38)</h>
-  - <b>group</b>:<h style="color:blue;">Genes and Gene Prediction</h>
-  - <b>track</b>:<h style="color:blue;">All GENCODE V37</h>
-  - <b>table</b>:<h style="color:blue;">Basic</h>
-  - <b>region</b>:<h style="color:blue;">position chr22</h>
-  - <b>output format</h>:<h style="color:blue;">all fields from selected table</h>
-  - <b>output filename</h>:<h style="color:blue;">chr22</h>
-  - <b>file type returned</h>:<h style="color:blue;">gzipped compressed</h>
+  - &quot;_ **clade&quot;** _ **:**  **Mammal**
+  - &quot;_ **genome&quot;** _ **:**  **Human**
+  - &quot;_ **assembly&quot;** _ **:** **Dec. 2013 (GRCh38/hg38)**
+  - &quot;_ **group&quot;** _ **:**  **Genes and Gene Prediction**
+  - &quot;_ **track&quot;** _ **:**  **All GENCODE V37**
+  - &quot;_ **table&quot;** _ **:**  **Basic**
+  - &quot;_ **region&quot;** _ **:**  **position**** chr22**
+  - &quot;_ **output format&quot;** _ **:**  **all fields from selected table**
+  - &quot;_ **output filename:&quot; chr22** _
+  - &quot;_ **file type returned:&quot; gzipped compressed** _
 
 And then select **Get output**
 
@@ -177,7 +177,7 @@ Select the ***_FastQC tool_*** with the following parameters
 </details>  
  
  <details >
-<summary>LINUX Implementation</summary>
+<summary>Linux Implementation</summary>
 <br>
 
 - Download the FastQC module
@@ -331,7 +331,7 @@ For paired end trimming-
   </details>
 
 <details >
-<summary>LINUX Implementation</summary>
+<summary>Linux Implementation</summary>
 <br>
  
 - Mapping and Alignment 
@@ -405,7 +405,7 @@ Click on the input and the output BAM files of the filtering step. Check the siz
  </details >
   
 <details >
-<summary>LINUX Implementation</summary>
+<summary>Linux Implementation</summary>
 <br>
  
 ****_Filtering of uninformative mapped reads_****
@@ -481,7 +481,7 @@ Click on the galaxy-eye (eye) icon of the lower one of the 2 outputs (the png fi
 </details>
  
   <details >
-<summary>LINUX Implementation</summary>
+<summary>Linux Implementation</summary>
 <br>
 
 ```python
@@ -818,7 +818,7 @@ This heatmap is showing a much more symmetric pattern.
 </details>
   
  <details>
-<summary>LINUX Implementation</summary>
+<summary>Linux Implementation</summary>
 <br>                                     
 <p><strong>Set up the config.ini file with the following contents-</p></strong>
 
