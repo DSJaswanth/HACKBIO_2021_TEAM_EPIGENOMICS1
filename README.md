@@ -25,7 +25,7 @@
 👉 REPRODUCING THE ANALYSIS.<br>
 👉 CREATING A COMPREHENSIVE MARKDOWN OF THE ANALYSIS.<br>
 
-##  <p align="center"> **WE CHOOSE ATAC-Seq Analysis**
+##  <p align="center"> **WE CHOSE ATAC-Seq Analysis**
  
  ### **What ATAC-Seq is**
 
