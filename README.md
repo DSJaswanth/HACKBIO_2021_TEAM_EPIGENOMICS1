@@ -37,7 +37,7 @@ In this project, we are reproducing the ATAC-Seq analysis [tutorial](https://tra
  - The ATAC-Seq analysis is done compare the predicted open chromatin regions to the known binding sites of CTCF, a DNA-binding protein implicated in 3D structure: CTCF. CTCF is known to bind to thousands of sites in the genome and thus it can be used as a positive control for assessing if the ATAC-Seq experiment is good quality. Good ATAC-Seq data would have accessible regions both within and outside of TSS, for example, at some CTCF binding sites. For that reason, we will download
 
 #### Datasets
- - Data is gotten from the study of Buenrostro et al. 2013. The data from the original dataset is downsized to 200,000 randomly selected reads and about 200,000 reads pairs that will map to chromosome 22. Binding sites of CTCF identified by ChIP in the same cell line from ENCODE (ENCSR000AKB, dataset ENCFF933NTR are also used.
+ - Data is gotten from the study of [Buenrostro et al. 2013](https://www.nature.com/articles/nmeth.2688). The data from the original dataset is downsized to 200,000 randomly selected reads and about 200,000 reads pairs that will map to chromosome 22. Binding sites of CTCF identified by ChIP in the same cell line from ENCODE (ENCSR000AKB, dataset ENCFF933NTR are also used.
 
  **Downloading Dataset: **
 
@@ -572,24 +572,24 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
   - Convert: Select the output of  **MACS2**  tool (Bedgraph Treatment).
   - Converter settings to use: Default
 - Rename the datasets MACS2 bigwig.
-</details>
+
+ </details>
                                                                                                                                                       
 <details>
 <summary>LINUX Implementation</summary>
 <br>        
  Install <strong>bedGraphtoBigWig</strong> and go through the following commands for converting the output bedGraph file from macs2 to bigwig (refer to this link if you want to understand the commands [https://www.biostars.org/p/176875/](https://www.biostars.org/p/176875/) )
 
-````awk NR!=1 macs\_output\_treat\_pileup.bdg \ macs.deheader.bedGraph```` 
- <br>
-````sort -k1,1 -k2,2n macs.deheader.bedGraph \ macs.sorted.bedGraph ````
- <br>
+````awk NR!=1 macs\_output\_treat\_pileup.bdg \ macs.deheader.bedGraph```` <br>
+````sort -k1,1 -k2,2n macs.deheader.bedGraph \ macs.sorted.bedGraph ````<br>
 ````touch chrom22.sizes````
  <br>
-````nano hg19.chrom.sizes```` → write only one line (tab delimited) in this file chr22 51304566 <br>
-````awk {print $1,$2,$3,$4} macs.sorted.bedGraph \ macs.sorted.4.bedGraph````
- <br>
-````bedGraphToBigWig macs.sorted.4.bedGraph hg19.chrom.sizes macs.bw ````
- 
+````nano hg19.chrom.sizes
+ ```` → write only one line (tab delimited) in this file chr22 51304566 <br>
+````awk {print $1,$2,$3,$4} macs.sorted.bedGraph \ macs.sorted.4.bedGraph
+ ````<br>
+````bedGraphToBigWig macs.sorted.4.bedGraph hg19.chrom.sizes macs.bw````
+                                                                                                                                                      
  </details>                                                                                                                                                    
 
  #### C) Create heatmap of coverage at TSS with deepTool
@@ -818,20 +818,18 @@ This heatmap is showing a much more symmetric pattern.
  ```conda -install -c bioconda pyGenomeTracks```` <br>
  
 - Visualize regions by running- <br>```pyGenomeTracks --tracks config.ini --region chr22:37,193,000-37,252,000 -o Genome\_track\_plot.png```<br>
- 
- </details>
 
 <p align="center"> <img src="images/pyGenome%20output.PNG">
- 
  </details>
  
 - From the figure, we can see 3 accessible TSS for 6 transcripts for 2 genes. The TSS of RAC2 corresponds to an ATAC-Seq peak whereas there is no significant coverage on both TSS of SSTR3. Again, it can be said that only the first peak on the left overlaps with a CTCF binding site represents accessible loci. Amongst the 4 peaks in this plotted region, the 2 peaks in the middle do not correspond to CTCF peaks or TSS. As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes. More analyses are needed to assess if it is a real enhancer, for example, histone ChIP-seq, 3D structure, transgenic assay, etc. 
-                                                                               
+</details>                                                                                  
 As CTCF creates accessible regions, a region containing a peak with no corresponding CTCF peak or TSS could be a putative enhancer. In the pyGenomeTracks plot we see a region like this located in the intron of a gene and another one between genes.
 
 ## Conclusion
 
 ATAC-Seq is a method to investigate the chromatin accessibility and the genome is treated with a transposase (enzyme) called Tn5. It marks open chromatin regions by cutting and inserting adapters for sequencing. Low quality bases, adapter contamination, correct insert size and PCR duplicates (duplication level) were checked. Mapped the reads with  **Bowtie2** , filtered the reads for properly paired, good quality and reads that do not map to the mitochondrial genome. Open chromatin regions were found with  **MACS2** , a tool to find regions of genomic enrichment (peaks). The read coverage around TSS was investigated with the help of  **computeMatrix**  and  **plotHeatmap**. The peaks and other informative tracks, such as CTCF binding regions and hg38 genes were visualised with the help of  **pyGenomeTracks**. At the end, open chromatin regions that did not overlap with CTCF sites or TSS, which could be potential putative enhancer regions detected by the ATAC-Seq experiment.
+
 
 
 ## REFERENCES**
