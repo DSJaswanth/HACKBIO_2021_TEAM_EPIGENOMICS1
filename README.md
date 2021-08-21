@@ -585,7 +585,7 @@ In order to get the list of intergenic CTCF peaks of chr22, select the peaks on 
 <details>
 <summary>Galaxy Implementation</summary>
 <br>                                                                                                                                                               
-- **computeMatrix**   with the following parameters:
+- <strong>computeMatrix</strong> with the following parameters:
   - In  Select regions:
     - Insert Select regions
       - Regions to plot: Select the dataset chr22 genes
